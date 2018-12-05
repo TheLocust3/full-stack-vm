@@ -32,8 +32,8 @@ pub fn to_bytes_32bit(data: u32) -> [u8; 4] {
 // splits 64bit data into array of bytes
 // 0th element: highest order, last element: lowest order
 pub fn to_bytes_64bit(data: u64) -> [u8; 8] {
-    [((data & 0xFF00000000000000) >> 56) as u8, ((data & 0x00FF000000000000) >> 48) as u8,
-     ((data & 0x0000FF0000000000) >> 40) as u8, ((data & 0x000000FF00000000) >> 32) as u8,
-     ((data & 0x00000000FF000000) >> 24) as u8, ((data & 0x0000000000FF0000) >> 16) as u8,
-     ((data & 0x000000000000FF00) >> 8) as u8, (data & 0x00000000000000FF) as u8]
+    [((data & 0xFF00000000000000) >> 56) as u8, ((data & 0x00FF000000000000) >> 48) as u8, ((data & 0x0000FF0000000000) >> 40) as u8,
+     ((data & 0x000000FF00000000) >> 32) as u8,
+     ((data & 0x00000000FF000000) >> 24) as u8, ((data & 0x0000000000FF0000) >> 16) as u8, ((data & 0x000000000000FF00) >> 8) as u8,
+     (data & 0x00000000000000FF) as u8]
 }
