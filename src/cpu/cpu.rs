@@ -14,13 +14,13 @@ pub struct CPU {
 impl CPU {
     pub fn new() -> CPU {
         CPU {
-            a: Register { value: 0 },
-            b: Register { value: 0 },
-            c: Register { value: 0 },
-            d: Register { value: 0 },
-            e: Register { value: 0 },
-            f: Register { value: 0 },
-            hl: Register { value: 0 }
+            a: Register::new(),
+            b: Register::new(),
+            c: Register::new(),
+            d: Register::new(),
+            e: Register::new(),
+            f: Register::new(),
+            hl: Register::new()
         }
     }
 }

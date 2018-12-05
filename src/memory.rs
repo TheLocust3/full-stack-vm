@@ -8,9 +8,7 @@ pub struct Memory {
 
 impl Memory {
     pub fn new() -> Memory {
-        let mut memory = Memory { memory: vec![0; TOTAL_MEMORY] };
-
-        memory
+        Memory { memory: vec![0; TOTAL_MEMORY] }
     }
 
     pub fn read_8bit(&self, address: usize) -> u8 {
