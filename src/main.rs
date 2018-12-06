@@ -1,14 +1,13 @@
 mod bitwise;
-mod cpu;
 mod memory;
+mod instructions;
+mod cpu;
+mod computer;
 
-use cpu::cpu::CPU;
-use memory::Memory;
+use computer::Computer;
 
 fn main() {
-    let cpu: CPU = CPU::new();
-    let memory: Memory = Memory::new();
+    let mut computer: Computer = Computer::new();
 
-    println!("Hello, world!");
-    println!("Test: {:?}", cpu);
+    computer.cycle();
 }

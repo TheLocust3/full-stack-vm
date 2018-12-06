@@ -12,7 +12,7 @@ impl Memory {
     }
 
     pub fn read_8bit(&self, address: usize) -> u8 {
-        if address <= 0 || address >= TOTAL_MEMORY {
+        if address < 0 || address >= TOTAL_MEMORY {
             panic!("Address: {}, out of bounds", address);
         }
 
@@ -20,7 +20,7 @@ impl Memory {
     }
 
     pub fn read_16bit(&self, address: usize) -> u16 {
-        if address <= 0 || (address + 1) >= TOTAL_MEMORY {
+        if address < 0 || (address + 1) >= TOTAL_MEMORY {
             panic!("Address: {}, out of bounds", address);
         }
 
@@ -29,7 +29,7 @@ impl Memory {
     }
 
     pub fn read_32bit(&self, address: usize) -> u32 {
-        if address <= 0 || (address + 3) >= TOTAL_MEMORY {
+        if address < 0 || (address + 3) >= TOTAL_MEMORY {
             panic!("Address: {}, out of bounds", address);
         }
 
@@ -40,7 +40,7 @@ impl Memory {
     }
 
     pub fn read_64bit(&self, address: usize) -> u64 {
-        if address <= 0 || (address + 7) >= TOTAL_MEMORY {
+        if address < 0 || (address + 7) >= TOTAL_MEMORY {
             panic!("Address: {}, out of bounds", address);
         }
 
@@ -55,7 +55,7 @@ impl Memory {
     }
 
     pub fn write_8bit(&mut self, address: usize, data: u8) -> bool {
-        if address <= 0 || address >= TOTAL_MEMORY {
+        if address < 0 || address >= TOTAL_MEMORY {
             panic!("Address: {}, out of bounds", address);
         }
 
@@ -65,7 +65,7 @@ impl Memory {
     }
 
     pub fn write_16bit(&mut self, address: usize, data: u16) -> bool {
-        if address <= 0 || (address + 1) >= TOTAL_MEMORY {
+        if address < 0 || (address + 1) >= TOTAL_MEMORY {
             panic!("Address: {}, out of bounds", address);
         }
 
@@ -77,7 +77,7 @@ impl Memory {
     }
 
     pub fn write_32bit(&mut self, address: usize, data: u32) -> bool {
-        if address <= 0 || (address + 3) >= TOTAL_MEMORY {
+        if address < 0 || (address + 3) >= TOTAL_MEMORY {
             panic!("Address: {}, out of bounds", address);
         }
 
@@ -91,7 +91,7 @@ impl Memory {
     }
 
     pub fn write_64bit(&mut self, address: usize, data: u64) -> bool {
-        if address <= 0 || (address + 7) >= TOTAL_MEMORY {
+        if address < 0 || (address + 7) >= TOTAL_MEMORY {
             panic!("Address: {}, out of bounds", address);
         }
 

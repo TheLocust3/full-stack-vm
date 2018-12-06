@@ -19,3 +19,7 @@ Flag register
 ## HL
 
 Address register
+
+## PC
+
+Program counter

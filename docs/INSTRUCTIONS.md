@@ -28,32 +28,6 @@ Implementation:
 2. b = pop()
 3. push(a - b)
 
-### mul
-
-Multiplies the first two values on the Stack together and pushes the result.
-
-Opcode: 0x03  
-Arguments: None
-
-Implementation:
-
-1. a = pop()
-2. b = pop()
-3. push(a \* b)
-
-### div
-
-Divides the first value on the Stack by the second value on the stack and pushes the result.
-
-Opcode: 0x04  
-Arguments: None
-
-Implementation:
-
-1. a = pop()
-2. b = pop()
-3. push(a / b)
-
 ## Control Operations
 
 ### if0
