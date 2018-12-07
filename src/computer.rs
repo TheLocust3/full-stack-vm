@@ -7,8 +7,10 @@ pub struct Computer {
 
 impl Computer {
     pub fn new() -> Computer {
+        let mut memory: Memory = Memory::new();
+
         Computer {
-            cpu: CPU::new(Memory::new())
+            cpu: CPU::new()
         }
     }
 

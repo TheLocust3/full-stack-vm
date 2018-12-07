@@ -15,7 +15,7 @@ pub struct CPU {
 }
 
 impl CPU {
-    pub fn new(memory: Memory) -> CPU {
+    pub fn new() -> CPU {
         CPU {
             a: Register::new(),
             b: Register::new(),
@@ -25,7 +25,7 @@ impl CPU {
             f: Register::new(),
             hl: Register::new(),
             pc: Register::new(),
-            memory: memory
+            memory: Memory::new()
         }
     }
 
