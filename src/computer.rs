@@ -12,7 +12,9 @@ impl Computer {
         }
     }
 
-    pub fn cycle(&mut self) {
-        self.cpu.cycle();
+    pub fn cycle(self) -> Computer {
+        Computer {
+            cpu: self.cpu.cycle()
+        }
     }
 }

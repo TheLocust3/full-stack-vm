@@ -1,6 +1,5 @@
-#[macro_use] extern crate log;
+extern crate log;
 extern crate env_logger;
-use log::Level;
 
 mod bitwise;
 mod memory;
@@ -13,7 +12,7 @@ use computer::Computer;
 fn main() {
     env_logger::init();
     
-    let mut computer: Computer = Computer::new();
+    let computer: Computer = Computer::new();
 
     computer.cycle();
 }

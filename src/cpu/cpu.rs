@@ -29,7 +29,7 @@ impl CPU {
         }
     }
 
-    pub fn cycle(&mut self) {
-        executor::execute(self);
+    pub fn cycle(self) -> CPU {
+        executor::execute(self)
     }
 }
