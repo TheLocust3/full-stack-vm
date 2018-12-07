@@ -45,3 +45,9 @@ Implementation:
 ### lam
 
 ## Memory Operations
+
+## Miscellaneous
+
+### nop
+
+Does nothing

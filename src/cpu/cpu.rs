@@ -29,6 +29,132 @@ impl CPU {
         }
     }
 
+    pub fn set_a(self, a: Register) -> CPU {
+        CPU {
+            a: a,
+            b: self.b,
+            c: self.c,
+            d: self.d,
+            e: self.e,
+            f: self.f,
+            hl: self.hl,
+            pc: self.pc,
+            memory: self.memory
+        }
+    }
+
+    pub fn set_b(self, b: Register) -> CPU {
+        CPU {
+            a: self.a,
+            b: b,
+            c: self.c,
+            d: self.d,
+            e: self.e,
+            f: self.f,
+            hl: self.hl,
+            pc: self.pc,
+            memory: self.memory
+        }
+    }
+
+    pub fn set_c(self, c: Register) -> CPU {
+        CPU {
+            a: self.a,
+            b: self.b,
+            c: c,
+            d: self.d,
+            e: self.e,
+            f: self.f,
+            hl: self.hl,
+            pc: self.pc,
+            memory: self.memory
+        }
+    }
+
+    pub fn set_d(self, d: Register) -> CPU {
+        CPU {
+            a: self.a,
+            b: self.b,
+            c: self.c,
+            d: d,
+            e: self.e,
+            f: self.f,
+            hl: self.hl,
+            pc: self.pc,
+            memory: self.memory
+        }
+    }
+
+    pub fn set_e(self, e: Register) -> CPU {
+        CPU {
+            a: self.a,
+            b: self.b,
+            c: self.c,
+            d: self.d,
+            e: e,
+            f: self.f,
+            hl: self.hl,
+            pc: self.pc,
+            memory: self.memory
+        }
+    }
+
+    pub fn set_f(self, f: Register) -> CPU {
+        CPU {
+            a: self.a,
+            b: self.b,
+            c: self.c,
+            d: self.d,
+            e: self.e,
+            f: f,
+            hl: self.hl,
+            pc: self.pc,
+            memory: self.memory
+        }
+    }
+
+    pub fn set_hl(self, hl: Register) -> CPU {
+        CPU {
+            a: self.a,
+            b: self.b,
+            c: self.c,
+            d: self.d,
+            e: self.e,
+            f: self.f,
+            hl: hl,
+            pc: self.pc,
+            memory: self.memory
+        }
+    }
+    
+    pub fn set_pc(self, pc: Register) -> CPU {
+        CPU {
+            a: self.a,
+            b: self.b,
+            c: self.c,
+            d: self.d,
+            e: self.e,
+            f: self.f,
+            hl: self.hl,
+            pc: pc,
+            memory: self.memory
+        }
+    }
+
+    pub fn set_memory(self, memory: Memory) -> CPU {
+        CPU {
+            a: self.a,
+            b: self.b,
+            c: self.c,
+            d: self.d,
+            e: self.e,
+            f: self.f,
+            hl: self.hl,
+            pc: self.pc,
+            memory: memory
+        }
+    }
+
     pub fn cycle(self) -> CPU {
         executor::execute(self)
     }
