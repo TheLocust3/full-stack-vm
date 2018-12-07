@@ -1,5 +1,4 @@
 use cpu::cpu::CPU;
-use cpu::register::Register;
 use memory::Memory;
 
 pub struct Computer {
@@ -14,8 +13,6 @@ impl Computer {
     }
 
     pub fn cycle(&mut self) {
-        println!("Cycling computer");
-        
         self.cpu.cycle();
     }
 }

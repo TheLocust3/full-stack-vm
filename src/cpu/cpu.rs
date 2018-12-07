@@ -1,5 +1,6 @@
 use cpu::register::Register;
 use memory::Memory;
+use cpu::executor;
 
 pub struct CPU {
     pub a: Register,
@@ -29,14 +30,6 @@ impl CPU {
     }
 
     pub fn cycle(&mut self) {
-        self.a = Register { value: 10 };
-        self.a = Register { value: 20 };
-
-        self.memory.write_8bit(0, 10);
-        self.memory.write_8bit(0, 20);
-
-        println!("Hello, world!");
-        println!("{:?}", self.a);
-        println!("{}", self.memory.read_8bit(0));
+        executor::execute(self);
     }
 }
