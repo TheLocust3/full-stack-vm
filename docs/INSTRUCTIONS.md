@@ -10,43 +10,21 @@ Sets value stored in register to next four bytes after this instruction.
 
 ### add
 
-Adds the first two values on the Stack together and pushes the result.
-
-Opcode: 0x01  
-Arguments: None
-
-Implementation:
-
-1. a = pop()
-2. b = pop()
-3. push(a + b)
+Adds two registers together and stores the result in register A.
 
 ### sub
 
-Subtracts the second value on the Stack from the first value on the stack and pushes the result.
-
-Opcode: 0x02  
-Arguments: None
-
-Implementation:
-
-1. a = pop()
-2. b = pop()
-3. push(a - b)
+Subtracts register from register A and stores the result in register A.
 
 ## Control Operations
 
-### if0
+### jump
 
-Pops the top value on the stack off. If that value is zero, set PC to first argument, otherwise set it to second argument.
+Jump to location stored in the next four bytes.
 
-Opcode: 0x05  
-Arguments: \[true branch\] \[false branch\]
+### jump0
 
-Implementation:
-
-1. a = pop()
-2. if a == 0 then pc = \[true location\] else pc = \[true location\]
+If value stored in register A is 0 jump to location stored in the next four bytes.
 
 ## Stack Operations
 
@@ -97,11 +75,3 @@ Writes information stored in register to location stored in HL.
 ### nop
 
 Does nothing.
-
-### ei
-
-Enables interrupts.
-
-### di
-
-Disables interrupts.
