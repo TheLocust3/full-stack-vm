@@ -1,6 +1,8 @@
 use log::{info, error};
 
 use cpu::cpu::CPU;
+use cpu::register::Register;
+use instructions::arithmetic;
 use instructions::miscellaneous;
 
 pub fn execute(cpu: CPU) -> CPU {
@@ -11,6 +13,12 @@ pub fn execute(cpu: CPU) -> CPU {
     info!("Instruction: {}", instruction);
 
     match instruction {
+        0x0001 => {
+            let a: Register = cpu.a;
+            let b: Register = cpu.b;
+
+            cpu.set_a(arithmetic::add(a, b))
+        },
         0x0000 => miscellaneous::nop(cpu),
         _ => {
             error!("Instruction: {} not handled", instruction);
