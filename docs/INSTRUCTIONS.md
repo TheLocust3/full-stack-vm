@@ -16,6 +16,28 @@ Adds two registers together and stores the result in register A.
 
 Subtracts register from register A and stores the result in register A.
 
+## Bitwise Operations
+
+### and
+
+Runs an and operation on A and a register and stores the result in A.
+
+### or
+
+Runs an or operation on A and a register and stores the result in A.
+
+### not
+
+Runs a not operation on a register and stores the result in that register.
+
+### shift-left
+
+Shifts the register to the left one bit and stores the result in that register. Highest bit is placed on the new lowest order bit if operation is selected, otherwise the bit is lost.
+
+### shift-right
+
+Shifts the register to the right one bit and stores the result in that register. Lowest bit is placed on the new highest order bit if operation is selected, otherwise the bit is lost.
+
 ## Control Operations
 
 ### jump
