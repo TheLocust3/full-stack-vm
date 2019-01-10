@@ -14,7 +14,9 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        assert_eq!(cpu.set_a(arithmetic::add(a, b)).a.value, 30);
+        let registerReturn = arithmetic::add(a, b);
+
+        assert_eq!(registerReturn.out.value, 30);
     }
 
     #[test]
@@ -26,6 +28,8 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        assert_eq!(cpu.set_a(arithmetic::sub(a, b)).a.value, 10);
+        let registerReturn = arithmetic::sub(a, b);
+
+        assert_eq!(registerReturn.out.value, 10);
     }
 }

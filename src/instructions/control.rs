@@ -12,7 +12,7 @@ pub fn jump(pc: Register, address: u64) -> RegisterReturn {
 }
 
 pub fn jump0(pc: Register, a: Register, address: u64) -> RegisterReturn {
-    if (a.value == 0) {
+    if a.value == 0 {
         RegisterReturn {
             out: pc.set_value(address),
             overflow: false,

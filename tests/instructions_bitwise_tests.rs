@@ -14,7 +14,9 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        assert_eq!(cpu.set_a(bitwise::and(a, b)).a.value, 89);
+        let registerReturn = bitwise::and(a, b);
+
+        assert_eq!(registerReturn.out.value, 89);
     }
 
     #[test]
@@ -26,7 +28,9 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        assert_eq!(cpu.set_a(bitwise::or(a, b)).a.value, 1023);
+        let registerReturn = bitwise::or(a, b);
+
+        assert_eq!(registerReturn.out.value, 1023);
     }
 
     #[test]
@@ -35,6 +39,8 @@ mod tests {
 
         let a = cpu.a;
 
-        assert_eq!(cpu.set_a(bitwise::not(a)).a.value, u64::max_value());
+        let registerReturn = bitwise::not(a);
+
+        assert_eq!(registerReturn.out.value, u64::max_value());
     }
 }
