@@ -16,6 +16,11 @@ Accumulator register
 
 Flag register
 
+Flags:
+
+- Overflow
+- Negative
+
 ## HL
 
 Address register

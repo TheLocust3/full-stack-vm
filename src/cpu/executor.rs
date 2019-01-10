@@ -4,6 +4,7 @@ use cpu::cpu::CPU;
 use cpu::register::Register;
 use instructions::arithmetic;
 use instructions::miscellaneous;
+use instructions::instruction_return::RegisterReturn;
 
 pub fn execute(cpu: CPU) -> CPU {
     info!("PC: {}", cpu.pc.value);
@@ -17,7 +18,9 @@ pub fn execute(cpu: CPU) -> CPU {
             let a: Register = cpu.a;
             let b: Register = cpu.b;
 
-            cpu.set_a(arithmetic::add(a, b))
+            let registerReturn: RegisterReturn = arithmetic::add(a, b);
+
+            cpu.set_a(registerReturn.out)
         },
         0x0000 => miscellaneous::nop(cpu),
         _ => {

@@ -6,4 +6,4 @@ pub mod stack;
 pub mod memory;
 pub mod miscellaneous;
 
-// TODO: Set flag registers
+pub mod instruction_return;
