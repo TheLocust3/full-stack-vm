@@ -1,6 +1,7 @@
 use cpu::register::Register;
 use memory::Memory;
 use cpu::executor;
+use instructions::instruction_return::RegisterReturn;
 
 pub struct CPU {
     pub a: Register,
@@ -153,6 +154,20 @@ impl CPU {
             pc: self.pc,
             memory: memory
         }
+    }
+
+    pub fn set_f_from_register_return(self, register_return: RegisterReturn) -> CPU {
+        let mut flag = 0;
+
+        if register_return.overflow {
+            flag += 1;
+        }
+
+        if register_return.negative {
+            flag += 2;
+        }
+
+        self.set_f(Register { value: flag })
     }
 
     pub fn cycle(self) -> CPU {

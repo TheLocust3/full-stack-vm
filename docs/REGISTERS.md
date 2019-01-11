@@ -16,10 +16,10 @@ Accumulator register
 
 Flag register
 
-Flags:
+Flags (and bit location, starting at lowest order bit):
 
-- Overflow
-- Negative
+- 0: Overflow
+- 1: Negative
 
 ## HL
 

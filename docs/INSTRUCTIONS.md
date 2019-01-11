@@ -14,9 +14,17 @@ Sets value stored in register to next four bytes after this instruction.
 
 Adds two registers together and stores the result in register A.
 
+Flags:
+
+- Overflow: If number is greater than u64::max_value()
+
 ### sub
 
 Subtracts register from register A and stores the result in register A.
+
+Flags:
+
+- Negative: If number is less than 0
 
 ## Bitwise Operations
 

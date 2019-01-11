@@ -12,9 +12,9 @@ mod tests {
 
         let pc = cpu.pc;
 
-        let registerReturn = control::jump(pc, 100);
+        let register_return = control::jump(pc, 100);
 
-        assert_eq!(registerReturn.out.value, 100);
+        assert_eq!(register_return.out.value, 100);
     }
 
     #[test]
@@ -26,9 +26,9 @@ mod tests {
         let pc = cpu.pc;
         let a = cpu.a;
 
-        let registerReturn = control::jump0(pc, a, 100);
+        let register_return = control::jump0(pc, a, 100);
 
-        assert_eq!(registerReturn.out.value, 0);
+        assert_eq!(register_return.out.value, 0);
     }
 
     #[test]
@@ -40,8 +40,8 @@ mod tests {
         let pc = cpu.pc;
         let a = cpu.a;
 
-        let registerReturn = control::jump0(pc, a, 100);
+        let register_return = control::jump0(pc, a, 100);
 
-        assert_eq!(registerReturn.out.value, 100);
+        assert_eq!(register_return.out.value, 100);
     }
 }

@@ -18,9 +18,11 @@ pub fn execute(cpu: CPU) -> CPU {
             let a: Register = cpu.a;
             let b: Register = cpu.b;
 
-            let registerReturn: RegisterReturn = arithmetic::add(a, b);
+            let register_return: RegisterReturn = arithmetic::add(a, b);
 
-            cpu.set_a(registerReturn.out)
+            let new_cpu = cpu.set_a(register_return.out);
+
+            new_cpu.set_f_from_register_return(register_return)
         },
         0x0000 => miscellaneous::nop(cpu),
         _ => {
