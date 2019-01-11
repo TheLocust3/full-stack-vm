@@ -1,5 +1,7 @@
 # Instructions
 
+All instructions that interact with flags reset the flag register first.
+
 ## Register Operations
 
 ### set
