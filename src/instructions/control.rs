@@ -1,8 +1,6 @@
 use cpu::register::Register;
 use instructions::instruction_return::RegisterReturn;
 
-// TODO: Tests
-
 pub fn jump(pc: Register, address: u64) -> RegisterReturn {
     RegisterReturn {
         out: pc.set_value(address),

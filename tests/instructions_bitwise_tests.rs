@@ -43,4 +43,108 @@ mod tests {
 
         assert_eq!(registerReturn.out.value, u64::max_value());
     }
+
+    #[test]
+    fn test_shift_left() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: 1 });
+
+        let a = cpu.a;
+
+        let registerReturn = bitwise::shift_left(a, false);
+
+        assert_eq!(registerReturn.out.value, 2);
+        assert_eq!(registerReturn.overflow, false);
+    }
+    
+    #[test]
+    fn test_shift_left_max() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: u64::max_value() });
+
+        let a = cpu.a;
+
+        let registerReturn = bitwise::shift_left(a, false);
+
+        assert_eq!(registerReturn.out.value, 18446744073709551614);
+        assert_eq!(registerReturn.overflow, true);
+    }
+
+    #[test]
+    fn test_shift_left_wrap() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: 1 });
+
+        let a = cpu.a;
+
+        let registerReturn = bitwise::shift_left(a, true);
+
+        assert_eq!(registerReturn.out.value, 2);
+        assert_eq!(registerReturn.overflow, false);
+    }
+
+    #[test]
+    fn test_shift_left_wrap_max() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: u64::max_value() });
+
+        let a = cpu.a;
+
+        let registerReturn = bitwise::shift_left(a, true);
+
+        assert_eq!(registerReturn.out.value, u64::max_value());
+        assert_eq!(registerReturn.overflow, false);
+    }
+
+    #[test]
+    fn test_shift_right() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: 2 });
+
+        let a = cpu.a;
+
+        let registerReturn = bitwise::shift_right(a, false);
+
+        assert_eq!(registerReturn.out.value, 1);
+        assert_eq!(registerReturn.overflow, false);
+    }
+    
+    #[test]
+    fn test_shift_right_max() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: u64::max_value() });
+
+        let a = cpu.a;
+
+        let registerReturn = bitwise::shift_right(a, false);
+
+        assert_eq!(registerReturn.out.value, 9223372036854775807);
+        assert_eq!(registerReturn.overflow, true);
+    }
+
+    #[test]
+    fn test_shift_right_wrap() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: 2 });
+
+        let a = cpu.a;
+
+        let registerReturn = bitwise::shift_right(a, true);
+
+        assert_eq!(registerReturn.out.value, 1);
+        assert_eq!(registerReturn.overflow, false);
+    }
+
+    #[test]
+    fn test_shift_right_wrap_max() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: u64::max_value() });
+
+        let a = cpu.a;
+
+        let registerReturn = bitwise::shift_right(a, true);
+
+        assert_eq!(registerReturn.out.value, u64::max_value());
+        assert_eq!(registerReturn.overflow, false);
+    }
 }

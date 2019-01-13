@@ -44,9 +44,17 @@ Runs a not operation on a register and stores the result in that register.
 
 Shifts the register to the left one bit and stores the result in that register. Highest bit is placed on the new lowest order bit if operation is selected, otherwise the bit is lost.
 
+Flags:
+
+- Overflow: stores old highest order bit if wrap-around isn't selected
+
 ### shift-right
 
 Shifts the register to the right one bit and stores the result in that register. Lowest bit is placed on the new highest order bit if operation is selected, otherwise the bit is lost.
+
+Flags:
+
+- Overflow: stores old lowest order bit if wrap-around isn't selected
 
 ## Control Operations
 

@@ -6,7 +6,7 @@ mod tests {
 
     #[test]
     fn test_set() {
-        let mut cpu: CPU = CPU::new();
+        let cpu: CPU = CPU::new();
 
         let a = cpu.a;
 
