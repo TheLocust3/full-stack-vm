@@ -66,16 +66,6 @@ Jump to location stored in the next four bytes.
 
 If value stored in register A is 0 jump to location stored in the next four bytes.
 
-## Stack Operations
-
-### push
-
-Pushes value from register onto top of stack.
-
-### pop
-
-Pops value from stack into register.
-
 ## Memory Operations
 
 ### read8
