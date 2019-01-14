@@ -6,4 +6,9 @@ pub struct RegisterReturn {
     pub negative: bool
 }
 
-// TODO: Memory return
+pub struct MemoryReturn {
+    pub value: u64,
+    pub address: u64,
+    pub overflow: bool,
+    pub negative: bool
+}
