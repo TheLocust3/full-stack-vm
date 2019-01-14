@@ -96,19 +96,19 @@ Reads 64 bits of information at location stored in HL and loads it into register
 
 ### write8
 
-Writes information stored in register A to location stored in HL. Only writes lowest order byte in register.
+Writes information stored in register to location stored in HL. Only writes lowest order byte in register.
 
 ### write16
 
-Writes information stored in register A to location stored in HL. Only writes lowest two order bytes in register.
+Writes information stored in register to location stored in HL. Only writes lowest two order bytes in register.
 
 ### write32
 
-Writes information stored in register A to location stored in HL. Only writes lowest three order bytes in register.
+Writes information stored in register to location stored in HL. Only writes lowest three order bytes in register.
 
 ### write64
 
-Writes information stored in register A to location stored in HL.
+Writes information stored in register to location stored in HL.
 
 ## Miscellaneous
 

@@ -1,4 +1,5 @@
 use cpu::cpu::CPU;
+use cpu::register::Register;
 use instructions::instruction_return::MemoryReturn;
 
 pub fn read8(cpu: CPU) -> MemoryReturn {
@@ -37,36 +38,36 @@ pub fn read64(cpu: CPU) -> MemoryReturn {
     }
 }
 
-pub fn write8(cpu: CPU) -> MemoryReturn {
+pub fn write8(cpu: CPU, register: Register) -> MemoryReturn {
     MemoryReturn {
-        value: cpu.a.value,
+        value: register.value,
         address: cpu.hl.value,
         overflow: false,
         negative: false
     }
 }
 
-pub fn write16(cpu: CPU) -> MemoryReturn {
+pub fn write16(cpu: CPU, register: Register) -> MemoryReturn {
     MemoryReturn {
-        value: cpu.a.value,
+        value: register.value,
         address: cpu.hl.value,
         overflow: false,
         negative: false
     }
 }
 
-pub fn write32(cpu: CPU) -> MemoryReturn {
+pub fn write32(cpu: CPU, register: Register) -> MemoryReturn {
     MemoryReturn {
-        value: cpu.a.value,
+        value: register.value,
         address: cpu.hl.value,
         overflow: false,
         negative: false
     }
 }
 
-pub fn write64(cpu: CPU) -> MemoryReturn {
+pub fn write64(cpu: CPU, register: Register) -> MemoryReturn {
     MemoryReturn {
-        value: cpu.a.value,
+        value: register.value,
         address: cpu.hl.value,
         overflow: false,
         negative: false
