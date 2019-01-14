@@ -11,14 +11,12 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu.memory.write_8bit(10, 20);
 
-        let hl = cpu.hl;
+        let memory_return = memory::read8(cpu);
 
-        let memoryReturn = memory::read8(cpu);
-
-        assert_eq!(memoryReturn.value, 20);
-        assert_eq!(memoryReturn.address, 0);
-        assert_eq!(memoryReturn.overflow, false);
-        assert_eq!(memoryReturn.negative, false);
+        assert_eq!(memory_return.value, 20);
+        assert_eq!(memory_return.address, 0);
+        assert_eq!(memory_return.overflow, false);
+        assert_eq!(memory_return.negative, false);
     }
 
     #[test]
@@ -27,14 +25,12 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu.memory.write_16bit(10, 20);
 
-        let hl = cpu.hl;
+        let memory_return = memory::read16(cpu);
 
-        let memoryReturn = memory::read16(cpu);
-
-        assert_eq!(memoryReturn.value, 20);
-        assert_eq!(memoryReturn.address, 0);
-        assert_eq!(memoryReturn.overflow, false);
-        assert_eq!(memoryReturn.negative, false);
+        assert_eq!(memory_return.value, 20);
+        assert_eq!(memory_return.address, 0);
+        assert_eq!(memory_return.overflow, false);
+        assert_eq!(memory_return.negative, false);
     }
 
     #[test]
@@ -43,14 +39,12 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu.memory.write_32bit(10, 20);
 
-        let hl = cpu.hl;
+        let memory_return = memory::read32(cpu);
 
-        let memoryReturn = memory::read32(cpu);
-
-        assert_eq!(memoryReturn.value, 20);
-        assert_eq!(memoryReturn.address, 0);
-        assert_eq!(memoryReturn.overflow, false);
-        assert_eq!(memoryReturn.negative, false);
+        assert_eq!(memory_return.value, 20);
+        assert_eq!(memory_return.address, 0);
+        assert_eq!(memory_return.overflow, false);
+        assert_eq!(memory_return.negative, false);
     }
 
     #[test]
@@ -59,13 +53,67 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu.memory.write_64bit(10, 20);
 
-        let hl = cpu.hl;
+        let memory_return = memory::read64(cpu);
 
-        let memoryReturn = memory::read64(cpu);
+        assert_eq!(memory_return.value, 20);
+        assert_eq!(memory_return.address, 0);
+        assert_eq!(memory_return.overflow, false);
+        assert_eq!(memory_return.negative, false);
+    }
 
-        assert_eq!(memoryReturn.value, 20);
-        assert_eq!(memoryReturn.address, 0);
-        assert_eq!(memoryReturn.overflow, false);
-        assert_eq!(memoryReturn.negative, false);
+    #[test]
+    fn test_write8() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_hl(Register { value: 10 });
+        cpu = cpu.set_a(Register { value: 20 });
+
+        let memory_return = memory::write8(cpu);
+
+        assert_eq!(memory_return.value, 20);
+        assert_eq!(memory_return.address, 10);
+        assert_eq!(memory_return.overflow, false);
+        assert_eq!(memory_return.negative, false);
+    }
+
+    #[test]
+    fn test_write16() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_hl(Register { value: 10 });
+        cpu = cpu.set_a(Register { value: 20 });
+
+        let memory_return = memory::write16(cpu);
+
+        assert_eq!(memory_return.value, 20);
+        assert_eq!(memory_return.address, 10);
+        assert_eq!(memory_return.overflow, false);
+        assert_eq!(memory_return.negative, false);
+    }
+
+    #[test]
+    fn test_write32() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_hl(Register { value: 10 });
+        cpu = cpu.set_a(Register { value: 20 });
+
+        let memory_return = memory::write32(cpu);
+
+        assert_eq!(memory_return.value, 20);
+        assert_eq!(memory_return.address, 10);
+        assert_eq!(memory_return.overflow, false);
+        assert_eq!(memory_return.negative, false);
+    }
+
+    #[test]
+    fn test_write64() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_hl(Register { value: 10 });
+        cpu = cpu.set_a(Register { value: 20 });
+
+        let memory_return = memory::write64(cpu);
+
+        assert_eq!(memory_return.value, 20);
+        assert_eq!(memory_return.address, 10);
+        assert_eq!(memory_return.overflow, false);
+        assert_eq!(memory_return.negative, false);
     }
 }
