@@ -14,9 +14,9 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        let registerReturn = bitwise::and(a, b);
+        let register_return = bitwise::and(a, b);
 
-        assert_eq!(registerReturn.out.value, 89);
+        assert_eq!(register_return.out.value, 89);
     }
 
     #[test]
@@ -28,9 +28,9 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        let registerReturn = bitwise::or(a, b);
+        let register_return = bitwise::or(a, b);
 
-        assert_eq!(registerReturn.out.value, 1023);
+        assert_eq!(register_return.out.value, 1023);
     }
 
     #[test]
@@ -39,9 +39,9 @@ mod tests {
 
         let a = cpu.a;
 
-        let registerReturn = bitwise::not(a);
+        let register_return = bitwise::not(a);
 
-        assert_eq!(registerReturn.out.value, u64::max_value());
+        assert_eq!(register_return.out.value, u64::max_value());
     }
 
     #[test]
@@ -51,10 +51,10 @@ mod tests {
 
         let a = cpu.a;
 
-        let registerReturn = bitwise::shift_left(a, false);
+        let register_return = bitwise::shift_left(a, false);
 
-        assert_eq!(registerReturn.out.value, 2);
-        assert_eq!(registerReturn.overflow, false);
+        assert_eq!(register_return.out.value, 2);
+        assert_eq!(register_return.overflow, false);
     }
     
     #[test]
@@ -64,10 +64,10 @@ mod tests {
 
         let a = cpu.a;
 
-        let registerReturn = bitwise::shift_left(a, false);
+        let register_return = bitwise::shift_left(a, false);
 
-        assert_eq!(registerReturn.out.value, 18446744073709551614);
-        assert_eq!(registerReturn.overflow, true);
+        assert_eq!(register_return.out.value, 18446744073709551614);
+        assert_eq!(register_return.overflow, true);
     }
 
     #[test]
@@ -77,10 +77,10 @@ mod tests {
 
         let a = cpu.a;
 
-        let registerReturn = bitwise::shift_left(a, true);
+        let register_return = bitwise::shift_left(a, true);
 
-        assert_eq!(registerReturn.out.value, 2);
-        assert_eq!(registerReturn.overflow, false);
+        assert_eq!(register_return.out.value, 2);
+        assert_eq!(register_return.overflow, false);
     }
 
     #[test]
@@ -90,10 +90,10 @@ mod tests {
 
         let a = cpu.a;
 
-        let registerReturn = bitwise::shift_left(a, true);
+        let register_return = bitwise::shift_left(a, true);
 
-        assert_eq!(registerReturn.out.value, u64::max_value());
-        assert_eq!(registerReturn.overflow, false);
+        assert_eq!(register_return.out.value, u64::max_value());
+        assert_eq!(register_return.overflow, false);
     }
 
     #[test]
@@ -103,10 +103,10 @@ mod tests {
 
         let a = cpu.a;
 
-        let registerReturn = bitwise::shift_right(a, false);
+        let register_return = bitwise::shift_right(a, false);
 
-        assert_eq!(registerReturn.out.value, 1);
-        assert_eq!(registerReturn.overflow, false);
+        assert_eq!(register_return.out.value, 1);
+        assert_eq!(register_return.overflow, false);
     }
     
     #[test]
@@ -116,10 +116,10 @@ mod tests {
 
         let a = cpu.a;
 
-        let registerReturn = bitwise::shift_right(a, false);
+        let register_return = bitwise::shift_right(a, false);
 
-        assert_eq!(registerReturn.out.value, 9223372036854775807);
-        assert_eq!(registerReturn.overflow, true);
+        assert_eq!(register_return.out.value, 9223372036854775807);
+        assert_eq!(register_return.overflow, true);
     }
 
     #[test]
@@ -129,10 +129,10 @@ mod tests {
 
         let a = cpu.a;
 
-        let registerReturn = bitwise::shift_right(a, true);
+        let register_return = bitwise::shift_right(a, true);
 
-        assert_eq!(registerReturn.out.value, 1);
-        assert_eq!(registerReturn.overflow, false);
+        assert_eq!(register_return.out.value, 1);
+        assert_eq!(register_return.overflow, false);
     }
 
     #[test]
@@ -142,9 +142,9 @@ mod tests {
 
         let a = cpu.a;
 
-        let registerReturn = bitwise::shift_right(a, true);
+        let register_return = bitwise::shift_right(a, true);
 
-        assert_eq!(registerReturn.out.value, u64::max_value());
-        assert_eq!(registerReturn.overflow, false);
+        assert_eq!(register_return.out.value, u64::max_value());
+        assert_eq!(register_return.overflow, false);
     }
 }

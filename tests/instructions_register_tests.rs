@@ -2,14 +2,18 @@
 mod tests {
     extern crate emu;
     use self::emu::cpu::cpu::CPU;
+    use self::emu::cpu::register::Register;
     use self::emu::instructions::register;
 
     #[test]
     fn test_set() {
-        let cpu: CPU = CPU::new();
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: 10 });
 
         let a = cpu.a;
 
-        assert_eq!(cpu.set_a(register::set(a, 10)).a.value, 10);
+        let register_return = register::set(a, 11);
+
+        assert_eq!(register_return.out.value, 11);
     }
 }

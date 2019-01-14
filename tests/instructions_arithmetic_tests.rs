@@ -14,11 +14,11 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        let registerReturn = arithmetic::add(a, b);
+        let register_return = arithmetic::add(a, b);
 
-        assert_eq!(registerReturn.out.value, 30);
-        assert_eq!(registerReturn.overflow, false);
-        assert_eq!(registerReturn.negative, false);
+        assert_eq!(register_return.out.value, 30);
+        assert_eq!(register_return.overflow, false);
+        assert_eq!(register_return.negative, false);
     }
 
     #[test]
@@ -30,11 +30,11 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        let registerReturn = arithmetic::add(a, b);
+        let register_return = arithmetic::add(a, b);
 
-        assert_eq!(registerReturn.out.value, u64::max_value());
-        assert_eq!(registerReturn.overflow, true);
-        assert_eq!(registerReturn.negative, false);
+        assert_eq!(register_return.out.value, u64::max_value());
+        assert_eq!(register_return.overflow, true);
+        assert_eq!(register_return.negative, false);
     }
 
     #[test]
@@ -46,11 +46,11 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        let registerReturn = arithmetic::add(a, b);
+        let register_return = arithmetic::add(a, b);
 
-        assert_eq!(registerReturn.out.value, u64::max_value());
-        assert_eq!(registerReturn.overflow, false);
-        assert_eq!(registerReturn.negative, false);
+        assert_eq!(register_return.out.value, u64::max_value());
+        assert_eq!(register_return.overflow, false);
+        assert_eq!(register_return.negative, false);
     }
 
     #[test]
@@ -62,11 +62,11 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        let registerReturn = arithmetic::sub(a, b);
+        let register_return = arithmetic::sub(a, b);
 
-        assert_eq!(registerReturn.out.value, 10);
-        assert_eq!(registerReturn.overflow, false);
-        assert_eq!(registerReturn.negative, false);
+        assert_eq!(register_return.out.value, 10);
+        assert_eq!(register_return.overflow, false);
+        assert_eq!(register_return.negative, false);
     }
 
     #[test]
@@ -78,11 +78,11 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        let registerReturn = arithmetic::sub(a, b);
+        let register_return = arithmetic::sub(a, b);
 
-        assert_eq!(registerReturn.out.value, 0);
-        assert_eq!(registerReturn.overflow, false);
-        assert_eq!(registerReturn.negative, true);
+        assert_eq!(register_return.out.value, 0);
+        assert_eq!(register_return.overflow, false);
+        assert_eq!(register_return.negative, true);
     }
 
     #[test]
@@ -94,10 +94,10 @@ mod tests {
         let a = cpu.a;
         let b = cpu.b;
 
-        let registerReturn = arithmetic::sub(a, b);
+        let register_return = arithmetic::sub(a, b);
 
-        assert_eq!(registerReturn.out.value, 0);
-        assert_eq!(registerReturn.overflow, false);
-        assert_eq!(registerReturn.negative, false);
+        assert_eq!(register_return.out.value, 0);
+        assert_eq!(register_return.overflow, false);
+        assert_eq!(register_return.negative, false);
     }
 }
