@@ -27,7 +27,7 @@ pub fn not(out: Register) -> RegisterReturn {
 
 pub fn shift_left(out: Register, wrap: bool) -> RegisterReturn {
     let value: u64;
-    let unwrapped_value = (((u64::max_value() - (1 << 63)) & out.value) << 1);
+    let unwrapped_value = ((u64::max_value() - (1 << 63)) & out.value) << 1;
 
     let overflow: bool;
     let overflow_bit = ((1 << 63) & out.value) >> 63;
@@ -49,7 +49,7 @@ pub fn shift_left(out: Register, wrap: bool) -> RegisterReturn {
 
 pub fn shift_right(out: Register, wrap: bool) -> RegisterReturn {
     let value: u64;
-    let unwrapped_value = (((u64::max_value() - 1) & out.value) >> 1);
+    let unwrapped_value = ((u64::max_value() - 1) & out.value) >> 1;
 
     let overflow: bool;
     let overflow_bit = 1 & out.value;

@@ -23,6 +23,10 @@ Exceptions:
 
 - Cannot set F register
 
+Flags:
+
+- None (does not overwrite register)
+
 Opcode: 1000 0rrr
 
 ## Arithmetic Operations
