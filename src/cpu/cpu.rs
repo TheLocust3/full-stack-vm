@@ -1,3 +1,6 @@
+use std::process;
+use log::{error};
+
 use cpu::register::Register;
 use memory::Memory;
 use cpu::executor;
@@ -27,6 +30,48 @@ impl CPU {
             hl: Register::new(),
             pc: Register::new(),
             memory: Memory::new()
+        }
+    }
+
+    pub fn get_from_code(&self, code: u8) -> Register {
+        if code == 0b000 { // a
+            self.a
+        } else if code == 0b001 { // b
+            self.b
+        } else if code == 0b010 { // c
+            self.c
+        } else if code == 0b011 { // d
+            self.d
+        } else if code == 0b100 { // e
+            self.e
+        } else if code == 0b101 { // f
+            self.f
+        } else if code == 0b110 { // hl
+            self.hl
+        } else {
+            error!("Register code: {} not handled", code);
+            process::exit(1);
+        }
+    }
+
+    pub fn set_from_code(self, code: u8, value: Register) -> CPU {
+        if code == 0b000 { // a
+            self.set_a(value)
+        } else if code == 0b001 { // b
+            self.set_b(value)
+        } else if code == 0b010 { // c
+            self.set_c(value)
+        } else if code == 0b011 { // d
+            self.set_d(value)
+        } else if code == 0b100 { // e
+            self.set_e(value)
+        } else if code == 0b101 { // f
+            self.set_f(value)
+        } else if code == 0b110 { // hl
+            self.set_hl(value)
+        } else {
+            error!("Register code: {} not handled", code);
+            process::exit(1);
         }
     }
 
