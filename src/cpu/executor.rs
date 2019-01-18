@@ -4,6 +4,7 @@ use cpu::cpu::CPU;
 use cpu::register::Register;
 use instructions::register;
 use instructions::arithmetic;
+use instructions::bitwise;
 use instructions::miscellaneous;
 use instructions::instruction_return::RegisterReturn;
 
@@ -56,26 +57,86 @@ pub fn execute(cpu: CPU) -> CPU {
         0b00010110 => { // add A HL
             out_cpu = execute_add(out_cpu, 0b110);
         },
-        0b00010000 => { // add A A
+        0b00100000 => { // sub A A
             out_cpu = execute_sub(out_cpu, 0b000);
         },
-        0b00010001 => { // sub A B
+        0b00100001 => { // sub A B
             out_cpu = execute_sub(out_cpu, 0b001);
         },
-        0b00010010 => { // sub A C
+        0b00100010 => { // sub A C
             out_cpu = execute_sub(out_cpu, 0b010);
         },
-        0b00010011 => { // sub A D
+        0b00100011 => { // sub A D
             out_cpu = execute_sub(out_cpu, 0b011);
         },
-        0b00010100 => { // sub A E
+        0b00100100 => { // sub A E
             out_cpu = execute_sub(out_cpu, 0b100);
         },
-        0b00010101 => { // sub A E
+        0b00100101 => { // sub A E
             out_cpu = execute_sub(out_cpu, 0b101);
         },
-        0b00010110 => { // sub A HL
+        0b00100110 => { // sub A HL
             out_cpu = execute_sub(out_cpu, 0b110);
+        },
+        0b00001000 => { // and A A
+            out_cpu = execute_and(out_cpu, 0b000);
+        },
+        0b00001001 => { // and A B
+            out_cpu = execute_and(out_cpu, 0b001);
+        },
+        0b00001010 => { // and A C
+            out_cpu = execute_and(out_cpu, 0b010);
+        },
+        0b00001011 => { // and A D
+            out_cpu = execute_and(out_cpu, 0b011);
+        },
+        0b00001100 => { // and A E
+            out_cpu = execute_and(out_cpu, 0b100);
+        },
+        0b00001101 => { // and A F
+            out_cpu = execute_and(out_cpu, 0b101);
+        },
+        0b00001110 => { // and A HL
+            out_cpu = execute_and(out_cpu, 0b110);
+        },
+        0b00011000 => { // or A A
+            out_cpu = execute_or(out_cpu, 0b000);
+        },
+        0b00011001 => { // or A B
+            out_cpu = execute_or(out_cpu, 0b001);
+        },
+        0b00011010 => { // or A C
+            out_cpu = execute_or(out_cpu, 0b010);
+        },
+        0b00011011 => { // or A D
+            out_cpu = execute_or(out_cpu, 0b011);
+        },
+        0b00011100 => { // or A E
+            out_cpu = execute_or(out_cpu, 0b100);
+        },
+        0b00011101 => { // or A F
+            out_cpu = execute_or(out_cpu, 0b101);
+        },
+        0b00011110 => { // or A HL
+            out_cpu = execute_or(out_cpu, 0b110);
+        },
+        0b00111000 => { // not A A
+            out_cpu = execute_not(out_cpu, 0b000);
+        },
+        0b00111001 => { // not A B
+            out_cpu = execute_not(out_cpu, 0b001);
+        },
+        0b00111010 => { // not A C
+            out_cpu = execute_not(out_cpu, 0b010);
+        },
+        0b00111011 => { // not A D
+            out_cpu = execute_not(out_cpu, 0b011);
+        },
+        0b00111100 => { // not A E
+            out_cpu = execute_not(out_cpu, 0b100);
+        },
+        0b00111110 => { // not A HL
+            out_cpu = execute_not(out_cpu, 0b110);
         },
         0b00000000 => {
             out_cpu = miscellaneous::nop(out_cpu);
@@ -118,4 +179,31 @@ pub fn execute_sub(cpu: CPU, code: u8) -> CPU {
 
     out_cpu = out_cpu.set_a(register_return.out);
     out_cpu.set_f_from_register_return(register_return)
+}
+
+pub fn execute_and(cpu: CPU, code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let register_return: RegisterReturn = bitwise::and(out_cpu.a, register);
+
+    out_cpu.set_a(register_return.out)
+}
+
+pub fn execute_or(cpu: CPU, code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let register_return: RegisterReturn = bitwise::or(out_cpu.a, register);
+
+    out_cpu.set_a(register_return.out)
+}
+
+pub fn execute_not(cpu: CPU, code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let register_return: RegisterReturn = bitwise::not(register);
+
+    out_cpu.set_from_code(code, register_return.out)
 }

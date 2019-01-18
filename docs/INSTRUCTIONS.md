@@ -29,6 +29,8 @@ Flags:
 
 Opcode: 1000 0rrr
 
+### move
+
 ## Arithmetic Operations
 
 ### add
@@ -63,13 +65,13 @@ Opcode: 0000 1rrr
 
 Runs an or operation on register A and a register and stores the result in A.
 
-Opcode: 0001 0rrr
+Opcode: 0001 1rrr
 
 ### not
 
 Runs a not operation on a register and stores the result in that register.
 
-Opcode: 0001 1rrr
+Opcode: 0011 1rrr
 
 ### shift-left
 
@@ -79,7 +81,7 @@ Flags:
 
 - Overflow: stores old highest order bit if wrap-around isn't selected
 
-Opcode: 0011 1rrr
+Opcode: 0011 0rrr
 
 ### shift-right
 
@@ -89,7 +91,7 @@ Flags:
 
 - Overflow: stores old lowest order bit if wrap-around isn't selected
 
-Opcode: 0011 0rrr
+Opcode: 0010 1rrr
 
 ## Control Operations
 
