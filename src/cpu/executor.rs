@@ -50,8 +50,32 @@ pub fn execute(cpu: CPU) -> CPU {
         0b00010100 => { // add A E
             out_cpu = execute_add(out_cpu, 0b100);
         },
+        0b00010101 => { // add A F
+            out_cpu = execute_add(out_cpu, 0b101);
+        },
         0b00010110 => { // add A HL
             out_cpu = execute_add(out_cpu, 0b110);
+        },
+        0b00010000 => { // add A A
+            out_cpu = execute_sub(out_cpu, 0b000);
+        },
+        0b00010001 => { // sub A B
+            out_cpu = execute_sub(out_cpu, 0b001);
+        },
+        0b00010010 => { // sub A C
+            out_cpu = execute_sub(out_cpu, 0b010);
+        },
+        0b00010011 => { // sub A D
+            out_cpu = execute_sub(out_cpu, 0b011);
+        },
+        0b00010100 => { // sub A E
+            out_cpu = execute_sub(out_cpu, 0b100);
+        },
+        0b00010101 => { // sub A E
+            out_cpu = execute_sub(out_cpu, 0b101);
+        },
+        0b00010110 => { // sub A HL
+            out_cpu = execute_sub(out_cpu, 0b110);
         },
         0b00000000 => {
             out_cpu = miscellaneous::nop(out_cpu);
@@ -82,6 +106,16 @@ pub fn execute_add(cpu: CPU, code: u8) -> CPU {
 
     let register_return: RegisterReturn = arithmetic::add(out_cpu.a, register);
 
-    out_cpu = out_cpu.set_from_code(code, register_return.out);
+    out_cpu = out_cpu.set_a(register_return.out);
+    out_cpu.set_f_from_register_return(register_return)
+}
+
+pub fn execute_sub(cpu: CPU, code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let register_return: RegisterReturn = arithmetic::sub(out_cpu.a, register);
+
+    out_cpu = out_cpu.set_a(register_return.out);
     out_cpu.set_f_from_register_return(register_return)
 }
