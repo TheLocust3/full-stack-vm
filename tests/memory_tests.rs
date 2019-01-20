@@ -3,7 +3,7 @@ use self::emu::memory::Memory;
 
 #[test]
 fn test_new() {
-    let mut memory = Memory::new();
+    let memory = Memory::new();
 
     assert_eq!(memory.memory.len(), 1073741824);
     assert_eq!(memory.memory[124], 0);

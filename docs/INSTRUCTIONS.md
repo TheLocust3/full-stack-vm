@@ -81,7 +81,9 @@ Flags:
 
 - Overflow: stores old highest order bit if wrap-around isn't selected
 
-Opcode: 0011 0rrr
+Opcode: w011 0rrr
+
+w: wraparound bit. If 0 wraps
 
 ### shift-right
 
@@ -91,7 +93,9 @@ Flags:
 
 - Overflow: stores old lowest order bit if wrap-around isn't selected
 
-Opcode: 0010 1rrr
+Opcode: w010 1rrr
+
+w: wraparound bit. If 0 wraps
 
 ## Control Operations
 

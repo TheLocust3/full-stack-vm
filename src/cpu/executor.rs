@@ -120,23 +120,95 @@ pub fn execute(cpu: CPU) -> CPU {
         0b00011110 => { // or A HL
             out_cpu = execute_or(out_cpu, 0b110);
         },
-        0b00111000 => { // not A A
+        0b00111000 => { // not A
             out_cpu = execute_not(out_cpu, 0b000);
         },
-        0b00111001 => { // not A B
+        0b00111001 => { // not B
             out_cpu = execute_not(out_cpu, 0b001);
         },
-        0b00111010 => { // not A C
+        0b00111010 => { // not C
             out_cpu = execute_not(out_cpu, 0b010);
         },
-        0b00111011 => { // not A D
+        0b00111011 => { // not D
             out_cpu = execute_not(out_cpu, 0b011);
         },
-        0b00111100 => { // not A E
+        0b00111100 => { // not E
             out_cpu = execute_not(out_cpu, 0b100);
         },
-        0b00111110 => { // not A HL
+        0b00111110 => { // not HL
             out_cpu = execute_not(out_cpu, 0b110);
+        },
+        0b00110000 => { // shift-left A, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b000, false);
+        },
+        0b00110001 => { // shift-left B, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b001, false);
+        },
+        0b00110010 => { // shift-left C, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b010, false);
+        },
+        0b00110011 => { // shift-left D, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b011, false);
+        },
+        0b00110100 => { // shift-left E, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b100, false);
+        },
+        0b00110110 => { // shift-left HL, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b110, false);
+        },
+        0b10110000 => { // shift-left A, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b000, true);
+        },
+        0b10110001 => { // shift-left B, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b001, true);
+        },
+        0b10110010 => { // shift-left C, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b010, true);
+        },
+        0b10110011 => { // shift-left D, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b011, true);
+        },
+        0b10110100 => { // shift-left E, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b100, true);
+        },
+        0b10110110 => { // shift-left HL, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b110, true);
+        },
+        0b00101000 => { // shift-right A, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b000, false);
+        },
+        0b00101001 => { // shift-right B, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b001, false);
+        },
+        0b00101010 => { // shift-right C, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b010, false);
+        },
+        0b00101011 => { // shift-right D, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b011, false);
+        },
+        0b00101100 => { // shift-right E, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b100, false);
+        },
+        0b00101110 => { // shift-right HL, wrap=false
+            out_cpu = execute_shift_left(out_cpu, 0b110, false);
+        },
+        0b10101000 => { // shift-right A, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b000, true);
+        },
+        0b10101001 => { // shift-right B, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b001, true);
+        },
+        0b10101010 => { // shift-right C, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b010, true);
+        },
+        0b10101011 => { // shift-right D, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b011, true);
+        },
+        0b10101100 => { // shift-right E, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b100, true);
+        },
+        0b10101110 => { // shift-right HL, wrap=true
+            out_cpu = execute_shift_left(out_cpu, 0b110, true);
         },
         0b00000000 => {
             out_cpu = miscellaneous::nop(out_cpu);
@@ -206,4 +278,24 @@ pub fn execute_not(cpu: CPU, code: u8) -> CPU {
     let register_return: RegisterReturn = bitwise::not(register);
 
     out_cpu.set_from_code(code, register_return.out)
+}
+
+pub fn execute_shift_left(cpu: CPU, code: u8, wrap: bool) -> CPU {
+    let mut out_cpu = cpu;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let register_return: RegisterReturn = bitwise::shift_left(register, wrap);
+
+    out_cpu = out_cpu.set_from_code(code, register_return.out);
+    out_cpu.set_f_from_register_return(register_return)
+}
+
+pub fn execute_shift_right(cpu: CPU, code: u8, wrap: bool) -> CPU {
+    let mut out_cpu = cpu;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let register_return: RegisterReturn = bitwise::shift_right(register, wrap);
+
+    out_cpu = out_cpu.set_from_code(code, register_return.out);
+    out_cpu.set_f_from_register_return(register_return)
 }
