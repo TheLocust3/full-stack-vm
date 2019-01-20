@@ -18,7 +18,7 @@ pub fn jump0(pc: Register, a: Register, address: u64) -> RegisterReturn {
         }
     } else {
         RegisterReturn {
-            out: pc,
+            out: Register { value: pc.value + 1 }, // increment pc register because address was in pc + 1
             overflow: false,
             negative: false
         }

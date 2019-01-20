@@ -5,6 +5,7 @@ use cpu::register::Register;
 use instructions::register;
 use instructions::arithmetic;
 use instructions::bitwise;
+use instructions::control;
 use instructions::miscellaneous;
 use instructions::instruction_return::RegisterReturn;
 
@@ -210,6 +211,12 @@ pub fn execute(cpu: CPU) -> CPU {
         0b10101110 => { // shift-right HL, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b110, true);
         },
+        0b11111111 => { // jump
+            out_cpu = execute_jump(out_cpu, pc);
+        },
+        0b11111110 => { // jump0
+            out_cpu = execute_jump0(out_cpu, pc);
+        },
         0b00000000 => {
             out_cpu = miscellaneous::nop(out_cpu);
         },
@@ -298,4 +305,24 @@ pub fn execute_shift_right(cpu: CPU, code: u8, wrap: bool) -> CPU {
 
     out_cpu = out_cpu.set_from_code(code, register_return.out);
     out_cpu.set_f_from_register_return(register_return)
+}
+
+pub fn execute_jump(cpu: CPU, pc: Register) -> CPU {
+    let mut out_cpu = cpu;
+
+    let value = out_cpu.memory.read_64bit(pc.value + 1);
+
+    let register_return: RegisterReturn = control::jump(pc, value);
+
+    out_cpu.set_pc(register_return.out)
+}
+
+pub fn execute_jump0(cpu: CPU, pc: Register) -> CPU {
+    let mut out_cpu = cpu;
+
+    let value = out_cpu.memory.read_64bit(pc.value + 1);
+
+    let register_return: RegisterReturn = control::jump0(pc, out_cpu.a, value);
+
+    out_cpu.set_pc(register_return.out)
 }
