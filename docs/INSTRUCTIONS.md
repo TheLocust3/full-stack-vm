@@ -119,11 +119,19 @@ Reads an a byte of information at location stored in HL and loads it into regist
 
 Opcode: 1rrr 1001
 
+Exceptions:
+
+- Cannot set HL register
+
 ### read16
 
 Reads 16bits of information at location stored in HL and loads it into register.
 
 Opcode: 1rrr 1010
+
+Exceptions:
+
+- Cannot set HL register
 
 ### read32
 
@@ -131,11 +139,19 @@ Reads an 32bits of information at location stored in HL and loads it into regist
 
 Opcode: 1rrr 1011
 
+Exceptions:
+
+- Cannot set HL register
+
 ### read64
 
 Reads 64 bits of information at location stored in HL and loads it into register.
 
 Opcode: 1rrr 1100
+
+Exceptions:
+
+- Cannot set HL register
 
 ### write8
 
@@ -143,11 +159,19 @@ Writes information stored in register to location stored in HL. Only writes lowe
 
 Opcode: 1rrr 0001
 
+Exceptions:
+
+- Cannot specify HL register
+
 ### write16
 
 Writes information stored in register to location stored in HL. Only writes lowest two order bytes in register.
 
 Opcode: 1rrr 0010
+
+Exceptions:
+
+- Cannot specify HL register
 
 ### write32
 
@@ -155,11 +179,19 @@ Writes information stored in register to location stored in HL. Only writes lowe
 
 Opcode: 1rrr 0011
 
+Exceptions:
+
+- Cannot specify HL register
+
 ### write64
 
 Writes information stored in register to location stored in HL.
 
 Opcode: 1rrr 0100
+
+Exceptions:
+
+- Cannot specify HL register
 
 ## Miscellaneous
 

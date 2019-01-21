@@ -6,8 +6,10 @@ use instructions::register;
 use instructions::arithmetic;
 use instructions::bitwise;
 use instructions::control;
+use instructions::memory;
 use instructions::miscellaneous;
 use instructions::instruction_return::RegisterReturn;
+use instructions::instruction_return::MemoryReturn;
 
 pub fn execute(cpu: CPU) -> CPU {
     let pc = Register { value: cpu.pc.value + 1 };
@@ -19,6 +21,7 @@ pub fn execute(cpu: CPU) -> CPU {
     let mut out_cpu = cpu;
 
     match instruction {
+        // arithmatic
         0b10000000 => { // set A
             out_cpu = execute_set(out_cpu, pc, 0b000);
         },
@@ -76,6 +79,8 @@ pub fn execute(cpu: CPU) -> CPU {
         0b00100101 => { // sub A E
             out_cpu = execute_sub(out_cpu, 0b101);
         },
+        
+        // bitwise
         0b00100110 => { // sub A HL
             out_cpu = execute_sub(out_cpu, 0b110);
         },
@@ -211,12 +216,78 @@ pub fn execute(cpu: CPU) -> CPU {
         0b10101110 => { // shift-right HL, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b110, true);
         },
+
+        // control
         0b11111111 => { // jump
             out_cpu = execute_jump(out_cpu, pc);
         },
         0b11111110 => { // jump0
             out_cpu = execute_jump0(out_cpu, pc);
         },
+
+        // memory
+        0b10001001 => { // read8 A
+            out_cpu = execute_read8(out_cpu, 0b000);
+        },
+        0b10011001 => { // read8 B
+            out_cpu = execute_read8(out_cpu, 0b001);
+        },
+        0b10101001 => { // read8 C
+            out_cpu = execute_read8(out_cpu, 0b010);
+        },
+        0b10111001 => { // read8 D
+            out_cpu = execute_read8(out_cpu, 0b011);
+        },
+        0b11001001 => { // read8 E
+            out_cpu = execute_read8(out_cpu, 0b100);
+        }
+        0b10001010 => { // read16 A
+            out_cpu = execute_read16(out_cpu, 0b000);
+        },
+        0b10011010 => { // read16 B
+            out_cpu = execute_read16(out_cpu, 0b001);
+        },
+        0b10101010 => { // read16 C
+            out_cpu = execute_read16(out_cpu, 0b010);
+        },
+        0b10111010 => { // read16 D
+            out_cpu = execute_read16(out_cpu, 0b011);
+        },
+        0b11001010 => { // read16 E
+            out_cpu = execute_read16(out_cpu, 0b100);
+        }
+        0b10001011 => { // read32 A
+            out_cpu = execute_read32(out_cpu, 0b000);
+        },
+        0b10011011 => { // read32 B
+            out_cpu = execute_read32(out_cpu, 0b001);
+        },
+        0b10101011 => { // read32 C
+            out_cpu = execute_read32(out_cpu, 0b010);
+        },
+        0b10111011 => { // read32 D
+            out_cpu = execute_read32(out_cpu, 0b011);
+        },
+        0b11001011 => { // read32 E
+            out_cpu = execute_read32(out_cpu, 0b100);
+        }
+        0b10001100 => { // read64 A
+            out_cpu = execute_read64(out_cpu, 0b000);
+        },
+        0b10011100 => { // read64 B
+            out_cpu = execute_read64(out_cpu, 0b001);
+        },
+        0b10101100 => { // read64 C
+            out_cpu = execute_read64(out_cpu, 0b010);
+        },
+        0b10111100 => { // read64 D
+            out_cpu = execute_read64(out_cpu, 0b011);
+        },
+        0b11001100 => { // read64 E
+            out_cpu = execute_read64(out_cpu, 0b100);
+        }
+
+        // miscellaneous
         0b00000000 => {
             out_cpu = miscellaneous::nop(out_cpu);
         },
@@ -325,4 +396,28 @@ pub fn execute_jump0(cpu: CPU, pc: Register) -> CPU {
     let register_return: RegisterReturn = control::jump0(pc, out_cpu.a, value);
 
     out_cpu.set_pc(register_return.out)
+}
+
+pub fn execute_read8(cpu: CPU, code: u8) -> CPU {
+    let memory_return: MemoryReturn = memory::read8(&cpu);
+
+    cpu.set_from_code(code, Register { value: memory_return.value })
+}
+
+pub fn execute_read16(cpu: CPU, code: u8) -> CPU {
+    let memory_return: MemoryReturn = memory::read16(&cpu);
+
+    cpu.set_from_code(code, Register { value: memory_return.value })
+}
+
+pub fn execute_read32(cpu: CPU, code: u8) -> CPU {
+    let memory_return: MemoryReturn = memory::read32(&cpu);
+
+    cpu.set_from_code(code, Register { value: memory_return.value })
+}
+
+pub fn execute_read64(cpu: CPU, code: u8) -> CPU {
+    let memory_return: MemoryReturn = memory::read64(&cpu);
+
+    cpu.set_from_code(code, Register { value: memory_return.value })
 }

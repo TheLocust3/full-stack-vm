@@ -2,7 +2,7 @@ use cpu::cpu::CPU;
 use cpu::register::Register;
 use instructions::instruction_return::MemoryReturn;
 
-pub fn read8(cpu: CPU) -> MemoryReturn {
+pub fn read8(cpu: &CPU) -> MemoryReturn {
     MemoryReturn {
         value: cpu.memory.read_8bit(cpu.hl.value) as u64,
         address: 0,
@@ -11,7 +11,7 @@ pub fn read8(cpu: CPU) -> MemoryReturn {
     }
 }
 
-pub fn read16(cpu: CPU) -> MemoryReturn {
+pub fn read16(cpu: &CPU) -> MemoryReturn {
     MemoryReturn {
         value: cpu.memory.read_16bit(cpu.hl.value) as u64,
         address: 0,
@@ -20,7 +20,7 @@ pub fn read16(cpu: CPU) -> MemoryReturn {
     }
 }
 
-pub fn read32(cpu: CPU) -> MemoryReturn {
+pub fn read32(cpu: &CPU) -> MemoryReturn {
     MemoryReturn {
         value: cpu.memory.read_32bit(cpu.hl.value) as u64,
         address: 0,
@@ -29,7 +29,7 @@ pub fn read32(cpu: CPU) -> MemoryReturn {
     }
 }
 
-pub fn read64(cpu: CPU) -> MemoryReturn {
+pub fn read64(cpu: &CPU) -> MemoryReturn {
     MemoryReturn {
         value: cpu.memory.read_64bit(cpu.hl.value),
         address: 0,

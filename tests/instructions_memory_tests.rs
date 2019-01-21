@@ -11,7 +11,7 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu.memory.write_8bit(10, 20);
 
-        let memory_return = memory::read8(cpu);
+        let memory_return = memory::read8(&cpu);
 
         assert_eq!(memory_return.value, 20);
         assert_eq!(memory_return.address, 0);
@@ -25,7 +25,7 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu.memory.write_16bit(10, 20);
 
-        let memory_return = memory::read16(cpu);
+        let memory_return = memory::read16(&cpu);
 
         assert_eq!(memory_return.value, 20);
         assert_eq!(memory_return.address, 0);
@@ -39,7 +39,7 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu.memory.write_32bit(10, 20);
 
-        let memory_return = memory::read32(cpu);
+        let memory_return = memory::read32(&cpu);
 
         assert_eq!(memory_return.value, 20);
         assert_eq!(memory_return.address, 0);
@@ -53,7 +53,7 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu.memory.write_64bit(10, 20);
 
-        let memory_return = memory::read64(cpu);
+        let memory_return = memory::read64(&cpu);
 
         assert_eq!(memory_return.value, 20);
         assert_eq!(memory_return.address, 0);
