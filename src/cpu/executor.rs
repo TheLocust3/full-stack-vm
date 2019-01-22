@@ -21,7 +21,7 @@ pub fn execute(cpu: CPU) -> CPU {
     let mut out_cpu = cpu;
 
     match instruction {
-        // arithmatic
+        // register
         0b10000000 => { // set A
             out_cpu = execute_set(out_cpu, pc, 0b000);
         },
@@ -40,6 +40,117 @@ pub fn execute(cpu: CPU) -> CPU {
         0b10000110 => { // set HL
             out_cpu = execute_set(out_cpu, pc, 0b110);
         },
+
+        0b10000001 => { // move A B
+            out_cpu = execute_move(out_cpu, 0b000, 0b001);
+        },
+        0b10000010 => { // move A C
+            out_cpu = execute_move(out_cpu, 0b000, 0b010);
+        },
+        0b10000011 => { // move A D
+            out_cpu = execute_move(out_cpu, 0b000, 0b011);
+        },
+        0b10000100 => { // move A E
+            out_cpu = execute_move(out_cpu, 0b000, 0b100);
+        },
+        0b10000101 => { // move A F
+            out_cpu = execute_move(out_cpu, 0b000, 0b101);
+        },
+        0b10000110 => { // move A HL
+            out_cpu = execute_move(out_cpu, 0b000, 0b110);
+        },
+        0b00010001 => { // move B A
+            out_cpu = execute_move(out_cpu, 0b001, 0b000);
+        },
+        0b00010010 => { // move B C
+            out_cpu = execute_move(out_cpu, 0b001, 0b010);
+        },
+        0b00010011 => { // move B D
+            out_cpu = execute_move(out_cpu, 0b001, 0b011);
+        },
+        0b00010100 => { // move B E
+            out_cpu = execute_move(out_cpu, 0b001, 0b100);
+        },
+        0b00010101 => { // move B F
+            out_cpu = execute_move(out_cpu, 0b001, 0b101);
+        },
+        0b00010110 => { // move B HL
+            out_cpu = execute_move(out_cpu, 0b001, 0b110);
+        },
+        0b00100000 => { // move C A
+            out_cpu = execute_move(out_cpu, 0b010, 0b000);
+        },
+        0b00100001 => { // move C B
+            out_cpu = execute_move(out_cpu, 0b010, 0b001);
+        },
+        0b00100011 => { // move C D
+            out_cpu = execute_move(out_cpu, 0b010, 0b011);
+        },
+        0b00100100 => { // move C E
+            out_cpu = execute_move(out_cpu, 0b010, 0b100);
+        },
+        0b00100101 => { // move C F
+            out_cpu = execute_move(out_cpu, 0b010, 0b101);
+        },
+        0b00100110 => { // move C HL
+            out_cpu = execute_move(out_cpu, 0b010, 0b110);
+        },
+        0b00110000 => { // move D A
+            out_cpu = execute_move(out_cpu, 0b011, 0b000);
+        },
+        0b00110001 => { // move D B
+            out_cpu = execute_move(out_cpu, 0b011, 0b001);
+        },
+        0b00110010 => { // move D C
+            out_cpu = execute_move(out_cpu, 0b011, 0b010);
+        },
+        0b00110100 => { // move D E
+            out_cpu = execute_move(out_cpu, 0b011, 0b100);
+        },
+        0b00110101 => { // move D F
+            out_cpu = execute_move(out_cpu, 0b011, 0b101);
+        },
+        0b00110110 => { // move D HL
+            out_cpu = execute_move(out_cpu, 0b011, 0b110);
+        },
+        0b01000000 => { // move E A
+            out_cpu = execute_move(out_cpu, 0b100, 0b000);
+        },
+        0b01000001 => { // move E B
+            out_cpu = execute_move(out_cpu, 0b100, 0b001);
+        },
+        0b01000010 => { // move E C
+            out_cpu = execute_move(out_cpu, 0b100, 0b010);
+        },
+        0b01000011 => { // move E D
+            out_cpu = execute_move(out_cpu, 0b100, 0b011);
+        },
+        0b01000101 => { // move E F
+            out_cpu = execute_move(out_cpu, 0b100, 0b101);
+        },
+        0b01000110 => { // move E HL
+            out_cpu = execute_move(out_cpu, 0b100, 0b110);
+        },
+        0b01100000 => { // move HL A
+            out_cpu = execute_move(out_cpu, 0b110, 0b000);
+        },
+        0b01100001 => { // move HL B
+            out_cpu = execute_move(out_cpu, 0b110, 0b001);
+        },
+        0b01100010 => { // move HL C
+            out_cpu = execute_move(out_cpu, 0b110, 0b010);
+        },
+        0b01100011 => { // move HL D
+            out_cpu = execute_move(out_cpu, 0b110, 0b011);
+        },
+        0b01100100 => { // move HL E
+            out_cpu = execute_move(out_cpu, 0b110, 0b100);
+        },
+        0b01100101 => { // move HL F
+            out_cpu = execute_move(out_cpu, 0b110, 0b101);
+        },
+
+        // arithmatic
         0b00010000 => { // add A A
             out_cpu = execute_add(out_cpu, 0b000);
         },
@@ -382,6 +493,16 @@ pub fn execute_set(cpu: CPU, pc: Register, code: u8) -> CPU {
 
     out_cpu = out_cpu.set_from_code(code, register_return.out);
     out_cpu.set_pc(Register { value: pc.value + 1 })
+}
+
+pub fn execute_move(cpu: CPU, out_code: u8, in_code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let out_register: Register = out_cpu.get_from_code(out_code);
+    let in_register: Register = out_cpu.get_from_code(in_code);
+
+    let register_return: RegisterReturn = register::move_reg(out_register, in_register);
+
+    out_cpu.set_from_code(out_code, register_return.out)
 }
 
 pub fn execute_add(cpu: CPU, code: u8) -> CPU {
