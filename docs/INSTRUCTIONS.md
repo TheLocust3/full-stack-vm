@@ -31,6 +31,20 @@ Opcode: 1000 0rrr
 
 ### move
 
+Sets output register to the value stored in input register
+
+Exceptions:
+
+- Cannot set F register
+
+Flags:
+
+- None (does not overwrite register)
+
+Opcode: 0rrr 0rrr
+
+First rrr is output register, second rrr is input register
+
 ## Arithmetic Operations
 
 ### add

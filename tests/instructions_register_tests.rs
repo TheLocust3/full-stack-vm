@@ -16,4 +16,18 @@ mod tests {
 
         assert_eq!(register_return.out.value, 11);
     }
+
+    #[test]
+    fn test_move_reg() {
+        let mut cpu: CPU = CPU::new();
+        cpu = cpu.set_a(Register { value: 10 });
+        cpu = cpu.set_b(Register { value: 20 });
+
+        let a = cpu.a;
+        let b = cpu.b;
+
+        let register_return = register::move_reg(a, b);
+
+        assert_eq!(register_return.out.value, 20);
+    }
 }
