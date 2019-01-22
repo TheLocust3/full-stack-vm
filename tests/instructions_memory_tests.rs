@@ -67,9 +67,10 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_a(Register { value: 20 });
 
+        let hl = cpu.hl;
         let a = cpu.a;
 
-        let memory_return = memory::write8(cpu, a);
+        let memory_return = memory::write8(hl, a);
 
         assert_eq!(memory_return.value, 20);
         assert_eq!(memory_return.address, 10);
@@ -83,9 +84,10 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_a(Register { value: 20 });
 
+        let hl = cpu.hl;
         let a = cpu.a;
 
-        let memory_return = memory::write16(cpu, a);
+        let memory_return = memory::write16(hl, a);
 
         assert_eq!(memory_return.value, 20);
         assert_eq!(memory_return.address, 10);
@@ -99,9 +101,10 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_a(Register { value: 20 });
 
+        let hl = cpu.hl;
         let a = cpu.a;
 
-        let memory_return = memory::write32(cpu, a);
+        let memory_return = memory::write32(hl, a);
 
         assert_eq!(memory_return.value, 20);
         assert_eq!(memory_return.address, 10);
@@ -115,9 +118,10 @@ mod tests {
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_a(Register { value: 20 });
 
+        let hl = cpu.hl;
         let a = cpu.a;
 
-        let memory_return = memory::write64(cpu, a);
+        let memory_return = memory::write64(hl, a);
 
         assert_eq!(memory_return.value, 20);
         assert_eq!(memory_return.address, 10);

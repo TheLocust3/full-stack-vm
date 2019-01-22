@@ -240,7 +240,7 @@ pub fn execute(cpu: CPU) -> CPU {
         },
         0b11001001 => { // read8 E
             out_cpu = execute_read8(out_cpu, 0b100);
-        }
+        },
         0b10001010 => { // read16 A
             out_cpu = execute_read16(out_cpu, 0b000);
         },
@@ -255,7 +255,7 @@ pub fn execute(cpu: CPU) -> CPU {
         },
         0b11001010 => { // read16 E
             out_cpu = execute_read16(out_cpu, 0b100);
-        }
+        },
         0b10001011 => { // read32 A
             out_cpu = execute_read32(out_cpu, 0b000);
         },
@@ -285,7 +285,80 @@ pub fn execute(cpu: CPU) -> CPU {
         },
         0b11001100 => { // read64 E
             out_cpu = execute_read64(out_cpu, 0b100);
-        }
+        },
+        
+        0b10000001 => { // write8 A
+            out_cpu = execute_write8(out_cpu, 0b000);
+        },
+        0b10010001 => { // write8 B
+            out_cpu = execute_write8(out_cpu, 0b001);
+        },
+        0b10100001 => { // write8 C
+            out_cpu = execute_write8(out_cpu, 0b010);
+        },
+        0b10110001 => { // write8 D
+            out_cpu = execute_write8(out_cpu, 0b011);
+        },
+        0b11000001 => { // write8 E
+            out_cpu = execute_write8(out_cpu, 0b100);
+        },
+        0b11010001 => { // write8 F
+            out_cpu = execute_write8(out_cpu, 0b101);
+        },
+        0b10000010 => { // write16 A
+            out_cpu = execute_write16(out_cpu, 0b000);
+        },
+        0b10010010 => { // write16 B
+            out_cpu = execute_write16(out_cpu, 0b001);
+        },
+        0b10100010 => { // write16 C
+            out_cpu = execute_write16(out_cpu, 0b010);
+        },
+        0b10110010 => { // write16 D
+            out_cpu = execute_write16(out_cpu, 0b011);
+        },
+        0b11000010 => { // write16 E
+            out_cpu = execute_write16(out_cpu, 0b100);
+        },
+        0b11010010 => { // write16 F
+            out_cpu = execute_write16(out_cpu, 0b101);
+        },
+        0b10000011 => { // write32 A
+            out_cpu = execute_write32(out_cpu, 0b000);
+        },
+        0b10010011 => { // write32 B
+            out_cpu = execute_write32(out_cpu, 0b001);
+        },
+        0b10100011 => { // write32 C
+            out_cpu = execute_write32(out_cpu, 0b010);
+        },
+        0b10110011 => { // write32 D
+            out_cpu = execute_write32(out_cpu, 0b011);
+        },
+        0b11000011 => { // write32 E
+            out_cpu = execute_write32(out_cpu, 0b100);
+        },
+        0b11010011 => { // write32 F
+            out_cpu = execute_write32(out_cpu, 0b101);
+        },
+        0b10000100 => { // write64 A
+            out_cpu = execute_write64(out_cpu, 0b000);
+        },
+        0b10010100 => { // write64 B
+            out_cpu = execute_write64(out_cpu, 0b001);
+        },
+        0b10100100 => { // write64 C
+            out_cpu = execute_write64(out_cpu, 0b010);
+        },
+        0b10110100 => { // write64 D
+            out_cpu = execute_write64(out_cpu, 0b011);
+        },
+        0b11000100 => { // write64 E
+            out_cpu = execute_write64(out_cpu, 0b100);
+        },
+        0b11010100 => { // write64 F
+            out_cpu = execute_write64(out_cpu, 0b101);
+        },
 
         // miscellaneous
         0b00000000 => {
@@ -420,4 +493,48 @@ pub fn execute_read64(cpu: CPU, code: u8) -> CPU {
     let memory_return: MemoryReturn = memory::read64(&cpu);
 
     cpu.set_from_code(code, Register { value: memory_return.value })
+}
+
+pub fn execute_write8(cpu: CPU, code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let hl: Register = out_cpu.hl;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let memory_return: MemoryReturn = memory::write8(hl, register);
+    out_cpu.memory.write_8bit(memory_return.address, memory_return.value as u8);
+
+    out_cpu
+}
+
+pub fn execute_write16(cpu: CPU, code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let hl: Register = out_cpu.hl;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let memory_return: MemoryReturn = memory::write16(hl, register);
+    out_cpu.memory.write_16bit(memory_return.address, memory_return.value as u16);
+
+    out_cpu
+}
+
+pub fn execute_write32(cpu: CPU, code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let hl: Register = out_cpu.hl;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let memory_return: MemoryReturn = memory::write32(hl, register);
+    out_cpu.memory.write_32bit(memory_return.address, memory_return.value as u32);
+
+    out_cpu
+}
+
+pub fn execute_write64(cpu: CPU, code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let hl: Register = out_cpu.hl;
+    let register: Register = out_cpu.get_from_code(code);
+
+    let memory_return: MemoryReturn = memory::write64(hl, register);
+    out_cpu.memory.write_64bit(memory_return.address, memory_return.value as u64);
+
+    out_cpu
 }

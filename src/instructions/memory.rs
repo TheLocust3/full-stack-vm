@@ -38,37 +38,37 @@ pub fn read64(cpu: &CPU) -> MemoryReturn {
     }
 }
 
-pub fn write8(cpu: CPU, register: Register) -> MemoryReturn {
+pub fn write8(hl: Register, register: Register) -> MemoryReturn {
     MemoryReturn {
         value: register.value,
-        address: cpu.hl.value,
+        address: hl.value,
         overflow: false,
         negative: false
     }
 }
 
-pub fn write16(cpu: CPU, register: Register) -> MemoryReturn {
+pub fn write16(hl: Register, register: Register) -> MemoryReturn {
     MemoryReturn {
         value: register.value,
-        address: cpu.hl.value,
+        address: hl.value,
         overflow: false,
         negative: false
     }
 }
 
-pub fn write32(cpu: CPU, register: Register) -> MemoryReturn {
+pub fn write32(hl: Register, register: Register) -> MemoryReturn {
     MemoryReturn {
         value: register.value,
-        address: cpu.hl.value,
+        address: hl.value,
         overflow: false,
         negative: false
     }
 }
 
-pub fn write64(cpu: CPU, register: Register) -> MemoryReturn {
+pub fn write64(hl: Register, register: Register) -> MemoryReturn {
     MemoryReturn {
         value: register.value,
-        address: cpu.hl.value,
+        address: hl.value,
         overflow: false,
         negative: false
     }
