@@ -22,44 +22,44 @@ pub fn execute(cpu: CPU) -> CPU {
 
     match instruction {
         // register
-        0b10000000 => { // set A
+        0b00001000 => { // set A
             out_cpu = execute_set(out_cpu, pc, 0b000);
         },
-        0b10000001 => { // set B
+        0b00001001 => { // set B
             out_cpu = execute_set(out_cpu, pc, 0b001);
         },
-        0b10000010 => { // set C
+        0b00001010 => { // set C
             out_cpu = execute_set(out_cpu, pc, 0b010);
         },
-        0b10000011 => { // set D
+        0b00001011 => { // set D
             out_cpu = execute_set(out_cpu, pc, 0b011);
         },
-        0b10000100 => { // set E
+        0b00001100 => { // set E
             out_cpu = execute_set(out_cpu, pc, 0b100);
         },
-        0b10000110 => { // set HL
+        0b00001110 => { // set HL
             out_cpu = execute_set(out_cpu, pc, 0b110);
         },
 
-        0b10000001 => { // move A B
+        0b00000001 => { // move A B
             out_cpu = execute_move(out_cpu, 0b000, 0b001);
         },
-        0b10000010 => { // move A C
+        0b00000010 => { // move A C
             out_cpu = execute_move(out_cpu, 0b000, 0b010);
         },
-        0b10000011 => { // move A D
+        0b00000011 => { // move A D
             out_cpu = execute_move(out_cpu, 0b000, 0b011);
         },
-        0b10000100 => { // move A E
+        0b00000100 => { // move A E
             out_cpu = execute_move(out_cpu, 0b000, 0b100);
         },
-        0b10000101 => { // move A F
+        0b00000101 => { // move A F
             out_cpu = execute_move(out_cpu, 0b000, 0b101);
         },
-        0b10000110 => { // move A HL
+        0b00000110 => { // move A HL
             out_cpu = execute_move(out_cpu, 0b000, 0b110);
         },
-        0b00010001 => { // move B A
+        0b00010000 => { // move B A
             out_cpu = execute_move(out_cpu, 0b001, 0b000);
         },
         0b00010010 => { // move B C
@@ -151,180 +151,180 @@ pub fn execute(cpu: CPU) -> CPU {
         },
 
         // arithmatic
-        0b00010000 => { // add A A
+        0b00001111 => { // add A A
             out_cpu = execute_add(out_cpu, 0b000);
         },
-        0b00010001 => { // add A B
+        0b00101111 => { // add A B
             out_cpu = execute_add(out_cpu, 0b001);
         },
-        0b00010010 => { // add A C
+        0b01001111 => { // add A C
             out_cpu = execute_add(out_cpu, 0b010);
         },
-        0b00010011 => { // add A D
+        0b01101111 => { // add A D
             out_cpu = execute_add(out_cpu, 0b011);
         },
-        0b00010100 => { // add A E
+        0b10001111 => { // add A E
             out_cpu = execute_add(out_cpu, 0b100);
         },
-        0b00010101 => { // add A F
+        0b10101111 => { // add A F
             out_cpu = execute_add(out_cpu, 0b101);
         },
-        0b00010110 => { // add A HL
+        0b11001111 => { // add A HL
             out_cpu = execute_add(out_cpu, 0b110);
         },
-        0b00100000 => { // sub A A
+        0b00011111 => { // sub A A
             out_cpu = execute_sub(out_cpu, 0b000);
         },
-        0b00100001 => { // sub A B
+        0b00111111 => { // sub A B
             out_cpu = execute_sub(out_cpu, 0b001);
         },
-        0b00100010 => { // sub A C
+        0b01011111 => { // sub A C
             out_cpu = execute_sub(out_cpu, 0b010);
         },
-        0b00100011 => { // sub A D
+        0b01111111 => { // sub A D
             out_cpu = execute_sub(out_cpu, 0b011);
         },
-        0b00100100 => { // sub A E
+        0b10011111 => { // sub A E
             out_cpu = execute_sub(out_cpu, 0b100);
         },
-        0b00100101 => { // sub A E
+        0b10111111 => { // sub A F
             out_cpu = execute_sub(out_cpu, 0b101);
+        },
+        0b11011111 => { // sub A HL
+            out_cpu = execute_sub(out_cpu, 0b110);
         },
         
         // bitwise
-        0b00100110 => { // sub A HL
-            out_cpu = execute_sub(out_cpu, 0b110);
-        },
-        0b00001000 => { // and A A
+        0b00011000 => { // and A A
             out_cpu = execute_and(out_cpu, 0b000);
         },
-        0b00001001 => { // and A B
+        0b00111000 => { // and A B
             out_cpu = execute_and(out_cpu, 0b001);
         },
-        0b00001010 => { // and A C
+        0b01011000 => { // and A C
             out_cpu = execute_and(out_cpu, 0b010);
         },
-        0b00001011 => { // and A D
+        0b01111000 => { // and A D
             out_cpu = execute_and(out_cpu, 0b011);
         },
-        0b00001100 => { // and A E
+        0b10011000 => { // and A E
             out_cpu = execute_and(out_cpu, 0b100);
         },
-        0b00001101 => { // and A F
+        0b10111000 => { // and A F
             out_cpu = execute_and(out_cpu, 0b101);
         },
-        0b00001110 => { // and A HL
+        0b11011000 => { // and A HL
             out_cpu = execute_and(out_cpu, 0b110);
         },
-        0b00011000 => { // or A A
+        0b00011001 => { // or A A
             out_cpu = execute_or(out_cpu, 0b000);
         },
-        0b00011001 => { // or A B
+        0b00111001 => { // or A B
             out_cpu = execute_or(out_cpu, 0b001);
         },
-        0b00011010 => { // or A C
+        0b01011001 => { // or A C
             out_cpu = execute_or(out_cpu, 0b010);
         },
-        0b00011011 => { // or A D
+        0b01111001 => { // or A D
             out_cpu = execute_or(out_cpu, 0b011);
         },
-        0b00011100 => { // or A E
+        0b10011001 => { // or A E
             out_cpu = execute_or(out_cpu, 0b100);
         },
-        0b00011101 => { // or A F
+        0b10111001 => { // or A F
             out_cpu = execute_or(out_cpu, 0b101);
         },
-        0b00011110 => { // or A HL
+        0b11011001 => { // or A HL
             out_cpu = execute_or(out_cpu, 0b110);
         },
-        0b00111000 => { // not A
+        0b00011011 => { // not A
             out_cpu = execute_not(out_cpu, 0b000);
         },
-        0b00111001 => { // not B
+        0b00111011 => { // not B
             out_cpu = execute_not(out_cpu, 0b001);
         },
-        0b00111010 => { // not C
+        0b01011011 => { // not C
             out_cpu = execute_not(out_cpu, 0b010);
         },
-        0b00111011 => { // not D
+        0b01111011 => { // not D
             out_cpu = execute_not(out_cpu, 0b011);
         },
-        0b00111100 => { // not E
+        0b10011011 => { // not E
             out_cpu = execute_not(out_cpu, 0b100);
         },
-        0b00111110 => { // not HL
+        0b11011011 => { // not HL
             out_cpu = execute_not(out_cpu, 0b110);
         },
-        0b00110000 => { // shift-left A, wrap=false
+        0b00011101 => { // shift-left A, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b000, false);
         },
-        0b00110001 => { // shift-left B, wrap=false
+        0b00111101 => { // shift-left B, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b001, false);
         },
-        0b00110010 => { // shift-left C, wrap=false
+        0b01011101 => { // shift-left C, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b010, false);
         },
-        0b00110011 => { // shift-left D, wrap=false
+        0b01111101 => { // shift-left D, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b011, false);
         },
-        0b00110100 => { // shift-left E, wrap=false
+        0b10011101 => { // shift-left E, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b100, false);
         },
-        0b00110110 => { // shift-left HL, wrap=false
+        0b11011101 => { // shift-left HL, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b110, false);
         },
-        0b10110000 => { // shift-left A, wrap=true
+        0b00011001 => { // shift-left A, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b000, true);
         },
-        0b10110001 => { // shift-left B, wrap=true
+        0b00111001 => { // shift-left B, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b001, true);
         },
-        0b10110010 => { // shift-left C, wrap=true
+        0b01011001 => { // shift-left C, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b010, true);
         },
-        0b10110011 => { // shift-left D, wrap=true
+        0b01111001 => { // shift-left D, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b011, true);
         },
-        0b10110100 => { // shift-left E, wrap=true
+        0b10011001 => { // shift-left E, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b100, true);
         },
-        0b10110110 => { // shift-left HL, wrap=true
+        0b11011001 => { // shift-left HL, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b110, true);
         },
-        0b00101000 => { // shift-right A, wrap=false
+        0b00011111 => { // shift-right A, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b000, false);
         },
-        0b00101001 => { // shift-right B, wrap=false
+        0b00111111 => { // shift-right B, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b001, false);
         },
-        0b00101010 => { // shift-right C, wrap=false
+        0b01011111 => { // shift-right C, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b010, false);
         },
-        0b00101011 => { // shift-right D, wrap=false
+        0b01111111 => { // shift-right D, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b011, false);
         },
-        0b00101100 => { // shift-right E, wrap=false
+        0b10011111 => { // shift-right E, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b100, false);
         },
-        0b00101110 => { // shift-right HL, wrap=false
+        0b11011111 => { // shift-right HL, wrap=false
             out_cpu = execute_shift_left(out_cpu, 0b110, false);
         },
-        0b10101000 => { // shift-right A, wrap=true
+        0b00011011 => { // shift-right A, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b000, true);
         },
-        0b10101001 => { // shift-right B, wrap=true
+        0b00111011 => { // shift-right B, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b001, true);
         },
-        0b10101010 => { // shift-right C, wrap=true
+        0b01011011 => { // shift-right C, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b010, true);
         },
-        0b10101011 => { // shift-right D, wrap=true
+        0b01111011 => { // shift-right D, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b011, true);
         },
-        0b10101100 => { // shift-right E, wrap=true
+        0b10011011 => { // shift-right E, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b100, true);
         },
-        0b10101110 => { // shift-right HL, wrap=true
+        0b11011011 => { // shift-right HL, wrap=true
             out_cpu = execute_shift_left(out_cpu, 0b110, true);
         },
 
@@ -337,137 +337,137 @@ pub fn execute(cpu: CPU) -> CPU {
         },
 
         // memory
-        0b10001001 => { // read8 A
+        0b11111000 => { // read8 A
             out_cpu = execute_read8(out_cpu, 0b000);
         },
-        0b10011001 => { // read8 B
+        0b11111001 => { // read8 B
             out_cpu = execute_read8(out_cpu, 0b001);
         },
-        0b10101001 => { // read8 C
+        0b11111010 => { // read8 C
             out_cpu = execute_read8(out_cpu, 0b010);
         },
-        0b10111001 => { // read8 D
+        0b11111011 => { // read8 D
             out_cpu = execute_read8(out_cpu, 0b011);
         },
-        0b11001001 => { // read8 E
+        0b11111100 => { // read8 E
             out_cpu = execute_read8(out_cpu, 0b100);
         },
-        0b10001010 => { // read16 A
+        0b11110000 => { // read16 A
             out_cpu = execute_read16(out_cpu, 0b000);
         },
-        0b10011010 => { // read16 B
+        0b11110001 => { // read16 B
             out_cpu = execute_read16(out_cpu, 0b001);
         },
-        0b10101010 => { // read16 C
+        0b11110010 => { // read16 C
             out_cpu = execute_read16(out_cpu, 0b010);
         },
-        0b10111010 => { // read16 D
+        0b11110011 => { // read16 D
             out_cpu = execute_read16(out_cpu, 0b011);
         },
-        0b11001010 => { // read16 E
+        0b11110100 => { // read16 E
             out_cpu = execute_read16(out_cpu, 0b100);
         },
-        0b10001011 => { // read32 A
+        0b11100000 => { // read32 A
             out_cpu = execute_read32(out_cpu, 0b000);
         },
-        0b10011011 => { // read32 B
+        0b11100001 => { // read32 B
             out_cpu = execute_read32(out_cpu, 0b001);
         },
-        0b10101011 => { // read32 C
+        0b11100010 => { // read32 C
             out_cpu = execute_read32(out_cpu, 0b010);
         },
-        0b10111011 => { // read32 D
+        0b11100011 => { // read32 D
             out_cpu = execute_read32(out_cpu, 0b011);
         },
-        0b11001011 => { // read32 E
+        0b11100100 => { // read32 E
             out_cpu = execute_read32(out_cpu, 0b100);
         }
-        0b10001100 => { // read64 A
+        0b11000000 => { // read64 A
             out_cpu = execute_read64(out_cpu, 0b000);
         },
-        0b10011100 => { // read64 B
+        0b11000001 => { // read64 B
             out_cpu = execute_read64(out_cpu, 0b001);
         },
-        0b10101100 => { // read64 C
+        0b11000010 => { // read64 C
             out_cpu = execute_read64(out_cpu, 0b010);
         },
-        0b10111100 => { // read64 D
+        0b11000011 => { // read64 D
             out_cpu = execute_read64(out_cpu, 0b011);
         },
-        0b11001100 => { // read64 E
+        0b11000100 => { // read64 E
             out_cpu = execute_read64(out_cpu, 0b100);
         },
         
-        0b10000001 => { // write8 A
+        0b10000000 => { // write8 A
             out_cpu = execute_write8(out_cpu, 0b000);
         },
-        0b10010001 => { // write8 B
+        0b10000001 => { // write8 B
             out_cpu = execute_write8(out_cpu, 0b001);
         },
-        0b10100001 => { // write8 C
+        0b10000010 => { // write8 C
             out_cpu = execute_write8(out_cpu, 0b010);
         },
-        0b10110001 => { // write8 D
+        0b10000011 => { // write8 D
             out_cpu = execute_write8(out_cpu, 0b011);
         },
-        0b11000001 => { // write8 E
+        0b10000100 => { // write8 E
             out_cpu = execute_write8(out_cpu, 0b100);
         },
-        0b11010001 => { // write8 F
+        0b10000101 => { // write8 F
             out_cpu = execute_write8(out_cpu, 0b101);
         },
-        0b10000010 => { // write16 A
+        0b10011000 => { // write16 A
             out_cpu = execute_write16(out_cpu, 0b000);
         },
-        0b10010010 => { // write16 B
+        0b10011001 => { // write16 B
             out_cpu = execute_write16(out_cpu, 0b001);
         },
-        0b10100010 => { // write16 C
+        0b10011010 => { // write16 C
             out_cpu = execute_write16(out_cpu, 0b010);
         },
-        0b10110010 => { // write16 D
+        0b10011011 => { // write16 D
             out_cpu = execute_write16(out_cpu, 0b011);
         },
-        0b11000010 => { // write16 E
+        0b10011100 => { // write16 E
             out_cpu = execute_write16(out_cpu, 0b100);
         },
-        0b11010010 => { // write16 F
+        0b10011101 => { // write16 F
             out_cpu = execute_write16(out_cpu, 0b101);
         },
-        0b10000011 => { // write32 A
+        0b10111000 => { // write32 A
             out_cpu = execute_write32(out_cpu, 0b000);
         },
-        0b10010011 => { // write32 B
+        0b10111001 => { // write32 B
             out_cpu = execute_write32(out_cpu, 0b001);
         },
-        0b10100011 => { // write32 C
+        0b10111010 => { // write32 C
             out_cpu = execute_write32(out_cpu, 0b010);
         },
-        0b10110011 => { // write32 D
+        0b10111011 => { // write32 D
             out_cpu = execute_write32(out_cpu, 0b011);
         },
-        0b11000011 => { // write32 E
+        0b10111100 => { // write32 E
             out_cpu = execute_write32(out_cpu, 0b100);
         },
-        0b11010011 => { // write32 F
+        0b10111101 => { // write32 F
             out_cpu = execute_write32(out_cpu, 0b101);
         },
-        0b10000100 => { // write64 A
+        0b10101000 => { // write64 A
             out_cpu = execute_write64(out_cpu, 0b000);
         },
-        0b10010100 => { // write64 B
+        0b10101001 => { // write64 B
             out_cpu = execute_write64(out_cpu, 0b001);
         },
-        0b10100100 => { // write64 C
+        0b10101010 => { // write64 C
             out_cpu = execute_write64(out_cpu, 0b010);
         },
-        0b10110100 => { // write64 D
+        0b10101011 => { // write64 D
             out_cpu = execute_write64(out_cpu, 0b011);
         },
-        0b11000100 => { // write64 E
+        0b10101100 => { // write64 E
             out_cpu = execute_write64(out_cpu, 0b100);
         },
-        0b11010100 => { // write64 F
+        0b10101101 => { // write64 F
             out_cpu = execute_write64(out_cpu, 0b101);
         },
 
