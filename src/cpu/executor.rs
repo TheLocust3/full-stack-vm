@@ -6,33 +6,40 @@ use cpu::executor_functions;
 use instructions::miscellaneous;
 
 pub fn execute(cpu: CPU) -> CPU {
-    let pc = Register { value: cpu.pc.value + 1 };
-    info!("PC: {}", pc.value);
+    info!("PC: {}", cpu.pc.value);
 
-    let instruction: u8 = cpu.memory.read_8bit(pc.value);
+    let instruction: u8 = cpu.memory.read_8bit(cpu.pc.value);
     info!("Instruction: {}", instruction);
 
+    let pc = cpu.pc;
+    let mut has_set_pc = false;
     let mut out_cpu = cpu;
 
     match instruction {
         // register
         0b00001000 => { // set A
             out_cpu = executor_functions::execute_set(out_cpu, pc, 0b000);
+            has_set_pc = true;
         },
         0b00001001 => { // set B
             out_cpu = executor_functions::execute_set(out_cpu, pc, 0b001);
+            has_set_pc = true;
         },
         0b00001010 => { // set C
             out_cpu = executor_functions::execute_set(out_cpu, pc, 0b010);
+            has_set_pc = true;
         },
         0b00001011 => { // set D
             out_cpu = executor_functions::execute_set(out_cpu, pc, 0b011);
+            has_set_pc = true;
         },
         0b00001100 => { // set E
             out_cpu = executor_functions::execute_set(out_cpu, pc, 0b100);
+            has_set_pc = true;
         },
         0b00001110 => { // set HL
             out_cpu = executor_functions::execute_set(out_cpu, pc, 0b110);
+            has_set_pc = true;
         },
 
         0b00000001 => { // move A B
@@ -325,9 +332,11 @@ pub fn execute(cpu: CPU) -> CPU {
         // control
         0b11111111 => { // jump
             out_cpu = executor_functions::execute_jump(out_cpu, pc);
+            has_set_pc = true;
         },
         0b11111110 => { // jump0
             out_cpu = executor_functions::execute_jump0(out_cpu, pc);
+            has_set_pc = true;
         },
 
         // memory
@@ -474,5 +483,9 @@ pub fn execute(cpu: CPU) -> CPU {
         }
     }
 
-    out_cpu
+    if !has_set_pc {
+        out_cpu.set_pc(Register { value: pc.value + 1 })
+    } else {
+        out_cpu
+    }
 }
