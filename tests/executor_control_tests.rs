@@ -3,8 +3,8 @@ mod tests {
     extern crate emu;
     use self::emu::cpu::cpu::CPU;
     use self::emu::cpu::register::Register;
-    use self::emu::cpu::executor::execute_jump;
-    use self::emu::cpu::executor::execute_jump0;
+    use self::emu::cpu::executor_functions::execute_jump;
+    use self::emu::cpu::executor_functions::execute_jump0;
 
     #[test]
     fn test_jump() {

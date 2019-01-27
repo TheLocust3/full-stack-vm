@@ -3,8 +3,8 @@ mod tests {
     extern crate emu;
     use self::emu::cpu::cpu::CPU;
     use self::emu::cpu::register::Register;
-    use self::emu::cpu::executor::execute_set;
-    use self::emu::cpu::executor::execute_move;
+    use self::emu::cpu::executor_functions::execute_set;
+    use self::emu::cpu::executor_functions::execute_move;
 
     #[test]
     fn test_set_a() {

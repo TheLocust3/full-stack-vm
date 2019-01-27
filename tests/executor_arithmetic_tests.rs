@@ -3,8 +3,8 @@ mod tests {
     extern crate emu;
     use self::emu::cpu::cpu::CPU;
     use self::emu::cpu::register::Register;
-    use self::emu::cpu::executor::execute_add;
-    use self::emu::cpu::executor::execute_sub;
+    use self::emu::cpu::executor_functions::execute_add;
+    use self::emu::cpu::executor_functions::execute_sub;
 
     #[test]
     fn test_add_a() {

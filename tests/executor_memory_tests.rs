@@ -3,14 +3,14 @@ mod tests {
     extern crate emu;
     use self::emu::cpu::cpu::CPU;
     use self::emu::cpu::register::Register;
-    use self::emu::cpu::executor::execute_read8;
-    use self::emu::cpu::executor::execute_read16;
-    use self::emu::cpu::executor::execute_read32;
-    use self::emu::cpu::executor::execute_read64;
-    use self::emu::cpu::executor::execute_write8;
-    use self::emu::cpu::executor::execute_write16;
-    use self::emu::cpu::executor::execute_write32;
-    use self::emu::cpu::executor::execute_write64;
+    use self::emu::cpu::executor_functions::execute_read8;
+    use self::emu::cpu::executor_functions::execute_read16;
+    use self::emu::cpu::executor_functions::execute_read32;
+    use self::emu::cpu::executor_functions::execute_read64;
+    use self::emu::cpu::executor_functions::execute_write8;
+    use self::emu::cpu::executor_functions::execute_write16;
+    use self::emu::cpu::executor_functions::execute_write32;
+    use self::emu::cpu::executor_functions::execute_write64;
 
     #[test]
     fn test_read8_a() {

@@ -3,11 +3,11 @@ mod tests {
     extern crate emu;
     use self::emu::cpu::cpu::CPU;
     use self::emu::cpu::register::Register;
-    use self::emu::cpu::executor::execute_and;
-    use self::emu::cpu::executor::execute_or;
-    use self::emu::cpu::executor::execute_not;
-    use self::emu::cpu::executor::execute_shift_left;
-    use self::emu::cpu::executor::execute_shift_right;
+    use self::emu::cpu::executor_functions::execute_and;
+    use self::emu::cpu::executor_functions::execute_or;
+    use self::emu::cpu::executor_functions::execute_not;
+    use self::emu::cpu::executor_functions::execute_shift_left;
+    use self::emu::cpu::executor_functions::execute_shift_right;
 
     #[test]
     fn test_and_a() {
