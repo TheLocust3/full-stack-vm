@@ -1488,4 +1488,49 @@ mod tests {
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.hl.value, 1);
     }
+
+    #[test]
+    fn test_jump() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11111111);
+
+        cpu.memory.write_64bit(1, 10);
+
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 10);
+        assert_eq!(cpu.f.value, 0);
+    }
+
+    #[test]
+    fn test_jump0_false() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11111110);
+        
+        cpu = cpu.set_pc(Register { value: 0 });
+        cpu = cpu.set_a(Register { value: 10 });
+
+        cpu.memory.write_64bit(1, 10);
+
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.f.value, 0);
+    }
+
+    #[test]
+    fn test_jump0_true() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11111110);
+
+        cpu = cpu.set_pc(Register { value: 0 });
+        cpu = cpu.set_a(Register { value: 0 });
+
+        cpu.memory.write_64bit(1, 10);
+
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 10);
+        assert_eq!(cpu.f.value, 0);
+    }
 }
