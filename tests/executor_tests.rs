@@ -1240,7 +1240,7 @@ mod tests {
     #[test]
     fn test_shift_left_a_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b00011001);
+        cpu.memory.write_8bit(0, 0b00000111);
 
         cpu = cpu.set_a(Register { value: 1 });
 
@@ -1254,7 +1254,7 @@ mod tests {
     #[test]
     fn test_shift_left_b_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b00111001);
+        cpu.memory.write_8bit(0, 0b00100111);
 
         cpu = cpu.set_b(Register { value: 1 });
 
@@ -1268,7 +1268,7 @@ mod tests {
     #[test]
     fn test_shift_left_c_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b01011001);
+        cpu.memory.write_8bit(0, 0b01000111);
 
         cpu = cpu.set_c(Register { value: 1 });
 
@@ -1282,7 +1282,7 @@ mod tests {
     #[test]
     fn test_shift_left_d_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b01111001);
+        cpu.memory.write_8bit(0, 0b01100111);
 
         cpu = cpu.set_d(Register { value: 1 });
 
@@ -1296,7 +1296,7 @@ mod tests {
     #[test]
     fn test_shift_left_e_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10011001);
+        cpu.memory.write_8bit(0, 0b10000111);
 
         cpu = cpu.set_e(Register { value: 1 });
 
@@ -1310,7 +1310,7 @@ mod tests {
     #[test]
     fn test_shift_left_hl_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b11011001);
+        cpu.memory.write_8bit(0, 0b11000111);
 
         cpu = cpu.set_hl(Register { value: 1 });
 
@@ -1324,7 +1324,7 @@ mod tests {
     #[test]
     fn test_shift_right_a() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b00011111);
+        cpu.memory.write_8bit(0, 0b00011110);
 
         cpu = cpu.set_a(Register { value: 2 });
 
@@ -1338,7 +1338,7 @@ mod tests {
     #[test]
     fn test_shift_right_b() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b00111111);
+        cpu.memory.write_8bit(0, 0b00111110);
 
         cpu = cpu.set_b(Register { value: 2 });
 
@@ -1352,7 +1352,7 @@ mod tests {
     #[test]
     fn test_shift_right_c() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b01011111);
+        cpu.memory.write_8bit(0, 0b01011110);
 
         cpu = cpu.set_c(Register { value: 2 });
 
@@ -1366,7 +1366,7 @@ mod tests {
     #[test]
     fn test_shift_right_d() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b01111111);
+        cpu.memory.write_8bit(0, 0b01111110);
 
         cpu = cpu.set_d(Register { value: 2 });
 
@@ -1380,7 +1380,7 @@ mod tests {
     #[test]
     fn test_shift_right_e() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10011111);
+        cpu.memory.write_8bit(0, 0b10011110);
 
         cpu = cpu.set_e(Register { value: 2 });
 
@@ -1394,7 +1394,7 @@ mod tests {
     #[test]
     fn test_shift_right_hl() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b11011111);
+        cpu.memory.write_8bit(0, 0b11011110);
 
         cpu = cpu.set_hl(Register { value: 2 });
 
@@ -1408,7 +1408,7 @@ mod tests {
     #[test]
     fn test_shift_right_a_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b00011011);
+        cpu.memory.write_8bit(0, 0b00010111);
 
         cpu = cpu.set_a(Register { value: 2 });
 
@@ -1422,7 +1422,7 @@ mod tests {
     #[test]
     fn test_shift_right_b_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b00111011);
+        cpu.memory.write_8bit(0, 0b00110111);
 
         cpu = cpu.set_b(Register { value: 2 });
 
@@ -1436,7 +1436,7 @@ mod tests {
     #[test]
     fn test_shift_right_c_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b01011011);
+        cpu.memory.write_8bit(0, 0b01010111);
 
         cpu = cpu.set_c(Register { value: 2 });
 
@@ -1450,7 +1450,7 @@ mod tests {
     #[test]
     fn test_shift_right_d_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b01111011);
+        cpu.memory.write_8bit(0, 0b01110111);
 
         cpu = cpu.set_d(Register { value: 2 });
 
@@ -1464,7 +1464,7 @@ mod tests {
     #[test]
     fn test_shift_right_e_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10011011);
+        cpu.memory.write_8bit(0, 0b10010111);
 
         cpu = cpu.set_e(Register { value: 2 });
 
@@ -1478,7 +1478,7 @@ mod tests {
     #[test]
     fn test_shift_right_hl_wrap() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b11011011);
+        cpu.memory.write_8bit(0, 0b11010111);
 
         cpu = cpu.set_hl(Register { value: 2 });
 

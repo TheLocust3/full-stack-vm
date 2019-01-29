@@ -193,16 +193,15 @@ Flags:
 
 #### Opcodes
 
-Format: rrr1 1w01
+Format: rrr0 0111, wrap=true
+Format: rrr1 1101, wrap=false
 
-w: wraparound bit. If 0 wraps
-
-- 0001 1001 SHIFT_LEFT A, wrap=true
-- 0011 1001 SHIFT_LEFT B, wrap=true
-- 0101 1001 SHIFT_LEFT C, wrap=true
-- 0111 1001 SHIFT_LEFT D, wrap=true
-- 1001 1001 SHIFT_LEFT E, wrap=true
-- 1101 1001 SHIFT_LEFT HL, wrap=true
+- 0000 0111 SHIFT_LEFT A, wrap=true
+- 0010 0111 SHIFT_LEFT B, wrap=true
+- 0100 0111 SHIFT_LEFT C, wrap=true
+- 0110 0111 SHIFT_LEFT D, wrap=true
+- 1000 0111 SHIFT_LEFT E, wrap=true
+- 1100 0111 SHIFT_LEFT HL, wrap=true
 - 0001 1101 SHIFT_LEFT A, wrap=false
 - 0011 1101 SHIFT_LEFT B, wrap=false
 - 0101 1101 SHIFT_LEFT C, wrap=false
@@ -220,22 +219,23 @@ Flags:
 
 #### Opcodes
 
-Format: rrr1 1w11
+Format: rrr1 0111, wrap=true
+Format: rrr1 1110, wrap=false
 
 w: wraparound bit. If 0 wraps
 
-- 0001 1011 SHIFT_RIGHT A, wrap=true
-- 0011 1011 SHIFT_RIGHT B, wrap=true
-- 0101 1011 SHIFT_RIGHT C, wrap=true
-- 0111 1011 SHIFT_RIGHT D, wrap=true
-- 1001 1011 SHIFT_RIGHT E, wrap=true
-- 1101 1011 SHIFT_RIGHT HL, wrap=true
-- 0001 1111 SHIFT_RIGHT A, wrap=false
-- 0011 1111 SHIFT_RIGHT B, wrap=false
-- 0101 1111 SHIFT_RIGHT C, wrap=false
-- 0111 1111 SHIFT_RIGHT D, wrap=false
-- 1001 1111 SHIFT_RIGHT E, wrap=false
-- 1101 1111 SHIFT_RIGHT HL, wrap=false
+- 0001 0111 SHIFT_RIGHT A, wrap=true
+- 0011 0111 SHIFT_RIGHT B, wrap=true
+- 0101 0111 SHIFT_RIGHT C, wrap=true
+- 0111 0111 SHIFT_RIGHT D, wrap=true
+- 1001 0111 SHIFT_RIGHT E, wrap=true
+- 1101 0111 SHIFT_RIGHT HL, wrap=true
+- 0001 1110 SHIFT_RIGHT A, wrap=false
+- 0011 1110 SHIFT_RIGHT B, wrap=false
+- 0101 1110 SHIFT_RIGHT C, wrap=false
+- 0111 1110 SHIFT_RIGHT D, wrap=false
+- 1001 1110 SHIFT_RIGHT E, wrap=false
+- 1101 1110 SHIFT_RIGHT HL, wrap=false
 
 ## Control Operations
 

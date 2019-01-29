@@ -274,59 +274,59 @@ pub fn execute(cpu: CPU) -> CPU {
         0b11011101 => { // shift-left HL, wrap=false
             out_cpu = executor_functions::execute_shift_left(out_cpu, 0b110, false);
         },
-        0b00011001 => { // shift-left A, wrap=true
+        0b00000111 => { // shift-left A, wrap=true
             out_cpu = executor_functions::execute_shift_left(out_cpu, 0b000, true);
         },
-        0b00111001 => { // shift-left B, wrap=true
+        0b00100111 => { // shift-left B, wrap=true
             out_cpu = executor_functions::execute_shift_left(out_cpu, 0b001, true);
         },
-        0b01011001 => { // shift-left C, wrap=true
+        0b01000111 => { // shift-left C, wrap=true
             out_cpu = executor_functions::execute_shift_left(out_cpu, 0b010, true);
         },
-        0b01111001 => { // shift-left D, wrap=true
+        0b01100111 => { // shift-left D, wrap=true
             out_cpu = executor_functions::execute_shift_left(out_cpu, 0b011, true);
         },
-        0b10011001 => { // shift-left E, wrap=true
+        0b10000111 => { // shift-left E, wrap=true
             out_cpu = executor_functions::execute_shift_left(out_cpu, 0b100, true);
         },
-        0b11011001 => { // shift-left HL, wrap=true
+        0b11000111 => { // shift-left HL, wrap=true
             out_cpu = executor_functions::execute_shift_left(out_cpu, 0b110, true);
         },
-        0b00011111 => { // shift-right A, wrap=false
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b000, false);
+        0b00011110 => { // shift-right A, wrap=false
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b000, false);
         },
-        0b00111111 => { // shift-right B, wrap=false
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b001, false);
+        0b00111110 => { // shift-right B, wrap=false
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b001, false);
         },
-        0b01011111 => { // shift-right C, wrap=false
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b010, false);
+        0b01011110 => { // shift-right C, wrap=false
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b010, false);
         },
-        0b01111111 => { // shift-right D, wrap=false
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b011, false);
+        0b01111110 => { // shift-right D, wrap=false
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b011, false);
         },
-        0b10011111 => { // shift-right E, wrap=false
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b100, false);
+        0b10011110 => { // shift-right E, wrap=false
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b100, false);
         },
-        0b11011111 => { // shift-right HL, wrap=false
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b110, false);
+        0b11011110 => { // shift-right HL, wrap=false
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b110, false);
         },
-        0b00011011 => { // shift-right A, wrap=true
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b000, true);
+        0b00010111 => { // shift-right A, wrap=true
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b000, true);
         },
-        0b00111011 => { // shift-right B, wrap=true
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b001, true);
+        0b00110111 => { // shift-right B, wrap=true
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b001, true);
         },
-        0b01011011 => { // shift-right C, wrap=true
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b010, true);
+        0b01010111 => { // shift-right C, wrap=true
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b010, true);
         },
-        0b01111011 => { // shift-right D, wrap=true
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b011, true);
+        0b01110111 => { // shift-right D, wrap=true
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b011, true);
         },
-        0b10011011 => { // shift-right E, wrap=true
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b100, true);
+        0b10010111 => { // shift-right E, wrap=true
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b100, true);
         },
-        0b11011011 => { // shift-right HL, wrap=true
-            out_cpu = executor_functions::execute_shift_left(out_cpu, 0b110, true);
+        0b11010111 => { // shift-right HL, wrap=true
+            out_cpu = executor_functions::execute_shift_right(out_cpu, 0b110, true);
         },
 
         // control
