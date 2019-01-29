@@ -419,40 +419,40 @@ pub fn execute(cpu: CPU) -> CPU {
         0b10000101 => { // write8 F
             out_cpu = executor_functions::execute_write8(out_cpu, 0b101);
         },
-        0b10011000 => { // write16 A
+        0b10001000 => { // write16 A
             out_cpu = executor_functions::execute_write16(out_cpu, 0b000);
         },
-        0b10011001 => { // write16 B
+        0b10001001 => { // write16 B
             out_cpu = executor_functions::execute_write16(out_cpu, 0b001);
         },
-        0b10011010 => { // write16 C
+        0b10001010 => { // write16 C
             out_cpu = executor_functions::execute_write16(out_cpu, 0b010);
         },
-        0b10011011 => { // write16 D
+        0b10001011 => { // write16 D
             out_cpu = executor_functions::execute_write16(out_cpu, 0b011);
         },
-        0b10011100 => { // write16 E
+        0b10001100 => { // write16 E
             out_cpu = executor_functions::execute_write16(out_cpu, 0b100);
         },
-        0b10011101 => { // write16 F
+        0b10001101 => { // write16 F
             out_cpu = executor_functions::execute_write16(out_cpu, 0b101);
         },
-        0b10111000 => { // write32 A
+        0b10010000 => { // write32 A
             out_cpu = executor_functions::execute_write32(out_cpu, 0b000);
         },
-        0b10111001 => { // write32 B
+        0b10010001 => { // write32 B
             out_cpu = executor_functions::execute_write32(out_cpu, 0b001);
         },
-        0b10111010 => { // write32 C
+        0b10010010 => { // write32 C
             out_cpu = executor_functions::execute_write32(out_cpu, 0b010);
         },
-        0b10111011 => { // write32 D
+        0b10010011 => { // write32 D
             out_cpu = executor_functions::execute_write32(out_cpu, 0b011);
         },
-        0b10111100 => { // write32 E
+        0b10010100 => { // write32 E
             out_cpu = executor_functions::execute_write32(out_cpu, 0b100);
         },
-        0b10111101 => { // write32 F
+        0b10010101 => { // write32 F
             out_cpu = executor_functions::execute_write32(out_cpu, 0b101);
         },
         0b10101000 => { // write64 A

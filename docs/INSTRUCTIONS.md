@@ -362,14 +362,14 @@ Exceptions:
 
 #### Opcodes
 
-Format: 1001 0rrr
+Format: 1000 1rrr
 
-- 1001 1000 write16 A
-- 1001 1001 write16 B
-- 1001 1010 write16 C
-- 1001 1011 write16 D
-- 1001 1100 write16 E
-- 1001 1101 write16 F
+- 1000 1000 write16 A
+- 1000 1001 write16 B
+- 1000 1010 write16 C
+- 1000 1011 write16 D
+- 1000 1100 write16 E
+- 1000 1101 write16 F
 
 ### write32
 
@@ -381,14 +381,14 @@ Exceptions:
 
 #### Opcodes
 
-Format: 1011 0rrr
+Format: 1001 0rrr
 
-- 1011 1000 write32 A
-- 1011 1001 write32 B
-- 1011 1010 write32 C
-- 1011 1011 write32 D
-- 1011 1100 write32 E
-- 1011 1101 write32 F
+- 1001 0000 write32 A
+- 1001 0001 write32 B
+- 1001 0010 write32 C
+- 1001 0011 write32 D
+- 1001 0100 write32 E
+- 1001 0101 write32 F
 
 ### write64
 

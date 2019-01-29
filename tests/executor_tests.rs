@@ -1930,7 +1930,7 @@ mod tests {
     #[test]
     fn test_write16_a() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10011000);
+        cpu.memory.write_8bit(0, 0b10001000);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_a(Register { value: 20 });
@@ -1946,7 +1946,7 @@ mod tests {
     #[test]
     fn test_write16_b() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10011001);
+        cpu.memory.write_8bit(0, 0b10001001);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_b(Register { value: 20 });
@@ -1962,7 +1962,7 @@ mod tests {
     #[test]
     fn test_write16_c() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10011010);
+        cpu.memory.write_8bit(0, 0b10001010);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_c(Register { value: 20 });
@@ -1978,7 +1978,7 @@ mod tests {
     #[test]
     fn test_write16_d() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10011011);
+        cpu.memory.write_8bit(0, 0b10001011);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_d(Register { value: 20 });
@@ -1994,7 +1994,7 @@ mod tests {
     #[test]
     fn test_write16_e() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10011100);
+        cpu.memory.write_8bit(0, 0b10001100);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_e(Register { value: 20 });
@@ -2010,7 +2010,7 @@ mod tests {
     #[test]
     fn test_write16_f() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10011101);
+        cpu.memory.write_8bit(0, 0b10001101);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_f(Register { value: 20 });
@@ -2025,7 +2025,7 @@ mod tests {
     #[test]
     fn test_write32_a() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10111000);
+        cpu.memory.write_8bit(0, 0b10010000);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_a(Register { value: 20 });
@@ -2041,7 +2041,7 @@ mod tests {
     #[test]
     fn test_write32_b() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10111001);
+        cpu.memory.write_8bit(0, 0b10010001);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_b(Register { value: 20 });
@@ -2057,7 +2057,7 @@ mod tests {
     #[test]
     fn test_write32_c() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10111010);
+        cpu.memory.write_8bit(0, 0b10010010);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_c(Register { value: 20 });
@@ -2073,7 +2073,7 @@ mod tests {
     #[test]
     fn test_write32_d() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10111011);
+        cpu.memory.write_8bit(0, 0b10010011);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_d(Register { value: 20 });
@@ -2089,7 +2089,7 @@ mod tests {
     #[test]
     fn test_write32_e() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10111100);
+        cpu.memory.write_8bit(0, 0b10010100);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_e(Register { value: 20 });
@@ -2105,7 +2105,7 @@ mod tests {
     #[test]
     fn test_write32_f() {
         let mut cpu: CPU = CPU::new();
-        cpu.memory.write_8bit(0, 0b10111101);
+        cpu.memory.write_8bit(0, 0b10010101);
 
         cpu = cpu.set_hl(Register { value: 10 });
         cpu = cpu.set_f(Register { value: 20 });
