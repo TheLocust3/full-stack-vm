@@ -1,3 +1,5 @@
-# Simple-Virtual-Machine
+# Full Stack VM
 
-A virtual machine that emulates a simple made up processor. Designed to have an incredibly limited instruction set and interface to make it easy to design simple langauges and operating systems on top of it.
+A virtual machine base (`/emu`) that emulates a processor with a purposely limited instruction set. Currently working on an assembler to convert basic assembly for the machine to binary.
+
+I plan to build more complex languages on top of the vm in the future.
