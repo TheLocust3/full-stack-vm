@@ -1,6 +1,7 @@
 extern crate log;
 extern crate env_logger;
 
+mod instruction;
 mod parser;
 mod converter;
 
