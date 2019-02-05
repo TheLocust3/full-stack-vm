@@ -13,7 +13,7 @@ impl Instruction {
         }
     }
 
-    pub fn to_string(self) -> String {
+    pub fn to_string(&self) -> String {
         format!("{} {} {}", self.command, self.arg1, self.arg2)
     }
 }

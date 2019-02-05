@@ -17,7 +17,14 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<u8> {
 
     info!("Instruction: {}", instruction.to_string());
 
-    compiled.push(0);
+    match instruction.command.as_str() {
+        "NOP" => {
+            compiled.push(0b00000000);
+        },
+        _ => {
+            error!("Instruction not handled!");
+        }
+    }
 
     compiled
 }
