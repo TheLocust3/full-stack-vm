@@ -18,6 +18,42 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<u8> {
     info!("Instruction: {}", instruction.to_string());
 
     match instruction.command.as_str() {
+        "MOVE" => {
+
+        },
+        "ADD" => {
+
+        },
+        "SUB" => {
+
+        },
+        "AND" => {
+
+        },
+        "OR" => {
+
+        },
+        "NOT" => {
+
+        },
+        "SHIFT_LEFT" => {
+
+        },
+        "SHIFT_LEFT_W" => {
+
+        },
+        "SHIFT_RIGHT" => {
+
+        },
+        "SHIFT_RIGHT_W" => {
+
+        },
+        "JUMP" => {
+
+        },
+        "JUMP0" => {
+
+        },
         "NOP" => {
             compiled.push(0b00000000);
         },
