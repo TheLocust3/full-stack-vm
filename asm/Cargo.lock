@@ -10,6 +10,7 @@ dependencies = [
 name = "asm"
 version = "0.1.0"
 dependencies = [
+ "bitwise 0.1.0",
  "env_logger 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -23,6 +24,10 @@ dependencies = [
  "termion 1.5.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "winapi 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "bitwise"
+version = "0.1.0"
 
 [[package]]
 name = "cfg-if"

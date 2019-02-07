@@ -1,4 +1,4 @@
-use bitwise;
+use bitwise::functions;
 
 const TOTAL_MEMORY: u64 = 1073741824;
 
@@ -24,7 +24,7 @@ impl Memory {
             panic!("Address: {}, out of bounds", address);
         }
 
-        bitwise::to_16bit(self.read_8bit(address),
+        functions::to_16bit(self.read_8bit(address),
                           self.read_8bit(address + 1))
     }
 
@@ -33,7 +33,7 @@ impl Memory {
             panic!("Address: {}, out of bounds", address);
         }
 
-        bitwise::to_32bit(self.read_8bit(address),
+        functions::to_32bit(self.read_8bit(address),
                           self.read_8bit(address + 1),
                           self.read_8bit(address + 2),
                           self.read_8bit(address + 3))
@@ -44,7 +44,7 @@ impl Memory {
             panic!("Address: {}, out of bounds", address);
         }
 
-        bitwise::to_64bit(self.read_8bit(address),
+        functions::to_64bit(self.read_8bit(address),
                           self.read_8bit(address + 1),
                           self.read_8bit(address + 2),
                           self.read_8bit(address + 3),
@@ -69,7 +69,7 @@ impl Memory {
             panic!("Address: {}, out of bounds", address);
         }
 
-        let bytes: [u8; 2] = bitwise::to_bytes_16bit(data);
+        let bytes: [u8; 2] = functions::to_bytes_16bit(data);
         self.write_8bit(address, bytes[0]);
         self.write_8bit(address + 1, bytes[1]);
 
@@ -81,7 +81,7 @@ impl Memory {
             panic!("Address: {}, out of bounds", address);
         }
 
-        let bytes: [u8; 4] = bitwise::to_bytes_32bit(data);
+        let bytes: [u8; 4] = functions::to_bytes_32bit(data);
         self.write_8bit(address, bytes[0]);
         self.write_8bit(address + 1, bytes[1]);
         self.write_8bit(address + 2, bytes[2]);
@@ -95,7 +95,7 @@ impl Memory {
             panic!("Address: {}, out of bounds", address);
         }
 
-        let bytes: [u8; 8] = bitwise::to_bytes_64bit(data);
+        let bytes: [u8; 8] = functions::to_bytes_64bit(data);
         self.write_8bit(address, bytes[0]);
         self.write_8bit(address + 1, bytes[1]);
         self.write_8bit(address + 2, bytes[2]);

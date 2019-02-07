@@ -1,7 +1,7 @@
 extern crate log;
 extern crate env_logger;
+extern crate bitwise;
 
-mod bitwise;
 mod memory;
 mod instructions;
 mod cpu;

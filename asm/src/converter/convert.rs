@@ -2,6 +2,7 @@ use log::{info, error};
 
 use instruction::Instruction;
 use compiler::miscellaneous;
+use compiler::control;
 
 pub fn convert(instructions: Vec<Instruction>) -> Vec<u8> {
     let mut compiled: Vec<u8> = Vec::new();
@@ -48,7 +49,7 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<u8> {
             Vec::new()
         },
         "JUMP" => {
-            Vec::new()
+            control::compile_jump(instruction.arg1)
         },
         "JUMP0" => {
             Vec::new()

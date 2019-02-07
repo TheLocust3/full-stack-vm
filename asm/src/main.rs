@@ -1,5 +1,6 @@
 extern crate log;
 extern crate env_logger;
+extern crate bitwise;
 
 mod instruction;
 mod compiler;
