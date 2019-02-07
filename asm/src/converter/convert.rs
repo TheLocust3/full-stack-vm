@@ -52,7 +52,7 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<u8> {
             control::compile_jump(instruction.arg1)
         },
         "JUMP0" => {
-            Vec::new()
+            control::compile_jump0(instruction.arg1)
         },
         "NOP" => {
             miscellaneous::compile_nop()

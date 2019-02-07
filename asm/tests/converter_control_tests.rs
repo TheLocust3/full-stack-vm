@@ -1,10 +1,13 @@
 extern crate asm;
 
-use self::asm::compiler::control;
+use self::asm::instruction;
+use self::asm::converter::convert;
 
 #[test]
-fn test_compile_jump() {
-    let compiled = control::compile_jump("10".to_string());
+fn test_convert_jump() {
+    let instruction = instruction::Instruction::new("JUMP", "10", "");
+
+    let compiled = convert::convert_instruction(instruction);
 
     assert_eq!(compiled.len(), 9);
     assert_eq!(compiled[0], 0b11111111);
@@ -19,11 +22,13 @@ fn test_compile_jump() {
 }
 
 #[test]
-fn test_compile_jump0() {
-    let compiled = control::compile_jump0("10".to_string());
+fn test_convert_jump0() {
+    let instruction = instruction::Instruction::new("JUMP0", "10", "");
+
+    let compiled = convert::convert_instruction(instruction);
 
     assert_eq!(compiled.len(), 9);
-    assert_eq!(compiled[0], 0b11111110);
+    assert_eq!(compiled[0], 0b111111110);
     assert_eq!(compiled[1], 0);
     assert_eq!(compiled[2], 0);
     assert_eq!(compiled[3], 0);
