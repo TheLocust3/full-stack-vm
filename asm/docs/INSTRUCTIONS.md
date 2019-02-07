@@ -11,7 +11,7 @@ Address are a 64bit unsigned integer.
 
 ## MOVE
 
-Stores the value in ARG2 (whether it be the value of the register or the value stored at the address in memory) in ARG1 (either register or address)
+Stores the value in ARG2 (whether it be the value of the register or the value stored at the address in memory) in ARG1 (either register or address).
 
 Arguments:
 
@@ -23,9 +23,31 @@ Ex. MOVE A 1
 Ex. MOVE 1 B
 Ex. MOVE 1 10
 
+## PUSH
+
+Push the value in ARG1 to the top of the stack..
+
+Arguments:
+
+- ARG1: value to push to top of stack
+- ARG2: none
+
+Ex. PUSH 10
+
+## POP
+
+Pop the value on the top of the stack into the register specified in ARG1.
+
+Arguments:
+
+- ARG1: destination register
+- ARG2: none
+
+Ex. POP A
+
 ## ADD
 
-Adds the value in register specified in ARG1 to the value in register specified in ARG2 and stores the result in the register specified in ARG2
+Adds the value in register specified in ARG1 to the value in register specified in ARG2 and stores the result in the register specified in ARG2.
 
 Arguments:
 
@@ -36,7 +58,7 @@ Ex. ADD A B
 
 ## SUB
 
-Subtracts the value in the register specified in ARG1 by the value in the register specified in ARG2 and stores the result in the register specified in ARG2
+Subtracts the value in the register specified in ARG1 by the value in the register specified in ARG2 and stores the result in the register specified in ARG2.
 
 Arguments:
 

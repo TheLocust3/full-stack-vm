@@ -3,6 +3,7 @@ use log::{info, error};
 use instruction::Instruction;
 use compiler::miscellaneous;
 use compiler::control;
+use compiler::arithmetic;
 
 pub fn convert(instructions: Vec<Instruction>) -> Vec<u8> {
     let mut compiled: Vec<u8> = Vec::new();
@@ -21,8 +22,14 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<u8> {
         "MOVE" => {
             Vec::new()
         },
-        "ADD" => {
+        "PUSH" => {
             Vec::new()
+        },
+        "POP" => {
+            Vec::new()
+        },
+        "ADD" => {
+            arithmetic::compile_add(instruction.arg1, instruction.arg2)
         },
         "SUB" => {
             Vec::new()
