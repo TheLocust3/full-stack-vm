@@ -5,5 +5,3 @@ pub fn compile_nop() -> Vec<u8> {
 
     compiled
 }
-
-pub fn compile_push() -> Vec<u8>
