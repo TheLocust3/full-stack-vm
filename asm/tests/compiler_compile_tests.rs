@@ -4,7 +4,97 @@ use self::asm::instruction;
 use self::asm::compiler::compile;
 
 #[test]
-fn test_convert_jump() {
+fn test_compile_add() {
+    let instruction = instruction::Instruction::new("ADD", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b00001111);
+}
+
+#[test]
+fn test_compile_sub() {
+    let instruction = instruction::Instruction::new("SUB", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b00011111);
+}
+
+#[test]
+fn test_compile_and() {
+    let instruction = instruction::Instruction::new("AND", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b00011000);
+}
+
+#[test]
+fn test_compile_or() {
+    let instruction = instruction::Instruction::new("OR", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b00011001);
+}
+
+#[test]
+fn test_compile_not() {
+    let instruction = instruction::Instruction::new("NOT", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b00011011);
+}
+
+#[test]
+fn test_compile_shift_left() {
+    let instruction = instruction::Instruction::new("SHIFT_LEFT", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b00011101);
+}
+
+#[test]
+fn test_compile_shift_left_wrap() {
+    let instruction = instruction::Instruction::new("SHIFT_LEFT_W", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b00000111);
+}
+
+#[test]
+fn test_compile_shift_right() {
+    let instruction = instruction::Instruction::new("SHIFT_RIGHT", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b00011110);
+}
+
+#[test]
+fn test_compile_shift_right_wrap() {
+    let instruction = instruction::Instruction::new("SHIFT_RIGHT_W", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b00010111);
+}
+
+#[test]
+fn test_compile_jump() {
     let instruction = instruction::Instruction::new("JUMP", "10", "");
 
     let compiled = compile::compile_instruction(instruction);
@@ -22,7 +112,7 @@ fn test_convert_jump() {
 }
 
 #[test]
-fn test_convert_jump0() {
+fn test_compile_jump0() {
     let instruction = instruction::Instruction::new("JUMP0", "10", "");
 
     let compiled = compile::compile_instruction(instruction);
@@ -40,7 +130,7 @@ fn test_convert_jump0() {
 }
 
 #[test]
-fn test_convert_nop() {
+fn test_compile_nop() {
     let instruction = instruction::Instruction::new("NOP", "", "");
 
     let compiled = compile::compile_instruction(instruction);

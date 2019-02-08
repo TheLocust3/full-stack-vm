@@ -4,6 +4,7 @@ use instruction::Instruction;
 use compiler::miscellaneous;
 use compiler::control;
 use compiler::arithmetic;
+use compiler::bitwise;
 
 // compiles instructions in base assembly straight to binary
 
@@ -32,25 +33,25 @@ pub fn compile_instruction(instruction: Instruction) -> Vec<u8> {
             arithmetic::compile_sub(instruction.arg1)
         },
         "AND" => {
-            Vec::new()
+            bitwise::compile_and(instruction.arg1)
         },
         "OR" => {
-            Vec::new()
+            bitwise::compile_or(instruction.arg1)
         },
         "NOT" => {
-            Vec::new()
+            bitwise::compile_not(instruction.arg1)
         },
         "SHIFT_LEFT" => {
-            Vec::new()
+            bitwise::compile_shift_left(instruction.arg1)
         },
         "SHIFT_LEFT_W" => {
-            Vec::new()
+            bitwise::compile_shift_left_wrap(instruction.arg1)
         },
         "SHIFT_RIGHT" => {
-            Vec::new()
+            bitwise::compile_shift_right(instruction.arg1)
         },
         "SHIFT_RIGHT_W" => {
-            Vec::new()
+            bitwise::compile_shift_right_wrap(instruction.arg1)
         },
         "JUMP" => {
             control::compile_jump(instruction.arg1)
