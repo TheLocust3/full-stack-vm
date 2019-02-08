@@ -10,6 +10,14 @@ mod converter;
 
 fn main() {
     env_logger::init();
+
+    // Sample compile
+    // Read file
+    // Run parser::parse on resulting String
+    // Run converter::convert on resulting Instructions
+    // Run compiler::compile on resulting Instructions
+    // Concatinate resulting binary to a string
+    // Save the string into a file
     
     print!("TEST");
 }
