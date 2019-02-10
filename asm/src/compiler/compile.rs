@@ -5,6 +5,7 @@ use compiler::miscellaneous;
 use compiler::control;
 use compiler::arithmetic;
 use compiler::bitwise;
+use compiler::register;
 
 // compiles instructions in base assembly straight to binary
 
@@ -21,7 +22,7 @@ pub fn compile(instructions: Vec<Instruction>) -> Vec<u8> {
 pub fn compile_instruction(instruction: Instruction) -> Vec<u8> {
     match instruction.command.as_str() {
         "SET" => {
-            Vec::new()
+            register::compile_set(instruction.arg1, instruction.arg2)
         },
         "MOVE" => {
             Vec::new()
