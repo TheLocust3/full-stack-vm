@@ -25,7 +25,7 @@ pub fn compile_instruction(instruction: Instruction) -> Vec<u8> {
             register::compile_set(instruction.arg1, instruction.arg2)
         },
         "MOVE" => {
-            Vec::new()
+            register::compile_move(instruction.arg1, instruction.arg2)
         },
         "ADD" => {
             arithmetic::compile_add(instruction.arg1)

@@ -14,3 +14,11 @@ pub fn compile_set(reg: String, valueStr: String) -> Vec<u8> {
 
     compiled
 }
+
+pub fn compile_move(dest: String, reg: String) -> Vec<u8> {
+    let mut compiled: Vec<u8> = Vec::new();
+
+    compiled.push(0b00000000 + (register_str_to_code(dest) << 4) + register_str_to_code(reg)); // move {dest} {reg}
+
+    compiled
+}
