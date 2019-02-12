@@ -1,9 +1,7 @@
 use log::{info, error};
 
 use instruction::Instruction;
-use compiler::miscellaneous;
-use compiler::control;
-use compiler::arithmetic;
+use converter::arithmetic;
 
 // converts instructions in complex assembly to base assembly
 
@@ -31,10 +29,10 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             Vec::new()
         },
         "ADD" => {
-            Vec::new()
+            arithmetic::convert_add(instruction.arg1, instruction.arg2)
         },
         "SUB" => {
-            Vec::new()
+            arithmetic::convert_sub(instruction.arg1, instruction.arg2)
         },
         "AND" => {
             Vec::new()
