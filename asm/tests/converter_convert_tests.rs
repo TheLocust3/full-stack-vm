@@ -4,6 +4,42 @@ use self::asm::instruction::Instruction;
 use self::asm::converter::convert;
 
 #[test]
+fn test_convert_and() {
+    let instruction = Instruction::new("AND", "B", "C");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 5);
+}
+
+#[test]
+fn test_convert_and_a() {
+    let instruction = Instruction::new("AND", "A", "C");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+}
+
+#[test]
+fn test_convert_or() {
+    let instruction = Instruction::new("OR", "B", "C");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 5);
+}
+
+#[test]
+fn test_convert_or_a() {
+    let instruction = Instruction::new("OR", "A", "C");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+}
+
+#[test]
 fn test_convert_add() {
     let instruction = Instruction::new("ADD", "B", "C");
 

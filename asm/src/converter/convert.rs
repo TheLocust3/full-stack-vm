@@ -2,6 +2,7 @@ use log::{info, error};
 
 use instruction::Instruction;
 use converter::arithmetic;
+use converter::bitwise;
 
 // converts instructions in complex assembly to base assembly
 
@@ -35,10 +36,10 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             arithmetic::convert_sub(instruction.arg1, instruction.arg2)
         },
         "AND" => {
-            Vec::new()
+            bitwise::convert_and(instruction.arg1, instruction.arg2)
         },
         "OR" => {
-            Vec::new()
+            bitwise::convert_or(instruction.arg1, instruction.arg2)
         },
         "NOT" => {
             vec!(instruction)
