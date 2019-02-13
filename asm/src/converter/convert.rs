@@ -30,16 +30,32 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             Vec::new()
         },
         "ADD" => {
-            arithmetic::convert_add(instruction.arg1, instruction.arg2)
+            if instruction.arg1 == "A" || instruction.arg2.is_empty() {
+                arithmetic::convert_add(instruction.arg1, instruction.arg2)
+            } else {
+                convert(arithmetic::convert_add(instruction.arg1, instruction.arg2))
+            }
         },
         "SUB" => {
-            arithmetic::convert_sub(instruction.arg1, instruction.arg2)
+            if instruction.arg1 == "A" || instruction.arg2.is_empty() {
+                arithmetic::convert_sub(instruction.arg1, instruction.arg2)
+            } else {
+                convert(arithmetic::convert_sub(instruction.arg1, instruction.arg2))
+            }
         },
         "AND" => {
-            bitwise::convert_and(instruction.arg1, instruction.arg2)
+            if instruction.arg1 == "A" || instruction.arg2.is_empty() {
+                bitwise::convert_and(instruction.arg1, instruction.arg2)
+            } else {
+                convert(bitwise::convert_and(instruction.arg1, instruction.arg2))
+            }
         },
         "OR" => {
-            bitwise::convert_or(instruction.arg1, instruction.arg2)
+            if instruction.arg1 == "A" || instruction.arg2.is_empty() {
+                bitwise::convert_or(instruction.arg1, instruction.arg2)
+            } else {
+                convert(bitwise::convert_or(instruction.arg1, instruction.arg2))
+            }
         },
         "NOT" => {
             vec!(instruction)
