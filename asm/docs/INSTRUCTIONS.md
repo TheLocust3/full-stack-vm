@@ -15,13 +15,15 @@ Stores the value in ARG2 (whether it be the value of the register or the value s
 
 Arguments:
 
-- ARG1: destination register or destination address
-- ARG2: register or address
+- ARG1: destination register or destination address (ex. `(10)`)
+- ARG2: register or address (ex. `(10)`) or number value (ex. `10`)
 
 Ex. MOVE A B
+Ex. MOVE A (1)
 Ex. MOVE A 1
-Ex. MOVE 1 B
-Ex. MOVE 1 10
+Ex. MOVE (1) B
+Ex. MOVE (1) (10)
+Ex. MOVE (1) 10
 
 ## PUSH
 
