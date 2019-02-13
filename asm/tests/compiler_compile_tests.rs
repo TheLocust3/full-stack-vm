@@ -158,6 +158,86 @@ fn test_compile_move_a_b() {
 }
 
 #[test]
+fn test_compile_read8() {
+    let instruction = instruction::Instruction::new("READ8", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b11111000);
+}
+
+#[test]
+fn test_compile_read16() {
+    let instruction = instruction::Instruction::new("READ16", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b11110000);
+}
+
+#[test]
+fn test_compile_read32() {
+    let instruction = instruction::Instruction::new("READ32", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b11100000);
+}
+
+#[test]
+fn test_compile_read64() {
+    let instruction = instruction::Instruction::new("READ64", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b11000000);
+}
+
+#[test]
+fn test_compile_write8() {
+    let instruction = instruction::Instruction::new("WRITE8", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b10000000);
+}
+
+#[test]
+fn test_compile_write16() {
+    let instruction = instruction::Instruction::new("WRITE16", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b10001000);
+}
+
+#[test]
+fn test_compile_write32() {
+    let instruction = instruction::Instruction::new("WRITE32", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b10010000);
+}
+
+#[test]
+fn test_compile_write64() {
+    let instruction = instruction::Instruction::new("WRITE64", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b10101000);
+}
+
+#[test]
 fn test_compile_nop() {
     let instruction = instruction::Instruction::new("NOP", "", "");
 
