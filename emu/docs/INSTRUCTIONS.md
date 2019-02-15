@@ -403,12 +403,12 @@ Exceptions:
 
 Format: 1010 0rrr
 
-- 1010 1000 write32 A
-- 1010 1001 write32 B
-- 1010 1010 write32 C
-- 1010 1011 write32 D
-- 1010 1100 write32 E
-- 1010 1101 write32 F
+- 1010 1000 write64 A
+- 1010 1001 write64 B
+- 1010 1010 write64 C
+- 1010 1011 write64 D
+- 1010 1100 write64 E
+- 1010 1101 write64 F
 
 ## Miscellaneous
 

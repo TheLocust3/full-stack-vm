@@ -16,6 +16,10 @@ pub fn convert_add(dest: String, reg: String) -> Vec<Instruction> {
     compiled
 }
 
+pub fn should_reconvert_add(dest: String, reg: String) -> bool {
+    dest != "A" && reg.is_empty()
+}
+
 pub fn convert_sub(dest: String, reg: String) -> Vec<Instruction> {
     let mut compiled: Vec<Instruction> = Vec::new();
 
@@ -30,4 +34,8 @@ pub fn convert_sub(dest: String, reg: String) -> Vec<Instruction> {
     }
 
     compiled
+}
+
+pub fn should_reconvert_sub(dest: String, reg: String) -> bool {
+    dest != "A" && reg.is_empty()
 }
