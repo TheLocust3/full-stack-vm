@@ -3,6 +3,7 @@ use log::{info, error};
 use instruction::Instruction;
 use converter::arithmetic;
 use converter::bitwise;
+use converter::register;
 
 // converts instructions in complex assembly to base assembly
 
@@ -21,7 +22,7 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
 
     match instruction.command.as_str() {
         "MOVE" => {
-            Vec::new()
+            register::convert_move(instruction.arg1, instruction.arg2)
         },
         "PUSH" => {
             Vec::new()
