@@ -14,6 +14,7 @@ pub struct CPU {
     pub e: Register,
     pub f: Register,
     pub hl: Register,
+    pub sp: Register,
     pub pc: Register,
     pub memory: Memory
 }
@@ -28,6 +29,7 @@ impl CPU {
             e: Register::new(),
             f: Register::new(),
             hl: Register::new(),
+            sp: Register::new(),
             pc: Register::new(),
             memory: Memory::new()
         }
@@ -84,6 +86,7 @@ impl CPU {
             e: self.e,
             f: self.f,
             hl: self.hl,
+            sp: self.sp,
             pc: self.pc,
             memory: self.memory
         }
@@ -98,6 +101,7 @@ impl CPU {
             e: self.e,
             f: self.f,
             hl: self.hl,
+            sp: self.sp,
             pc: self.pc,
             memory: self.memory
         }
@@ -112,6 +116,7 @@ impl CPU {
             e: self.e,
             f: self.f,
             hl: self.hl,
+            sp: self.sp,
             pc: self.pc,
             memory: self.memory
         }
@@ -126,6 +131,7 @@ impl CPU {
             e: self.e,
             f: self.f,
             hl: self.hl,
+            sp: self.sp,
             pc: self.pc,
             memory: self.memory
         }
@@ -140,6 +146,7 @@ impl CPU {
             e: e,
             f: self.f,
             hl: self.hl,
+            sp: self.sp,
             pc: self.pc,
             memory: self.memory
         }
@@ -154,6 +161,7 @@ impl CPU {
             e: self.e,
             f: f,
             hl: self.hl,
+            sp: self.sp,
             pc: self.pc,
             memory: self.memory
         }
@@ -168,6 +176,22 @@ impl CPU {
             e: self.e,
             f: self.f,
             hl: hl,
+            sp: self.sp,
+            pc: self.pc,
+            memory: self.memory
+        }
+    }
+
+    pub fn set_sp(self, sp: Register) -> CPU {
+        CPU {
+            a: self.a,
+            b: self.b,
+            c: self.c,
+            d: self.d,
+            e: self.e,
+            f: self.f,
+            hl: self.hl,
+            sp: sp,
             pc: self.pc,
             memory: self.memory
         }
@@ -182,6 +206,7 @@ impl CPU {
             e: self.e,
             f: self.f,
             hl: self.hl,
+            sp: self.sp,
             pc: pc,
             memory: self.memory
         }
@@ -196,6 +221,7 @@ impl CPU {
             e: self.e,
             f: self.f,
             hl: self.hl,
+            sp: self.sp,
             pc: self.pc,
             memory: memory
         }

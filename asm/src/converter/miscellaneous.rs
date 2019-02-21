@@ -8,7 +8,7 @@ pub fn convert_push_value(value: String) -> Vec<Instruction> {
     compiled.push(Instruction::new("MOVE", "A", value));
     compiled.push(Instruction::new("WRITE64", "A", ""));
 
-    compiled.push(Instruction::new("MOVE", "A", "4"));
+    compiled.push(Instruction::new("MOVE", "A", "8"));
     compiled.push(Instruction::new("ADD", "HL", ""));
 
     compiled.push(Instruction::new("MOVE", "HL", "0"));
@@ -24,7 +24,7 @@ pub fn convert_push_reg(reg: String) -> Vec<Instruction> {
     compiled.push(Instruction::new("MOVE", "HL", "(0)"));
     compiled.push(Instruction::new("WRITE64", reg, ""));
 
-    compiled.push(Instruction::new("MOVE", "A", "4"));
+    compiled.push(Instruction::new("MOVE", "A", "8"));
     compiled.push(Instruction::new("ADD", "HL", ""));
     
     compiled.push(Instruction::new("MOVE", "HL", "0"));
@@ -38,7 +38,7 @@ pub fn convert_pop(dest: String) -> Vec<Instruction> {
 
     // TODO: this is infinitely recursive
     compiled.push(Instruction::new("MOVE", "A", "(0)"))
-    compiled.push(Instruction::new("MOVE", "HL", "4"))
+    compiled.push(Instruction::new("MOVE", "HL", "8"))
     compiled.push(Instruction::new("SUB", "HL", ""));
 
     compiled.push(Instruction::new("MOVE", "HL", "0"))

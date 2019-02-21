@@ -7,4 +7,4 @@ Address Breakdown (start and end values are inclusive):
 8-65535: Stack space
 
 Stack Pointer:
-Points to address of the most recent value pushed onto the stack. Incremented by one on ever push command and decremented by one on every pop command.
+Points to address of the most recent value pushed onto the stack. Incremented by 8 on ever push command and decremented by 8 on every pop command.
