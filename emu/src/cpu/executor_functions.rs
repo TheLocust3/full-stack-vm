@@ -5,6 +5,7 @@ use instructions::arithmetic;
 use instructions::bitwise;
 use instructions::control;
 use instructions::memory;
+use instructions::miscellaneous;
 use instructions::instruction_return::RegisterReturn;
 use instructions::instruction_return::MemoryReturn;
 
@@ -183,4 +184,15 @@ pub fn execute_write64(cpu: CPU, code: u8) -> CPU {
     out_cpu.memory.write_64bit(memory_return.address, memory_return.value as u64);
 
     out_cpu
+}
+
+pub fn execute_push(cpu: CPU, code: u8) -> CPU {
+    let mut out_cpu = cpu;
+    let register: Register = out_cpu.get_from_code(code);
+
+    miscellaneous::push(register, out_cpu)    
+}
+
+pub fn execute_pop(cpu: CPU, code: u8) -> CPU {
+    miscellaneous::pop(code, cpu)
 }

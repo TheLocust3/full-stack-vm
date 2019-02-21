@@ -412,6 +412,38 @@ Format: 1010 0rrr
 
 ## Miscellaneous
 
+### push
+
+Push register to memory based on the address stored in SP.
+
+#### Opcodes
+
+Format: 1100 1rrr
+
+- 1100 1000 push A
+- 1100 1001 push B
+- 1100 1010 push C
+- 1100 1011 push D
+- 1100 1100 push E
+- 1100 1101 push F
+- 1100 1110 push HL
+
+### pop
+
+Pop into register.
+
+#### Opcodes
+
+Format: 1110 1rrr
+
+- 1110 1000 pop A
+- 1110 1001 pop B
+- 1110 1010 pop C
+- 1110 1011 pop D
+- 1110 1100 pop E
+- 1110 1101 pop F
+- 1110 1110 pop HL
+
 ### nop
 
 Does nothing.
