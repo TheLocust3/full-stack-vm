@@ -477,59 +477,45 @@ pub fn execute(cpu: CPU) -> CPU {
         // stack
         0b11001000 => { // push A
             out_cpu = executor_functions::execute_push(out_cpu, 0b000);
-            has_set_pc = true;
         },
         0b11001001 => { // push B
             out_cpu = executor_functions::execute_push(out_cpu, 0b001);
-            has_set_pc = true;
         },
         0b11001010 => { // push C
             out_cpu = executor_functions::execute_push(out_cpu, 0b010);
-            has_set_pc = true;
         },
         0b11001011 => { // push D
             out_cpu = executor_functions::execute_push(out_cpu, 0b011);
-            has_set_pc = true;
         },
         0b11001100 => { // push E
-            out_cpu = executor_functions::execute_push(out_cpu, 0b101);
-            has_set_pc = true;
+            out_cpu = executor_functions::execute_push(out_cpu, 0b100);
         },
         0b11001101 => { // push F
-            out_cpu = executor_functions::execute_push(out_cpu, 0b100);
-            has_set_pc = true;
+            out_cpu = executor_functions::execute_push(out_cpu, 0b101);
         },
         0b11001110 => { // push HL
             out_cpu = executor_functions::execute_push(out_cpu, 0b110);
-            has_set_pc = true;
         },
         0b11101000 => { // pop A
             out_cpu = executor_functions::execute_pop(out_cpu, 0b000);
-            has_set_pc = true;
         },
         0b11101001 => { // pop B
             out_cpu = executor_functions::execute_pop(out_cpu, 0b001);
-            has_set_pc = true;
         },
         0b11101010 => { // pop C
             out_cpu = executor_functions::execute_pop(out_cpu, 0b010);
-            has_set_pc = true;
         },
         0b11101011 => { // pop D
             out_cpu = executor_functions::execute_pop(out_cpu, 0b011);
-            has_set_pc = true;
         },
         0b11101100 => { // pop E
             out_cpu = executor_functions::execute_pop(out_cpu, 0b101);
-            has_set_pc = true;
         },
         0b11101100 => { // pop F
             out_cpu = executor_functions::execute_pop(out_cpu, 0b100);
-            has_set_pc = true;
         },
         0b11101110 => { // pop HL
             out_cpu = executor_functions::execute_pop(out_cpu, 0b110);
-            has_set_pc = true;
         },
 
         // miscellaneous

@@ -5,6 +5,8 @@ mod tests {
     use self::emu::cpu::register::Register;
     use self::emu::cpu::executor;
 
+    // miscellaneous
+
     #[test]
     fn test_nop() {
         let mut cpu: CPU = CPU::new();
@@ -15,6 +17,126 @@ mod tests {
         assert_eq!(cpu.pc.value, 1);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.a.value, 0);
+    }
+
+    #[test]
+    fn test_push_a() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11001000);
+
+        cpu = cpu.set_a(Register { value: 10 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.a.value, 10);
+        assert_eq!(cpu.memory.read_64bit(0), 10);
+    }
+
+    #[test]
+    fn test_push_b() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11001001);
+
+        cpu = cpu.set_b(Register { value: 10 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.b.value, 10);
+        assert_eq!(cpu.memory.read_64bit(0), 10);
+    }
+
+    #[test]
+    fn test_push_c() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11001010);
+
+        cpu = cpu.set_c(Register { value: 10 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.c.value, 10);
+        assert_eq!(cpu.memory.read_64bit(0), 10);
+    }
+
+    #[test]
+    fn test_push_d() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11001011);
+
+        cpu = cpu.set_d(Register { value: 10 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.d.value, 10);
+        assert_eq!(cpu.memory.read_64bit(0), 10);
+    }
+
+    #[test]
+    fn test_push_e() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11001100);
+
+        cpu = cpu.set_e(Register { value: 10 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.e.value, 10);
+        assert_eq!(cpu.memory.read_64bit(0), 10);
+    }
+
+    #[test]
+    fn test_push_f() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11001101);
+
+        cpu = cpu.set_f(Register { value: 10 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.memory.read_64bit(0), 10);
+    }
+
+    #[test]
+    fn test_push_hl() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11001110);
+
+        cpu = cpu.set_hl(Register { value: 10 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.hl.value, 10);
+        assert_eq!(cpu.memory.read_64bit(0), 10);
+    }
+
+    #[test]
+    fn test_pop_a() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11101000);
+
+        cpu.memory.write_64bit(0, 10);
+        cpu = cpu.set_sp(Register { value: 8 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, 0);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.a.value, 10);
+        assert_eq!(cpu.memory.read_64bit(0), 10);
     }
 
     // register
