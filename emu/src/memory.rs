@@ -1,6 +1,7 @@
 use bitwise::functions;
 
 pub const TOTAL_MEMORY: u64 = 1073741824;
+pub const STACK_END: u64 = TOTAL_MEMORY - 0xFFFF;
 
 pub struct Memory {
     pub memory: Vec<u8>

@@ -2,6 +2,7 @@ use cpu::cpu::CPU;
 use cpu::register::Register;
 use instructions::instruction_return::MemoryReturn;
 use memory::TOTAL_MEMORY;
+use memory::STACK_END;
 
 pub fn nop(cpu: CPU) -> CPU {
     cpu
@@ -11,7 +12,7 @@ pub fn push(reg: Register, cpu: CPU) -> CPU {
     let mut out_cpu = cpu;
     let sp: Register = out_cpu.sp;
 
-    if u64::min_value() + 8 > sp.value {
+    if STACK_END + 8 > sp.value {
         return out_cpu.set_f(Register { value: 2 })
     } else {
         out_cpu = out_cpu.set_f(Register { value: 0 });

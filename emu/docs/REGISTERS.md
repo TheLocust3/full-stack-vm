@@ -39,6 +39,10 @@ Address register
 
 Code: 110
 
+## SP
+
+Stack pointer
+
 ## PC
 
 Program counter
