@@ -22,6 +22,12 @@ pub fn compile(instructions: Vec<Instruction>) -> Vec<u8> {
 
 pub fn compile_instruction(instruction: Instruction) -> Vec<u8> {
     match instruction.command.as_str() {
+        "PUSH" => {
+            miscellaneous::compile_push(instruction.arg1)
+        },
+        "POP" => {
+            miscellaneous::compile_pop(instruction.arg1)
+        },
         "SET" => {
             register::compile_set(instruction.arg1, instruction.arg2)
         },

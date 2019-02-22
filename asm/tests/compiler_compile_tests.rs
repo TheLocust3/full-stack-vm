@@ -247,3 +247,22 @@ fn test_compile_nop() {
     assert_eq!(compiled[0], 0b00000000);
 }
 
+#[test]
+fn test_compile_push() {
+    let instruction = instruction::Instruction::new("PUSH", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b11001000);
+}
+
+#[test]
+fn test_compile_pop() {
+    let instruction = instruction::Instruction::new("POP", "A", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b11101000);
+}
