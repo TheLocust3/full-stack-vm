@@ -4,6 +4,7 @@ mod tests {
     use self::emu::cpu::cpu::CPU;
     use self::emu::cpu::register::Register;
     use self::emu::cpu::executor;
+    use self::emu::memory::TOTAL_MEMORY;
 
     // miscellaneous
 
@@ -28,10 +29,10 @@ mod tests {
         cpu = executor::execute(cpu);
 
         assert_eq!(cpu.pc.value, 1);
-        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY - 8);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.a.value, 10);
-        assert_eq!(cpu.memory.read_64bit(0), 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
     }
 
     #[test]
@@ -43,10 +44,10 @@ mod tests {
         cpu = executor::execute(cpu);
 
         assert_eq!(cpu.pc.value, 1);
-        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY - 8);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.b.value, 10);
-        assert_eq!(cpu.memory.read_64bit(0), 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
     }
 
     #[test]
@@ -58,10 +59,10 @@ mod tests {
         cpu = executor::execute(cpu);
 
         assert_eq!(cpu.pc.value, 1);
-        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY - 8);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.c.value, 10);
-        assert_eq!(cpu.memory.read_64bit(0), 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
     }
 
     #[test]
@@ -73,10 +74,10 @@ mod tests {
         cpu = executor::execute(cpu);
 
         assert_eq!(cpu.pc.value, 1);
-        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY - 8);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.d.value, 10);
-        assert_eq!(cpu.memory.read_64bit(0), 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
     }
 
     #[test]
@@ -88,10 +89,10 @@ mod tests {
         cpu = executor::execute(cpu);
 
         assert_eq!(cpu.pc.value, 1);
-        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY - 8);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.e.value, 10);
-        assert_eq!(cpu.memory.read_64bit(0), 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
     }
 
     #[test]
@@ -103,9 +104,9 @@ mod tests {
         cpu = executor::execute(cpu);
 
         assert_eq!(cpu.pc.value, 1);
-        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY - 8);
         assert_eq!(cpu.f.value, 0);
-        assert_eq!(cpu.memory.read_64bit(0), 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
     }
 
     #[test]
@@ -117,10 +118,10 @@ mod tests {
         cpu = executor::execute(cpu);
 
         assert_eq!(cpu.pc.value, 1);
-        assert_eq!(cpu.sp.value, 8);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY - 8);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.hl.value, 10);
-        assert_eq!(cpu.memory.read_64bit(0), 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
     }
 
     #[test]
@@ -128,15 +129,95 @@ mod tests {
         let mut cpu: CPU = CPU::new();
         cpu.memory.write_8bit(0, 0b11101000);
 
-        cpu.memory.write_64bit(0, 10);
-        cpu = cpu.set_sp(Register { value: 8 });
+        cpu.memory.write_64bit(TOTAL_MEMORY - 8, 10);
+        cpu = cpu.set_sp(Register { value: TOTAL_MEMORY - 8 });
         cpu = executor::execute(cpu);
 
         assert_eq!(cpu.pc.value, 1);
-        assert_eq!(cpu.sp.value, 0);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.a.value, 10);
-        assert_eq!(cpu.memory.read_64bit(0), 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
+    }
+
+    #[test]
+    fn test_pop_b() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11101001);
+
+        cpu.memory.write_64bit(TOTAL_MEMORY - 8, 10);
+        cpu = cpu.set_sp(Register { value: TOTAL_MEMORY - 8 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.b.value, 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
+    }
+
+    #[test]
+    fn test_pop_c() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11101010);
+
+        cpu.memory.write_64bit(TOTAL_MEMORY - 8, 10);
+        cpu = cpu.set_sp(Register { value: TOTAL_MEMORY - 8 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.c.value, 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
+    }
+
+    #[test]
+    fn test_pop_d() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11101011);
+
+        cpu.memory.write_64bit(TOTAL_MEMORY - 8, 10);
+        cpu = cpu.set_sp(Register { value: TOTAL_MEMORY - 8 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.d.value, 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
+    }
+
+    #[test]
+    fn test_pop_e() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11101100);
+
+        cpu.memory.write_64bit(TOTAL_MEMORY - 8, 10);
+        cpu = cpu.set_sp(Register { value: TOTAL_MEMORY - 8 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.e.value, 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
+    }
+    
+    #[test]
+    fn test_pop_hl() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b11101110);
+
+        cpu.memory.write_64bit(TOTAL_MEMORY - 8, 10);
+        cpu = cpu.set_sp(Register { value: TOTAL_MEMORY - 8 });
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.sp.value, TOTAL_MEMORY);
+        assert_eq!(cpu.f.value, 0);
+        assert_eq!(cpu.hl.value, 10);
+        assert_eq!(cpu.memory.read_64bit(TOTAL_MEMORY - 8), 10);
     }
 
     // register

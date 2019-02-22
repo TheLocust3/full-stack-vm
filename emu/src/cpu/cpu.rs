@@ -3,6 +3,7 @@ use log::{error};
 
 use cpu::register::Register;
 use memory::Memory;
+use memory::TOTAL_MEMORY;
 use cpu::executor;
 use instructions::instruction_return::RegisterReturn;
 
@@ -29,7 +30,7 @@ impl CPU {
             e: Register::new(),
             f: Register::new(),
             hl: Register::new(),
-            sp: Register::new(),
+            sp: Register::new().set_value(TOTAL_MEMORY),
             pc: Register::new(),
             memory: Memory::new()
         }

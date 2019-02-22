@@ -509,9 +509,6 @@ pub fn execute(cpu: CPU) -> CPU {
             out_cpu = executor_functions::execute_pop(out_cpu, 0b011);
         },
         0b11101100 => { // pop E
-            out_cpu = executor_functions::execute_pop(out_cpu, 0b101);
-        },
-        0b11101100 => { // pop F
             out_cpu = executor_functions::execute_pop(out_cpu, 0b100);
         },
         0b11101110 => { // pop HL

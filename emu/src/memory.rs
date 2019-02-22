@@ -1,6 +1,6 @@
 use bitwise::functions;
 
-const TOTAL_MEMORY: u64 = 1073741824;
+pub const TOTAL_MEMORY: u64 = 1073741824;
 
 pub struct Memory {
     pub memory: Vec<u8>
