@@ -1,7 +1,7 @@
 use bitwise::functions::to_bytes_64bit;
 
-pub fn compile_jump(addressStr: String) -> Vec<u8> {
-    let address: u64 = addressStr.parse::<u64>().unwrap();
+pub fn compile_jump(address_str: String) -> Vec<u8> {
+    let address: u64 = address_str.parse::<u64>().unwrap();
     let mut compiled: Vec<u8> = Vec::new();
 
     compiled.push(0b11111111);
@@ -12,8 +12,8 @@ pub fn compile_jump(addressStr: String) -> Vec<u8> {
     compiled
 }
 
-pub fn compile_jump0(addressStr: String) -> Vec<u8> {
-    let address: u64 = addressStr.parse::<u64>().unwrap();
+pub fn compile_jump0(address_str: String) -> Vec<u8> {
+    let address: u64 = address_str.parse::<u64>().unwrap();
     let mut compiled: Vec<u8> = Vec::new();
 
     compiled.push(0b11111110);

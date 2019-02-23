@@ -4,6 +4,7 @@ use instruction::Instruction;
 use converter::arithmetic;
 use converter::bitwise;
 use converter::register;
+use converter::miscellaneous;
 
 // converts instructions in complex assembly to base assembly
 
@@ -28,10 +29,10 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             register::convert_move(instruction.arg1, instruction.arg2)
         },
         "PUSH" => {
-            Vec::new()
+            miscellaneous::convert_push(instruction.arg1)
         },
         "POP" => {
-            Vec::new()
+            vec!(instruction)
         },
         "ADD" => {
             if arithmetic::should_reconvert_add(arg1, arg2) {

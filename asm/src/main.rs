@@ -2,6 +2,7 @@ extern crate log;
 extern crate env_logger;
 extern crate bitwise;
 
+pub mod recognizers;
 mod register;
 mod instruction;
 mod compiler;

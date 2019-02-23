@@ -1,4 +1,7 @@
 use instruction::Instruction;
+use recognizers::is_register;
+use recognizers::is_address;
+use recognizers::is_value;
 
 pub fn convert_move(arg1: String, arg2: String) -> Vec<Instruction> {
     if is_register(&arg1) && is_address(&arg2) { // MOVE A (10)
@@ -93,19 +96,4 @@ fn convert_move_address_value(dest_address: String, value: String) -> Vec<Instru
     compiled.push(Instruction::new("POP", "HL", ""));
 
     compiled
-}
-
-fn is_register(arg: &String) -> bool {
-    arg == "A" || arg == "B" || arg == "C" || arg == "D" || arg == "E"
-}
-
-fn is_address(arg: &String) -> bool {
-    let first = arg.chars().next().unwrap();
-    let last = arg.chars().last().unwrap();
-
-    first == '(' && last  == ')'
-}
-
-fn is_value(arg: &String) -> bool {
-    !is_register(&arg) && !is_address(&arg)
 }
