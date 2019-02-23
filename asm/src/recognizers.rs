@@ -1,5 +1,5 @@
 pub fn is_register(arg: &String) -> bool {
-    arg == "A" || arg == "B" || arg == "C" || arg == "D" || arg == "E"
+    arg == "A" || arg == "B" || arg == "C" || arg == "D" || arg == "E" || arg == "F" || arg == "HL"
 }
 
 pub fn is_address(arg: &String) -> bool {

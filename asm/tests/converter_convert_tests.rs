@@ -224,3 +224,45 @@ fn test_convert_nop() {
     assert_eq!(compiled[0].arg1, "");
     assert_eq!(compiled[0].arg2, "");
 }
+
+#[test]
+fn test_convert_push_reg() {
+    let instruction = Instruction::new("PUSH", "A", "");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0].command, "PUSH");
+    assert_eq!(compiled[0].arg1, "A");
+    assert_eq!(compiled[0].arg2, "");
+}
+
+#[test]
+fn test_convert_push_addr() {
+    let instruction = Instruction::new("PUSH", "(10)", "");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 7);
+}
+
+#[test]
+fn test_convert_push_value() {
+    let instruction = Instruction::new("PUSH", "10", "");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 4);
+}
+
+#[test]
+fn test_convert_pop() {
+    let instruction = Instruction::new("POP", "A", "");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0].command, "POP");
+    assert_eq!(compiled[0].arg1, "A");
+    assert_eq!(compiled[0].arg2, "");
+}
