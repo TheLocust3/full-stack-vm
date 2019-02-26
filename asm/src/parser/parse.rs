@@ -8,7 +8,9 @@ pub fn parse(program: &str) -> Vec<Instruction> {
     let mut instructions: Vec<Instruction> = Vec::new();
 
     for line in program.split('\n') {
-        instructions.push(parse_line(line));
+        if !line.is_empty() {
+            instructions.push(parse_line(line));
+        }
     }
 
     instructions
