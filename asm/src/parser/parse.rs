@@ -4,10 +4,9 @@ use log::{info, error};
 use instruction::Instruction;
 
 pub fn parse(program: &str) -> Vec<Instruction> {
-    // TODO: Clean up file, remove trailing newlines, extra spaces, etc
     let mut instructions: Vec<Instruction> = Vec::new();
 
-    for line in program.split('\n') {
+    for line in program.replace("  ", " ").replace("   ", " ").split('\n') {
         if !line.is_empty() {
             instructions.push(parse_line(line));
         }
