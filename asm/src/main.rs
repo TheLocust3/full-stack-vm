@@ -30,7 +30,9 @@ fn main() {
 
     let program = fs::read_to_string(in_file).expect("Failed to read input file");
     
-    let instructions = parser::parse::parse(&program);
+    let mut instructions = parser::parse::parse(&program);
+    instructions.push(instruction::Instruction::new("HALT", "", "")); // stop cpu after program is done
+
     let converted = converter::convert::convert(instructions);
     let compiled = compiler::compile::compile(converted);
 

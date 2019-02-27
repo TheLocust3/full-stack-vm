@@ -248,6 +248,16 @@ fn test_compile_nop() {
 }
 
 #[test]
+fn test_compile_halt() {
+    let instruction = instruction::Instruction::new("HALT", "", "");
+
+    let compiled = compile::compile_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b01010101);
+}
+
+#[test]
 fn test_compile_push() {
     let instruction = instruction::Instruction::new("PUSH", "A", "");
 

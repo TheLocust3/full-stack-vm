@@ -11,6 +11,14 @@ fn test_compile_nop() {
 }
 
 #[test]
+fn test_compile_halt() {
+    let compiled = miscellaneous::compile_halt();
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0], 0b01010101);
+}
+
+#[test]
 fn test_compile_push_a() {
     let compiled = miscellaneous::compile_push("A".to_string());
 

@@ -86,6 +86,9 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
         "NOP" => {
             vec!(instruction)
         },
+        "HALT" => {
+            vec!(instruction)
+        },
         _ => {
             error!("Instruction not handled!");
             Vec::new()

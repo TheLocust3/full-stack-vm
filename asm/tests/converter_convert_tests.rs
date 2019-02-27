@@ -226,6 +226,18 @@ fn test_convert_nop() {
 }
 
 #[test]
+fn test_convert_halt() {
+    let instruction = Instruction::new("HALT", "", "");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled[0].command, "HALT");
+    assert_eq!(compiled[0].arg1, "");
+    assert_eq!(compiled[0].arg2, "");
+}
+
+#[test]
 fn test_convert_push_reg() {
     let instruction = Instruction::new("PUSH", "A", "");
 

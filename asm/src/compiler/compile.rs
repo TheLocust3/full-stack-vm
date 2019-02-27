@@ -94,6 +94,9 @@ pub fn compile_instruction(instruction: Instruction) -> Vec<u8> {
         "NOP" => {
             miscellaneous::compile_nop()
         },
+        "HALT" => {
+            miscellaneous::compile_halt()
+        },
         _ => {
             error!("Instruction not handled!");
             Vec::new()

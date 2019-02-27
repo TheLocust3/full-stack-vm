@@ -8,6 +8,14 @@ pub fn compile_nop() -> Vec<u8> {
     compiled
 }
 
+pub fn compile_halt() -> Vec<u8> {
+    let mut compiled: Vec<u8> = Vec::new();
+
+    compiled.push(0b01010101);
+
+    compiled
+}
+
 pub fn compile_push(reg: String) -> Vec<u8> {
     let mut compiled: Vec<u8> = Vec::new();
 

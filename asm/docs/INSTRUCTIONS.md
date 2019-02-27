@@ -178,3 +178,14 @@ Arguments:
 - ARG2: none
 
 Ex: NOP
+
+## HALT
+
+Stops the CPU.
+
+Arguments:
+
+- ARG1: none
+- ARG2: none
+
+Ex: HALT
