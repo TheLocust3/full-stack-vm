@@ -21,6 +21,17 @@ mod tests {
     }
 
     #[test]
+    fn test_halt() {
+        let mut cpu: CPU = CPU::new();
+        cpu.memory.write_8bit(0, 0b01010101);
+
+        cpu = executor::execute(cpu);
+
+        assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.stopped, true);
+    }
+
+    #[test]
     fn test_push_a() {
         let mut cpu: CPU = CPU::new();
         cpu.memory.write_8bit(0, 0b11001000);

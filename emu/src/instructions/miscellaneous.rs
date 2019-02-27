@@ -8,6 +8,10 @@ pub fn nop(cpu: CPU) -> CPU {
     cpu
 }
 
+pub fn halt(cpu: CPU) -> CPU {
+    cpu.set_stopped(true)
+}
+
 pub fn push(reg: Register, cpu: CPU) -> CPU {
     let mut out_cpu = cpu;
     let sp: Register = out_cpu.sp;

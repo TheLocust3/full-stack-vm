@@ -17,7 +17,8 @@ pub struct CPU {
     pub hl: Register,
     pub sp: Register,
     pub pc: Register,
-    pub memory: Memory
+    pub memory: Memory,
+    pub stopped: bool
 }
 
 impl CPU {
@@ -32,7 +33,8 @@ impl CPU {
             hl: Register::new(),
             sp: Register::new().set_value(TOTAL_MEMORY),
             pc: Register::new(),
-            memory: Memory::new()
+            memory: Memory::new(),
+            stopped: false
         }
     }
 
@@ -89,7 +91,8 @@ impl CPU {
             hl: self.hl,
             sp: self.sp,
             pc: self.pc,
-            memory: self.memory
+            memory: self.memory,
+            stopped: self.stopped
         }
     }
 
@@ -104,7 +107,8 @@ impl CPU {
             hl: self.hl,
             sp: self.sp,
             pc: self.pc,
-            memory: self.memory
+            memory: self.memory,
+            stopped: self.stopped
         }
     }
 
@@ -119,7 +123,8 @@ impl CPU {
             hl: self.hl,
             sp: self.sp,
             pc: self.pc,
-            memory: self.memory
+            memory: self.memory,
+            stopped: self.stopped
         }
     }
 
@@ -134,7 +139,8 @@ impl CPU {
             hl: self.hl,
             sp: self.sp,
             pc: self.pc,
-            memory: self.memory
+            memory: self.memory,
+            stopped: self.stopped
         }
     }
 
@@ -149,7 +155,8 @@ impl CPU {
             hl: self.hl,
             sp: self.sp,
             pc: self.pc,
-            memory: self.memory
+            memory: self.memory,
+            stopped: self.stopped
         }
     }
 
@@ -164,7 +171,8 @@ impl CPU {
             hl: self.hl,
             sp: self.sp,
             pc: self.pc,
-            memory: self.memory
+            memory: self.memory,
+            stopped: self.stopped
         }
     }
 
@@ -179,7 +187,8 @@ impl CPU {
             hl: hl,
             sp: self.sp,
             pc: self.pc,
-            memory: self.memory
+            memory: self.memory,
+            stopped: self.stopped
         }
     }
 
@@ -194,7 +203,8 @@ impl CPU {
             hl: self.hl,
             sp: sp,
             pc: self.pc,
-            memory: self.memory
+            memory: self.memory,
+            stopped: self.stopped
         }
     }
     
@@ -209,7 +219,8 @@ impl CPU {
             hl: self.hl,
             sp: self.sp,
             pc: pc,
-            memory: self.memory
+            memory: self.memory,
+            stopped: self.stopped
         }
     }
 
@@ -224,7 +235,24 @@ impl CPU {
             hl: self.hl,
             sp: self.sp,
             pc: self.pc,
-            memory: memory
+            memory: memory,
+            stopped: self.stopped
+        }
+    }
+
+    pub fn set_stopped(self, stopped: bool) -> CPU {
+        CPU {
+            a: self.a,
+            b: self.b,
+            c: self.c,
+            d: self.d,
+            e: self.e,
+            f: self.f,
+            hl: self.hl,
+            sp: self.sp,
+            pc: self.pc,
+            memory: self.memory,
+            stopped: stopped
         }
     }
 
@@ -243,6 +271,10 @@ impl CPU {
     }
 
     pub fn cycle(self) -> CPU {
-        executor::execute(self)
+        if !self.stopped {
+            executor::execute(self)
+        } else {
+            self
+        }
     }
 }

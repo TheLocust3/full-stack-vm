@@ -451,3 +451,11 @@ Does nothing.
 #### Opcodes
 
 Format: 0000 0000
+
+### halt
+
+Stops execution.
+
+#### Opcodes
+
+Format: 0101 0101

@@ -519,6 +519,9 @@ pub fn execute(cpu: CPU) -> CPU {
         0b00000000 => {
             out_cpu = miscellaneous::nop(out_cpu);
         },
+        0b01010101 => {
+            out_cpu = miscellaneous::halt(out_cpu);
+        },
         _ => {
             error!("Instruction: {} not handled", instruction);
         }

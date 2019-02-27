@@ -8,6 +8,15 @@ mod tests {
     use self::emu::memory::STACK_END;
 
     #[test]
+    fn test_halt() {
+        let mut cpu: CPU = CPU::new();
+
+        cpu = miscellaneous::halt(cpu);
+
+        assert_eq!(cpu.stopped, true);
+    }
+
+    #[test]
     fn test_push() {
         let mut cpu: CPU = CPU::new();
 
