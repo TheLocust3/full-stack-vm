@@ -18,7 +18,7 @@ pub fn execute_set(cpu: CPU, pc: Register, code: u8) -> CPU {
     let register_return: RegisterReturn = register::set(register, value);
 
     out_cpu = out_cpu.set_from_code(code, register_return.out);
-    out_cpu.set_pc(Register { value: pc.value + 8 })
+    out_cpu.set_pc(Register { value: pc.value + 9 })
 }
 
 pub fn execute_move(cpu: CPU, out_code: u8, in_code: u8) -> CPU {

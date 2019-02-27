@@ -243,7 +243,7 @@ mod tests {
 
         cpu = executor::execute(cpu);
 
-        assert_eq!(cpu.pc.value, 8);
+        assert_eq!(cpu.pc.value, 9);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.a.value, 10);
     }
@@ -258,7 +258,7 @@ mod tests {
 
         cpu = executor::execute(cpu);
 
-        assert_eq!(cpu.pc.value, 8);
+        assert_eq!(cpu.pc.value, 9);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.b.value, 10);
     }
@@ -273,7 +273,7 @@ mod tests {
 
         cpu = executor::execute(cpu);
 
-        assert_eq!(cpu.pc.value, 8);
+        assert_eq!(cpu.pc.value, 9);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.c.value, 10);
     }
@@ -288,7 +288,7 @@ mod tests {
 
         cpu = executor::execute(cpu);
 
-        assert_eq!(cpu.pc.value, 8);
+        assert_eq!(cpu.pc.value, 9);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.d.value, 10);
     }
@@ -303,7 +303,7 @@ mod tests {
 
         cpu = executor::execute(cpu);
 
-        assert_eq!(cpu.pc.value, 8);
+        assert_eq!(cpu.pc.value, 9);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.e.value, 10);
     }
@@ -318,7 +318,7 @@ mod tests {
 
         cpu = executor::execute(cpu);
 
-        assert_eq!(cpu.pc.value, 8);
+        assert_eq!(cpu.pc.value, 9);
         assert_eq!(cpu.f.value, 0);
         assert_eq!(cpu.hl.value, 10);
     }

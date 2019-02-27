@@ -30,7 +30,7 @@ fn main() {
     let program = fs::read_to_string(in_file).expect("Failed to read input file");
 
     let mut computer: Computer = Computer::new();
-    computer.read_program(program);
+    computer = computer.read_program(program);
 
     while !computer.is_stopped() {
         computer = computer.cycle();

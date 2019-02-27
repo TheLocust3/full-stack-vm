@@ -277,4 +277,15 @@ impl CPU {
             self
         }
     }
+
+    pub fn read_program(mut self, program: String) -> CPU {
+        let mut i = 0;
+        for byte in program.split("\n") {
+            self.memory.write_8bit(i, byte.parse::<u8>().unwrap_or(0));
+
+            i += 1;
+        }
+
+        self
+    }
 }

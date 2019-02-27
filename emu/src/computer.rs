@@ -22,12 +22,9 @@ impl Computer {
         self.cpu.stopped
     }
 
-    pub fn read_program(&mut self, program: String) {
-        let mut i = 0;
-        for byte in program.split("\n") {
-            self.cpu.memory.write_8bit(i, byte.parse::<u8>().unwrap_or(0));
-
-            i += 1;
+    pub fn read_program(self, program: String) -> Computer {
+        Computer {
+            cpu: self.cpu.read_program(program)
         }
     }
 }
