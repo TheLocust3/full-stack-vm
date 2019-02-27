@@ -7,8 +7,6 @@ pub struct Computer {
 
 impl Computer {
     pub fn new() -> Computer {
-        let mut memory: Memory = Memory::new();
-
         Computer {
             cpu: CPU::new()
         }
@@ -17,6 +15,15 @@ impl Computer {
     pub fn cycle(self) -> Computer {
         Computer {
             cpu: self.cpu.cycle()
+        }
+    }
+
+    pub fn read_program(&mut self, program: String) {
+        let mut i = 0;
+        for byte in program.split("\n") {
+            self.cpu.memory.write_8bit(i, byte.parse::<u8>().unwrap_or(0));
+
+            i += 1;
         }
     }
 }
