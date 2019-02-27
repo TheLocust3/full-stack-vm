@@ -32,5 +32,7 @@ fn main() {
     let mut computer: Computer = Computer::new();
     computer.read_program(program);
 
-    computer.cycle();
+    while !computer.is_stopped() {
+        computer = computer.cycle();
+    }
 }

@@ -18,6 +18,10 @@ impl Computer {
         }
     }
 
+    pub fn is_stopped(&self) -> bool {
+        self.cpu.stopped
+    }
+
     pub fn read_program(&mut self, program: String) {
         let mut i = 0;
         for byte in program.split("\n") {
