@@ -31,6 +31,15 @@ fn test_convert_move_reg_value() {
 }
 
 #[test]
+fn test_convert_move_reg_addr_reg() {
+    let instruction = Instruction::new("MOVE", "A", "(B)");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 4);
+}
+
+#[test]
 fn test_convert_move_addr_reg() {
     let instruction = Instruction::new("MOVE", "(10)", "A");
 
@@ -49,12 +58,48 @@ fn test_convert_move_addr_addr() {
 }
 
 #[test]
+fn test_convert_move_addr_addr_reg() {
+    let instruction = Instruction::new("MOVE", "(10)", "(A)");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 8);
+}
+
+#[test]
 fn test_convert_move_addr_value() {
     let instruction = Instruction::new("MOVE", "(10)", "10");
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
     assert_eq!(compiled.len(), 7);
+}
+
+#[test]
+fn test_convert_move_addr_reg_addr() {
+    let instruction = Instruction::new("MOVE", "(A)", "(10)");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 8);
+}
+
+#[test]
+fn test_convert_move_addr_reg_value() {
+    let instruction = Instruction::new("MOVE", "(A)", "1");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 7);
+}
+
+#[test]
+fn test_convert_move_addr_reg_reg() {
+    let instruction = Instruction::new("MOVE", "(A)", "B");
+
+    let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
+
+    assert_eq!(compiled.len(), 4);
 }
 
 #[test]

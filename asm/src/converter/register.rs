@@ -26,7 +26,7 @@ pub fn convert_move(arg1: String, arg2: String) -> Vec<Instruction> {
     } else if is_address_register(&arg1) && is_value(&arg2) { // MOVE (A) 1
         convert_move_addr_reg_value(arg1, arg2)
     } else if is_address_register(&arg1) && is_register(&arg2) { // MOVE (A) B
-        convert_move_reg_addr_reg(arg1, arg2)
+        convert_move_addr_reg_reg(arg1, arg2)
     } else {
         Vec::new()
     }
