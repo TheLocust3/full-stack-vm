@@ -25,17 +25,11 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
     let arg2 = instruction.arg2.clone();
 
     match instruction.command.as_str() {
-        "SET" => {
-            vec!(instruction)
-        },
         "MOVE" => {
             register::convert_move(instruction.arg1, instruction.arg2)
         },
         "PUSH" => {
             miscellaneous::convert_push(instruction.arg1)
-        },
-        "POP" => {
-            vec!(instruction)
         },
         "ADD" => {
             if arithmetic::should_reconvert_add(arg1, arg2) {
@@ -65,36 +59,8 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
                 bitwise::convert_or(instruction.arg1, instruction.arg2)
             }
         },
-        "NOT" => {
-            vec!(instruction)
-        },
-        "SHIFT_LEFT" => {
-            vec!(instruction)
-        },
-        "SHIFT_LEFT_W" => {
-            vec!(instruction)
-        },
-        "SHIFT_RIGHT" => {
-            vec!(instruction)
-        },
-        "SHIFT_RIGHT_W" => {
-            vec!(instruction)
-        },
-        "JUMP" => {
-            vec!(instruction)
-        },
-        "JUMP0" => {
-            vec!(instruction)
-        },
-        "NOP" => {
-            vec!(instruction)
-        },
-        "HALT" => {
-            vec!(instruction)
-        },
         _ => {
-            error!("Instruction not handled!");
-            Vec::new()
+            vec!(instruction)
         }
     }
 }
