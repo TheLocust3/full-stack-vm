@@ -12,6 +12,7 @@ mod instruction;
 mod compiler;
 mod parser;
 mod converter;
+mod run;
 
 fn main() {
     env_logger::init();
@@ -29,12 +30,8 @@ fn main() {
     let out_file = &args[2];
 
     let program = fs::read_to_string(in_file).expect("Failed to read input file");
-    
-    let mut instructions = parser::parse::parse(&program);
-    instructions.push(instruction::Instruction::new("HALT", "", "")); // stop cpu after program is done
 
-    let converted = converter::convert::convert(instructions);
-    let compiled = compiler::compile::compile(converted);
+    let compiled = run::run(program);
 
     let mut binary: String = "".into();
     for instr in compiled {

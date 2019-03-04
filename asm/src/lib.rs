@@ -8,3 +8,5 @@ pub mod instruction;
 pub mod parser;
 pub mod converter;
 pub mod compiler;
+
+pub mod run;

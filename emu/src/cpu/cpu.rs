@@ -288,4 +288,15 @@ impl CPU {
 
         self
     }
+
+    pub fn read_test_program(mut self, program: Vec<u8>) -> CPU {
+        let mut i = 0;
+        for byte in program {
+            self.memory.write_8bit(i, byte);
+
+            i += 1;
+        }
+
+        self
+    }
 }
