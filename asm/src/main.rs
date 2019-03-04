@@ -12,7 +12,8 @@ mod instruction;
 mod compiler;
 mod parser;
 mod converter;
-mod run;
+
+pub mod run;
 
 fn main() {
     env_logger::init();

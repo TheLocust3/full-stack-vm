@@ -25,6 +25,9 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
     let arg2 = instruction.arg2.clone();
 
     match instruction.command.as_str() {
+        "SET" => {
+            vec!(instruction)
+        },
         "MOVE" => {
             register::convert_move(instruction.arg1, instruction.arg2)
         },
