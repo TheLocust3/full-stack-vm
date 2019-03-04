@@ -1,3 +1,5 @@
+use data::parse_address;
+
 pub fn is_register(arg: &String) -> bool {
     arg == "A" || arg == "B" || arg == "C" || arg == "D" || arg == "E" || arg == "F" || arg == "HL"
 }
@@ -26,10 +28,7 @@ pub fn is_address_register(arg: &String) -> bool {
         return false
     }
 
-    let reg: String = arg.chars().skip(1).take(arg.len() - 2).collect::<String>();
-    println!("TEST");
-    println!("{}", arg);
-    println!("{}", reg);
+    let reg = parse_address(arg.to_string());
 
     is_address(&arg) && is_register(&reg)
 }

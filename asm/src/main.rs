@@ -6,6 +6,7 @@ use std::env;
 use std::process;
 use std::fs;
 
+pub mod data;
 pub mod recognizers;
 mod register;
 mod instruction;
@@ -32,7 +33,7 @@ fn main() {
 
     let program = fs::read_to_string(in_file).expect("Failed to read input file");
 
-    let compiled = run::run(program);
+    let compiled = run::run(&program);
 
     let mut binary: String = "".into();
     for instr in compiled {

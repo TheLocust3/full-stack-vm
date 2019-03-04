@@ -12,11 +12,11 @@ pub fn convert_push(value: String) -> Vec<Instruction> {
     }
 }
 
-pub fn convert_push_addr(value: String) -> Vec<Instruction> {
+pub fn convert_push_addr(address: String) -> Vec<Instruction> {
     let mut compiled: Vec<Instruction> = Vec::new();
 
     compiled.push(Instruction::new("PUSH", "HL", ""));
-    compiled.push(Instruction::new("MOVE", "HL", &value));
+    compiled.push(Instruction::new("MOVE", "HL", &address));
 
     compiled.push(Instruction::new("PUSH", "A", ""));
     compiled.push(Instruction::new("READ64", "A", ""));
@@ -33,7 +33,7 @@ pub fn convert_push_value(value: String) -> Vec<Instruction> {
     let mut compiled: Vec<Instruction> = Vec::new();
 
     compiled.push(Instruction::new("PUSH", "A", ""));
-    compiled.push(Instruction::new("MOVE", "A", &value));
+    compiled.push(Instruction::new("SET", "A", &value));
 
     compiled.push(Instruction::new("PUSH", "A", ""));
 

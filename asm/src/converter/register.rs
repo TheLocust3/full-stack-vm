@@ -3,6 +3,7 @@ use recognizers::is_register;
 use recognizers::is_address_value;
 use recognizers::is_address_register;
 use recognizers::is_value;
+use data::parse_address;
 
 pub fn convert_move(arg1: String, arg2: String) -> Vec<Instruction> {
     if is_register(&arg1) && is_address_value(&arg2) { // MOVE A (10)
@@ -34,10 +35,12 @@ pub fn convert_move(arg1: String, arg2: String) -> Vec<Instruction> {
 }
 
 fn convert_move_reg_address(dest_reg: String, address: String) -> Vec<Instruction> {
+    let address_val = parse_address(address);
+
     let mut compiled: Vec<Instruction> = Vec::new();
 
     compiled.push(Instruction::new("PUSH", "HL", ""));
-    compiled.push(Instruction::new("SET", "HL", &address));
+    compiled.push(Instruction::new("SET", "HL", &address_val));
     compiled.push(Instruction::new("READ64", &dest_reg, ""));
     compiled.push(Instruction::new("POP", "HL", ""));
 
@@ -45,10 +48,12 @@ fn convert_move_reg_address(dest_reg: String, address: String) -> Vec<Instructio
 }
 
 fn convert_move_reg_addr_reg(dest_reg: String, addr_reg: String) -> Vec<Instruction> {
+    let addr_reg_val = parse_address(addr_reg);
+
     let mut compiled: Vec<Instruction> = Vec::new();
 
     compiled.push(Instruction::new("PUSH", "HL", ""));
-    compiled.push(Instruction::new("MOVE", "HL", &addr_reg));
+    compiled.push(Instruction::new("SET", "HL", &addr_reg_val));
     compiled.push(Instruction::new("READ64", &dest_reg, ""));
     compiled.push(Instruction::new("POP", "HL", ""));
 
@@ -94,17 +99,20 @@ fn convert_move_addr_reg_reg(dest_addr_reg: String, reg: String) -> Vec<Instruct
 }
 
 fn convert_move_address_address(dest_address: String, address: String) -> Vec<Instruction> {
+    let dest_address_val = parse_address(dest_address);
+    let address_val = parse_address(address);
+
     let mut compiled: Vec<Instruction> = Vec::new();
 
     compiled.push(Instruction::new("PUSH", "HL", ""));
-    compiled.push(Instruction::new("SET", "HL", &address));
+    compiled.push(Instruction::new("SET", "HL", &address_val));
     // HL set to address
 
     compiled.push(Instruction::new("PUSH", "A", ""));
     compiled.push(Instruction::new("READ64", "A", ""));
     // A has value to be placed in dest_address
 
-    compiled.push(Instruction::new("SET", "HL", &dest_address));
+    compiled.push(Instruction::new("SET", "HL", &dest_address_val));
     compiled.push(Instruction::new("WRITE64", "A", ""));
     // value written to dest_address
 
@@ -136,6 +144,8 @@ fn convert_move_addr_reg_address(dest_addr_reg: String, address: String) -> Vec<
 }
 
 fn convert_move_address_addr_reg(dest_address: String, addr_reg: String) -> Vec<Instruction> {
+    let dest_address_val = parse_address(dest_address);
+
     let mut compiled: Vec<Instruction> = Vec::new();
 
     compiled.push(Instruction::new("PUSH", "HL", ""));
@@ -146,7 +156,7 @@ fn convert_move_address_addr_reg(dest_address: String, addr_reg: String) -> Vec<
     compiled.push(Instruction::new("READ64", "A", ""));
     // A has value to be placed in dest_address
 
-    compiled.push(Instruction::new("SET", "HL", &dest_address));
+    compiled.push(Instruction::new("SET", "HL", &dest_address_val));
     compiled.push(Instruction::new("WRITE64", "A", ""));
     // value written to dest_address
 
@@ -157,10 +167,12 @@ fn convert_move_address_addr_reg(dest_address: String, addr_reg: String) -> Vec<
 }
 
 fn convert_move_address_value(dest_address: String, value: String) -> Vec<Instruction> {
+    let address_val = parse_address(dest_address);
+
     let mut compiled: Vec<Instruction> = Vec::new();
 
     compiled.push(Instruction::new("PUSH", "HL", ""));
-    compiled.push(Instruction::new("SET", "HL", &dest_address));
+    compiled.push(Instruction::new("SET", "HL", &address_val));
 
     compiled.push(Instruction::new("PUSH", "A", ""));
     compiled.push(Instruction::new("SET", "A", &value));
