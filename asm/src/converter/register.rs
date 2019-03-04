@@ -1,20 +1,20 @@
 use instruction::Instruction;
 use recognizers::is_register;
-use recognizers::is_address;
+use recognizers::is_address_value;
 use recognizers::is_value;
 
 pub fn convert_move(arg1: String, arg2: String) -> Vec<Instruction> {
-    if is_register(&arg1) && is_address(&arg2) { // MOVE A (10)
+    if is_register(&arg1) && is_address_value(&arg2) { // MOVE A (10)
         convert_move_reg_address(arg1, arg2)
     } else if is_register(&arg1) && is_register(&arg2) { // MOVE A B
         convert_move_reg_reg(arg1, arg2)
     } else if is_register(&arg1) && is_value(&arg2) { // MOVE A 1
         convert_move_reg_value(arg1, arg2)
-    } else if is_address(&arg1) && is_register(&arg2) { // MOVE (10) A
+    } else if is_address_value(&arg1) && is_register(&arg2) { // MOVE (10) A
         convert_move_address_reg(arg1, arg2)
-    } else if is_address(&arg1) && is_address(&arg2) { // MOVE (10) (11)
+    } else if is_address_value(&arg1) && is_address_value(&arg2) { // MOVE (10) (11)
         convert_move_address_address(arg1, arg2)
-    } else if is_address(&arg1) && is_value(&arg2) { // MOVE (10) 1
+    } else if is_address_value(&arg1) && is_value(&arg2) { // MOVE (10) 1
         convert_move_address_value(arg1, arg2)
     } else {
         Vec::new()
