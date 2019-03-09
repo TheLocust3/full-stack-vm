@@ -120,6 +120,7 @@ fn convert_move_address_address(dest_address: String, address: String) -> Vec<In
     // value written to dest_address
 
     compiled.push(Instruction::new("POP", "A", ""));
+
     compiled.push(Instruction::new("POP", "HL", ""));
 
     compiled
@@ -135,15 +136,28 @@ fn convert_move_addr_reg_address(dest_addr_reg: String, address: String) -> Vec<
     compiled.push(Instruction::new("SET", "HL", &address_val));
     // HL set to address
 
-    compiled.push(Instruction::new("PUSH", "A", ""));
-    compiled.push(Instruction::new("READ64", "A", ""));
-    // A has value to be placed at dest_addr_reg
+    if addr_reg_val == "A" {
+        compiled.push(Instruction::new("PUSH", "B", ""));
+        compiled.push(Instruction::new("READ64", "B", ""));
+        // A has value to be placed at dest_addr_reg
 
-    compiled.push(Instruction::new("MOVE", "HL", &addr_reg_val));
-    compiled.push(Instruction::new("WRITE64", "A", ""));
-    // value written to dest_addr_reg
+        compiled.push(Instruction::new("MOVE", "HL", &addr_reg_val));
+        compiled.push(Instruction::new("WRITE64", "B", ""));
+        // value written to dest_addr_reg
 
-    compiled.push(Instruction::new("POP", "A", ""));
+        compiled.push(Instruction::new("POP", "B", ""));
+    } else {
+        compiled.push(Instruction::new("PUSH", "A", ""));
+        compiled.push(Instruction::new("READ64", "A", ""));
+        // A has value to be placed at dest_addr_reg
+
+        compiled.push(Instruction::new("MOVE", "HL", &addr_reg_val));
+        compiled.push(Instruction::new("WRITE64", "A", ""));
+        // value written to dest_addr_reg
+
+        compiled.push(Instruction::new("POP", "A", ""));
+    }
+
     compiled.push(Instruction::new("POP", "HL", ""));
 
     compiled
@@ -158,15 +172,28 @@ fn convert_move_address_addr_reg(dest_address: String, addr_reg: String) -> Vec<
     compiled.push(Instruction::new("MOVE", "HL", &addr_reg));
     // HL set to address in addr_reg
 
-    compiled.push(Instruction::new("PUSH", "A", ""));
-    compiled.push(Instruction::new("READ64", "A", ""));
-    // A has value to be placed in dest_address
+    if addr_reg == "(A)" {
+        compiled.push(Instruction::new("PUSH", "B", ""));
+        compiled.push(Instruction::new("READ64", "B", ""));
+        // A has value to be placed in dest_address
 
-    compiled.push(Instruction::new("SET", "HL", &dest_address_val));
-    compiled.push(Instruction::new("WRITE64", "A", ""));
-    // value written to dest_address
+        compiled.push(Instruction::new("SET", "HL", &dest_address_val));
+        compiled.push(Instruction::new("WRITE64", "B", ""));
+        // value written to dest_address
 
-    compiled.push(Instruction::new("POP", "A", ""));
+        compiled.push(Instruction::new("POP", "B", ""));
+    } else {
+        compiled.push(Instruction::new("PUSH", "A", ""));
+        compiled.push(Instruction::new("READ64", "A", ""));
+        // A has value to be placed in dest_address
+
+        compiled.push(Instruction::new("SET", "HL", &dest_address_val));
+        compiled.push(Instruction::new("WRITE64", "A", ""));
+        // value written to dest_address
+
+        compiled.push(Instruction::new("POP", "A", ""));
+    }
+
     compiled.push(Instruction::new("POP", "HL", ""));
 
     compiled
@@ -199,12 +226,23 @@ fn convert_move_addr_reg_value(dest_addr_reg: String, value: String) -> Vec<Inst
     compiled.push(Instruction::new("PUSH", "HL", ""));
     compiled.push(Instruction::new("MOVE", "HL", &addr_reg_val));
 
-    compiled.push(Instruction::new("PUSH", "A", ""));
-    compiled.push(Instruction::new("SET", "A", &value));
+    println!("TEST! {}", addr_reg_val);
+    if addr_reg_val == "A" {
+        compiled.push(Instruction::new("PUSH", "B", ""));
+        compiled.push(Instruction::new("SET", "B", &value));
 
-    compiled.push(Instruction::new("WRITE64", "A", ""));
+        compiled.push(Instruction::new("WRITE64", "B", ""));
 
-    compiled.push(Instruction::new("POP", "A", ""));
+        compiled.push(Instruction::new("POP", "B", ""));
+    } else {
+        compiled.push(Instruction::new("PUSH", "A", ""));
+        compiled.push(Instruction::new("SET", "A", &value));
+
+        compiled.push(Instruction::new("WRITE64", "A", ""));
+
+        compiled.push(Instruction::new("POP", "A", ""));
+    }
+
     compiled.push(Instruction::new("POP", "HL", ""));
 
     compiled

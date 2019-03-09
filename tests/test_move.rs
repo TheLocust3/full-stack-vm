@@ -151,7 +151,18 @@ fn test_move_regaddr_addr() {
     assert_eq!(out_cpu.f.value, 0);
 }
 
-// TODO: Test above with register A (doesn't currently work)
+#[test]
+fn test_move_regaddr_addr2() {
+    let compiled = compile("SET HL 50\nSET B 10\nWRITE64 B\nSET A 100\nMOVE (A) (50)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.hl.value, 50);
+    assert_eq!(out_cpu.a.value, 100);
+    assert_eq!(out_cpu.b.value, 10);
+    assert_eq!(out_cpu.memory.read_64bit(50), 10);
+    assert_eq!(out_cpu.memory.read_64bit(100), 10);
+    assert_eq!(out_cpu.f.value, 0);
+}
 
 #[test]
 fn test_move_regaddr_value() {

@@ -20,7 +20,9 @@ pub fn is_address_value(arg: &String) -> bool {
         return false
     }
 
-    is_address(&arg) && !is_address_register(&arg)
+    let val = parse_address(arg.to_string());
+
+    is_address(&arg) && !is_register(&val)
 }
 
 pub fn is_address_register(arg: &String) -> bool {
