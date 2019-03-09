@@ -32,17 +32,17 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             miscellaneous::convert_push(instruction.arg1)
         },
         "ADD" => {
-            if arithmetic::should_reconvert_add(arg1, arg2) {
-                convert(arithmetic::convert_add(instruction.arg1, instruction.arg2))
-            } else {
+            if arithmetic::should_compile_add(arg1, arg2) {
                 arithmetic::convert_add(instruction.arg1, instruction.arg2)
+            } else {
+                convert(arithmetic::convert_add(instruction.arg1, instruction.arg2))
             }
         },
         "SUB" => {
-            if arithmetic::should_reconvert_sub(arg1, arg2) {
-                convert(arithmetic::convert_sub(instruction.arg1, instruction.arg2))
-            } else {
+            if arithmetic::should_compile_sub(arg1, arg2) {
                 arithmetic::convert_sub(instruction.arg1, instruction.arg2)
+            } else {
+                convert(arithmetic::convert_sub(instruction.arg1, instruction.arg2))
             }
         },
         "AND" => {
