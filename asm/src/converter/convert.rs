@@ -46,17 +46,17 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             }
         },
         "AND" => {
-            if bitwise::should_reconvert_and(arg1, arg2) {
-                convert(bitwise::convert_and(instruction.arg1, instruction.arg2))
-            } else {
+            if bitwise::should_compile_and(arg1, arg2) {
                 bitwise::convert_and(instruction.arg1, instruction.arg2)
+            } else {
+                convert(bitwise::convert_and(instruction.arg1, instruction.arg2))
             }
         },
         "OR" => {
-            if bitwise::should_reconvert_or(arg1, arg2) {
-                convert(bitwise::convert_or(instruction.arg1, instruction.arg2))
-            } else {
+            if bitwise::should_compile_or(arg1, arg2) {
                 bitwise::convert_or(instruction.arg1, instruction.arg2)
+            } else {
+                convert(bitwise::convert_or(instruction.arg1, instruction.arg2))
             }
         },
         _ => {

@@ -56,6 +56,15 @@ fn test_add5() {
 }
 
 #[test]
+fn test_add6() {
+    let compiled = compile("SET B 10\nADD B B");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 20);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
 fn test_sub() {
     let compiled = compile("SET B 30\nSET C 10\nSUB B C");
     let out_cpu = test_program(compiled);
@@ -104,5 +113,14 @@ fn test_sub5() {
     println!("A: {}, B: {}", out_cpu.a.value, out_cpu.b.value);
     assert_eq!(out_cpu.a.value, 10);
     assert_eq!(out_cpu.b.value, 20);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_sub6() {
+    let compiled = compile("SET B 20\nSUB B B");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 0);
     assert_eq!(out_cpu.f.value, 0);
 }
