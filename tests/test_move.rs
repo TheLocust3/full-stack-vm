@@ -209,5 +209,3 @@ fn test_move_regaddr_reg2() {
     assert_eq!(out_cpu.memory.read_64bit(100), 10);
     assert_eq!(out_cpu.f.value, 0);
 }
-
-// TODO: Test moves with HL/other used registers (register A specifically)

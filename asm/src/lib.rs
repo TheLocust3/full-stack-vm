@@ -10,4 +10,6 @@ pub mod parser;
 pub mod converter;
 pub mod compiler;
 
+pub mod subroutines;
+
 pub mod run;

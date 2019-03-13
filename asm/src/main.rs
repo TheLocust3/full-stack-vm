@@ -10,6 +10,7 @@ pub mod data;
 pub mod recognizers;
 mod register;
 mod instruction;
+mod subroutines;
 mod compiler;
 mod parser;
 mod converter;

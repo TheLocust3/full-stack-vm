@@ -26,6 +26,8 @@ fn test_push_reg2() {
     assert_eq!(out_cpu.f.value, 0);
 }
 
+// TODO: Test registers to make sure op wasn't destructive
+
 #[test]
 fn test_push_addr() {
     let compiled = compile("SET HL 100\nSET A 10\nWRITE64 A\nPUSH (100)");
