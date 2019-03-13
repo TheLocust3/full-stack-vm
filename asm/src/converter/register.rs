@@ -165,14 +165,15 @@ fn convert_move_addr_reg_address(dest_addr_reg: String, address: String) -> Vec<
 
 fn convert_move_address_addr_reg(dest_address: String, addr_reg: String) -> Vec<Instruction> {
     let dest_address_val = parse_address(dest_address);
+    let addr_reg_val = parse_address(addr_reg);
 
     let mut compiled: Vec<Instruction> = Vec::new();
 
     compiled.push(Instruction::new("PUSH", "HL", ""));
-    compiled.push(Instruction::new("MOVE", "HL", &addr_reg));
+    compiled.push(Instruction::new("MOVE", "HL", &addr_reg_val));
     // HL set to address in addr_reg
 
-    if addr_reg == "(A)" {
+    if addr_reg_val == "A" {
         compiled.push(Instruction::new("PUSH", "B", ""));
         compiled.push(Instruction::new("READ64", "B", ""));
         // A has value to be placed in dest_address

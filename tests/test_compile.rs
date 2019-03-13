@@ -132,28 +132,28 @@ fn test_shift_right_wrap() {
 
 #[test]
 fn test_jump() {
-    let compiled = compile("JUMP 10\nHALT\nNOP"); // jump over halt
+    let compiled = compile("JUMP 338\nHALT\nNOP"); // jump over halt
     let out_cpu = test_program(compiled);
 
-    assert_eq!(out_cpu.pc.value, 12);
+    assert_eq!(out_cpu.pc.value, 340);
     assert_eq!(out_cpu.f.value, 0);
 }
 
 #[test]
 fn test_jump0_true() {
-    let compiled = compile("SET A 0\nJUMP0 19\nHALT\nNOP"); // jump over halt
+    let compiled = compile("SET A 0\nJUMP0 347\nHALT\nNOP"); // jump over halt
     let out_cpu = test_program(compiled);
 
-    assert_eq!(out_cpu.pc.value, 21);
+    assert_eq!(out_cpu.pc.value, 349);
     assert_eq!(out_cpu.f.value, 0);
 }
 
 #[test]
 fn test_jump0_false() {
-    let compiled = compile("SET A 10\nJUMP0 17\nHALT\nNOP"); // hit first halt instead of end halt
+    let compiled = compile("SET A 10\nJUMP0 346\nHALT\nNOP"); // hit first halt instead of end halt
     let out_cpu = test_program(compiled);
 
-    assert_eq!(out_cpu.pc.value, 19);
+    assert_eq!(out_cpu.pc.value, 347);
     assert_eq!(out_cpu.f.value, 0);
 }
 
@@ -250,7 +250,7 @@ fn test_nop() {
     let compiled = compile("NOP");
     let out_cpu = test_program(compiled);
 
-    assert_eq!(out_cpu.pc.value, 2);
+    assert_eq!(out_cpu.pc.value, 330);
     assert_eq!(out_cpu.f.value, 0);
 }
 
@@ -259,6 +259,6 @@ fn test_halt() {
     let compiled = compile("HALT");
     let out_cpu = test_program(compiled);
 
-    assert_eq!(out_cpu.pc.value, 1);
+    assert_eq!(out_cpu.pc.value, 329);
     assert_eq!(out_cpu.f.value, 0);
 }
