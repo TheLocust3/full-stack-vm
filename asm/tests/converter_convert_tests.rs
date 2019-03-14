@@ -309,7 +309,7 @@ fn test_convert_push_value() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 4);
+    assert_eq!(compiled.len(), 6);
 }
 
 #[test]
