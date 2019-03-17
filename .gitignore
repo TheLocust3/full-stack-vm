@@ -3,4 +3,5 @@
 emu/target/
 asm/target/
 bitwise/target/
+stacklang/target/
 target/
