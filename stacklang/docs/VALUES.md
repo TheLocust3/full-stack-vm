@@ -10,14 +10,14 @@ Examples
 - y
 - test
 
-### unsigned integer
+### number
 
 A unsigned 64 bit integer
 
 Examples:
 
-- 10
-- 11
+- (num 10)
+- (num 11)
 
 ### thunk
 
@@ -25,4 +25,4 @@ A full stacklang program that can be pushed onto the stack
 
 Examples:
 
-- ((push 10) (push 11) (add))
+- (thunk ((push (num 10)) (push (num 11)) (add)))
