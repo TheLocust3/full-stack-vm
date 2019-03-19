@@ -1,6 +1,6 @@
 pub enum InstructionTree {
     Nodes(Vec<Instruction>),
-    Leaf(Value)
+    Value(Value)
 }
 
 pub struct Instruction {

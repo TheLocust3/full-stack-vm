@@ -1,6 +1,7 @@
 use std::process;
 use log::{info, error};
 
+use instruction::InstructionTree;
 use instruction::Instruction;
 
 pub fn parse(program: &str) -> Vec<Instruction> {

@@ -1,19 +1,35 @@
 use instruction::Instruction;
+use instruction::InstructionTree;
 
 pub fn compile(instructions: Vec<Instruction>) -> String {
-    let compiled: String = "".to_string();
+    let mut compiled: String = "".to_string();
 
     for instruction in instructions {
-        format!("{}{}\n", compiled, compile_instruction(instruction));
+        compiled = format!("{}\n{}", compiled, compile_instruction(instruction));
     }
 
     compiled
 }
 
 pub fn compile_instruction(instruction: Instruction) -> String {
-    let compiled: String = "".to_string();
+    format!("{}\n{}", compile_instruction_tree(instruction.arg1), compile_instruction_tree(instruction.arg2))
+}
 
-    // compile to assembly
+pub fn compile_instruction_tree(tree: InstructionTree) -> String {
+    match tree {
+        InstructionTree::Nodes(instructions) => {
+            let mut compiled: String = "".to_string();
 
-    compiled
+            for instruction in instructions {
+                // handle instruction
+                compiled = format!("{}\n{}", compiled, compile_instruction(instruction));
+            }
+
+            compiled
+        },
+        InstructionTree::Value(value) => {
+            // handle value
+            "".to_string()
+        }
+    }
 }
