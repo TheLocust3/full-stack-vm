@@ -144,7 +144,7 @@ fn test_convert_add() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 5);
+    assert_eq!(compiled.len(), 8);
 }
 
 #[test]
@@ -162,7 +162,7 @@ fn test_convert_sub() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 5);
+    assert_eq!(compiled.len(), 8);
 }
 
 #[test]
