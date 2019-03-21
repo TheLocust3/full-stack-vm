@@ -21,15 +21,41 @@ pub fn compile_instruction_tree(tree: InstructionTree) -> String {
             let mut compiled: String = "".to_string();
 
             for instruction in instructions {
-                // handle instruction
+                let command = instruction.command.clone();
                 compiled = format!("{}\n{}", compiled, compile_instruction(instruction));
+
+                // let single: String = "".to_string();
+                let single: String = match command.as_str() {
+                    "push" => {
+                        "push".to_string()
+                    },
+                    "add" => {
+                        "add".to_string()
+                    },
+                    "sub" => {
+                        "sub".to_string()
+                    },
+                    "if0" => {
+                        "if0".to_string()
+                    },
+                    "call" => {
+                        "call".to_string()
+                    },
+                    "lam" => {
+                        "lam".to_string()
+                    },
+                    _ => {
+                        "".to_string()
+                    }
+                };
+
+                compiled = format!("{}\n{}", compiled, single);
             }
 
             compiled
         },
         InstructionTree::Value(value) => {
-            // handle value
-            "".to_string()
+            value
         }
     }
 }
