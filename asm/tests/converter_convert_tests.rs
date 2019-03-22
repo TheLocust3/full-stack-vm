@@ -108,7 +108,7 @@ fn test_convert_and() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 5);
+    assert_eq!(compiled.len(), 11);
 }
 
 #[test]
@@ -117,7 +117,7 @@ fn test_convert_and_a() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled.len(), 4);
 }
 
 #[test]
@@ -126,7 +126,7 @@ fn test_convert_or() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 5);
+    assert_eq!(compiled.len(), 11);
 }
 
 #[test]
@@ -135,7 +135,7 @@ fn test_convert_or_a() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled.len(), 4);
 }
 
 #[test]
@@ -144,7 +144,7 @@ fn test_convert_add() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 8);
+    assert_eq!(compiled.len(), 11);
 }
 
 #[test]
@@ -153,7 +153,7 @@ fn test_convert_add_a() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled.len(), 4);
 }
 
 #[test]
@@ -162,7 +162,7 @@ fn test_convert_sub() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 8);
+    assert_eq!(compiled.len(), 11);
 }
 
 #[test]
@@ -171,7 +171,7 @@ fn test_convert_sub_a() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 1);
+    assert_eq!(compiled.len(), 4);
 }
 
 #[test]

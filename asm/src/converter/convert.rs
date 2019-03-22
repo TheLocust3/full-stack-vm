@@ -1,12 +1,11 @@
 use log::{info, error};
 
 use instruction::Instruction;
+use register::get_unused_reg;
 use converter::arithmetic;
 use converter::bitwise;
 use converter::register;
 use converter::miscellaneous;
-
-use data::parse_address;
 
 // converts instructions in complex assembly to base assembly
 
@@ -22,7 +21,6 @@ pub fn convert(instructions: Vec<Instruction>) -> Vec<Instruction> {
 
 pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
     info!("Instruction: {}", instruction.to_string());
-    println!("Instruction: {}", instruction.to_string());
 
     let arg1 = instruction.arg1.clone();
     let arg2 = instruction.arg2.clone();
@@ -124,20 +122,4 @@ pub fn convert_two_arg_instruction(instruction: Instruction) -> Vec<Instruction>
     compiled.push(Instruction::new("POP", &input_reg, ""));
 
     compiled
-}
-
-pub fn get_unused_reg(used_reg1: &str, used_reg2: &str, used_reg3: &str) -> String {
-    let reg1 = parse_address(used_reg1.to_string());
-    let reg2 = parse_address(used_reg2.to_string());
-    let reg3 = parse_address(used_reg3.to_string());
-
-    if reg1 != "A" && reg2 != "A" && reg3 != "A" {
-        "A".to_string()
-    } else if reg1 != "B" && reg2 != "B" && reg3 != "B" {
-        "B".to_string()
-    } else if reg1 != "C" && reg2 != "C" && reg3 != "C" {
-        "C".to_string()
-    } else {
-        "D".to_string()
-    }
 }

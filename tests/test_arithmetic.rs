@@ -182,7 +182,6 @@ fn test_sub5() {
     let compiled = compile("SET A 10\nSET B 30\nSUB B A");
     let out_cpu = test_program(compiled);
 
-    println!("A: {}, B: {}", out_cpu.a.value, out_cpu.b.value);
     assert_eq!(out_cpu.a.value, 10);
     assert_eq!(out_cpu.b.value, 20);
     assert_eq!(out_cpu.f.value, 0);
