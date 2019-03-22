@@ -94,7 +94,7 @@ fn test_add_reg_addr() {
     assert_eq!(out_cpu.hl.value, 100);
     assert_eq!(out_cpu.a.value, 30);
     assert_eq!(out_cpu.b.value, 10);
-    assert_eq!(out_cpu.c.value, 00);
+    assert_eq!(out_cpu.c.value, 0);
     assert_eq!(out_cpu.f.value, 0);
 }
 
