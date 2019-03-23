@@ -38,3 +38,7 @@ pub fn get_unused_reg(used_reg1: &str, used_reg2: &str, used_reg3: &str) -> Stri
         "D".to_string()
     }
 }
+
+pub fn get_dest_reg(used_reg1: &str) -> String {
+    get_unused_reg(used_reg1, used_reg1.clone(), used_reg1.clone())
+}

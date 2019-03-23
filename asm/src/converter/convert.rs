@@ -2,6 +2,7 @@ use log::{info, error};
 
 use instruction::Instruction;
 use register::get_unused_reg;
+use register::get_dest_reg;
 use converter::arithmetic;
 use converter::bitwise;
 use converter::register;
@@ -22,12 +23,8 @@ pub fn convert(instructions: Vec<Instruction>) -> Vec<Instruction> {
 pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
     info!("Instruction: {}", instruction.to_string());
 
-    let arg1 = instruction.arg1.clone();
-    let arg2 = instruction.arg2.clone();
-
     match instruction.command.as_str() {
         "MOVE" => {
-            // TODO: Convert MOVE into convert_two_arg_instruction
             register::convert_move(instruction.arg1, instruction.arg2)
         },
         // TODO: Allow anything to be passed into these
@@ -38,19 +35,19 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             vec!(instruction)
         },
         "NOT" => {
-            vec!(instruction)
+            convert_one_arg_instruction(instruction)
         },
         "SHIFT_LEFT" => {
-            vec!(instruction)
+            convert_one_arg_instruction(instruction)
         },
         "SHIFT_LEFT_W" => {
-            vec!(instruction)
+            convert_one_arg_instruction(instruction)
+        },
+        "SHIFT_RIGHT" => {
+            convert_one_arg_instruction(instruction)
         },
         "SHIFT_RIGHT_W" => {
-            vec!(instruction)
-        },
-        "SHIFT_RIGHT_W" => {
-            vec!(instruction)
+            convert_one_arg_instruction(instruction)
         },
         "JUMP" => {
             vec!(instruction)
@@ -76,7 +73,42 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
     }
 }
 
-pub fn convert_two_arg_instruction(instruction: Instruction) -> Vec<Instruction> {
+fn convert_one_arg_instruction(instruction: Instruction) -> Vec<Instruction> {
+    let mut compiled: Vec<Instruction> = Vec::new();
+
+    let dest_reg = get_dest_reg(&instruction.arg1);
+
+    compiled.push(Instruction::new("PUSH", &dest_reg, ""));
+    compiled.append(&mut convert_instruction(Instruction::new("MOVE", &dest_reg, &instruction.arg1)));
+
+    compiled.push(match instruction.command.as_str() {
+        "NOT" => {
+            Instruction::new("NOT", &dest_reg, "")
+        },
+        "SHIFT_LEFT" => {
+            Instruction::new("SHIFT_LEFT", &dest_reg, "")
+        },
+        "SHIFT_LEFT_W" => {
+            Instruction::new("SHIFT_LEFT_W", &dest_reg, "")
+        },
+        "SHIFT_RIGHT" => {
+            Instruction::new("SHIFT_RIGHT", &dest_reg, "")
+        },
+        "SHIFT_RIGHT_W" => {
+            Instruction::new("SHIFT_RIGHT_W", &dest_reg, "")
+        },
+        _ => {
+            instruction.clone()
+        }
+    });
+
+    compiled.append(&mut convert_instruction(Instruction::new("MOVE", &instruction.arg1, &dest_reg)));
+    compiled.push(Instruction::new("POP", &dest_reg, ""));
+
+    compiled
+}
+
+fn convert_two_arg_instruction(instruction: Instruction) -> Vec<Instruction> {
     let mut compiled: Vec<Instruction> = Vec::new();
 
     let input_reg = get_unused_reg("A", &instruction.arg1, &instruction.arg2);

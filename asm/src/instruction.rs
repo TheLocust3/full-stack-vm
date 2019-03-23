@@ -1,3 +1,4 @@
+#[derive(Clone)]
 pub struct Instruction {
     pub command: String,
     pub arg1: String,
