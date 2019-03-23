@@ -265,3 +265,163 @@ fn test_or_regaddr_addr() {
     assert_eq!(out_cpu.memory.read_64bit(100), 1023);
     assert_eq!(out_cpu.f.value, 0);
 }
+
+#[test]
+fn test_not() {
+    let compiled = compile("SET A 0\nNOT A");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.a.value, u64::max_value());
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_not_addr() {
+    let compiled = compile("SET HL 100\nSET B 0\nWRITE64 B\nNOT (100)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 0);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), u64::max_value());
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_not_regaddr() {
+    let compiled = compile("SET HL 100\nSET B 0\nWRITE64 B\nSET A 100\nNOT (A)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 0);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.a.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), u64::max_value());
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_left() {
+    let compiled = compile("SET A 1\nSHIFT_LEFT A");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.a.value, 2);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_left_addr() {
+    let compiled = compile("SET HL 100\nSET B 1\nWRITE64 B\nSHIFT_LEFT (100)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 1);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 2);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_left_regaddr() {
+    let compiled = compile("SET HL 100\nSET B 1\nWRITE64 B\nSET A 100\nSHIFT_LEFT (A)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 1);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.a.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 2);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_left_wrap() {
+    let compiled = compile("SET A 1\nSHIFT_LEFT_W A");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.a.value, 2);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_left_wrap_addr() {
+    let compiled = compile("SET HL 100\nSET B 1\nWRITE64 B\nSHIFT_LEFT_W (100)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 1);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 2);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_left_wrap_regaddr() {
+    let compiled = compile("SET HL 100\nSET B 1\nWRITE64 B\nSET A 100\nSHIFT_LEFT_W (A)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 1);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.a.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 2);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_right() {
+    let compiled = compile("SET A 2\nSHIFT_RIGHT A");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.a.value, 1);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_right_addr() {
+    let compiled = compile("SET HL 100\nSET B 2\nWRITE64 B\nSHIFT_RIGHT (100)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 2);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 1);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_right_regaddr() {
+    let compiled = compile("SET HL 100\nSET B 2\nWRITE64 B\nSET A 100\nSHIFT_RIGHT (A)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 2);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.a.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 1);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_right_wrap() {
+    let compiled = compile("SET A 2\nSHIFT_RIGHT_W A");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.a.value, 1);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_right_wrap_addr() {
+    let compiled = compile("SET HL 100\nSET B 2\nWRITE64 B\nSHIFT_RIGHT_W (100)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 2);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 1);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_shift_right_wrap_regaddr() {
+    let compiled = compile("SET HL 100\nSET B 2\nWRITE64 B\nSET A 100\nSHIFT_RIGHT_W (A)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.b.value, 2);
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.a.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 1);
+    assert_eq!(out_cpu.f.value, 0);
+}
