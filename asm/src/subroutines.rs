@@ -1,7 +1,5 @@
 use instruction::Instruction;
 
-pub const TEMPORARY_REGISTER: u64 = 320;
-
 pub fn beginning_subroutine() -> Vec<Instruction> {
     let mut instructions: Vec<Instruction> = Vec::new();
 
