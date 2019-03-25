@@ -32,7 +32,7 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             miscellaneous::convert_push(instruction.arg1)
         },
         "POP" => {
-            vec!(instruction)
+            miscellaneous::convert_pop(instruction.arg1)
         },
         "NOT" => {
             convert_one_arg_instruction(instruction)
