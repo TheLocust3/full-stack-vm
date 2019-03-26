@@ -1,25 +1,17 @@
-use bitwise::functions::to_bytes_64bit;
+use register::register_str_to_code;
 
-pub fn compile_jump(address_str: String) -> Vec<u8> {
-    let address: u64 = address_str.parse::<u64>().unwrap();
+pub fn compile_jump(reg: String) -> Vec<u8> {
     let mut compiled: Vec<u8> = Vec::new();
 
-    compiled.push(0b11111111);
-    for byte in to_bytes_64bit(address).iter() {
-        compiled.push(*byte);
-    }
+    compiled.push(0b00101000 + register_str_to_code(reg));
 
     compiled
 }
 
-pub fn compile_jump0(address_str: String) -> Vec<u8> {
-    let address: u64 = address_str.parse::<u64>().unwrap();
+pub fn compile_jump0(reg: String) -> Vec<u8> {
     let mut compiled: Vec<u8> = Vec::new();
 
-    compiled.push(0b11111110);
-    for byte in to_bytes_64bit(address).iter() {
-        compiled.push(*byte);
-    }
+    compiled.push(0b01101000 + register_str_to_code(reg));
 
     compiled
 }

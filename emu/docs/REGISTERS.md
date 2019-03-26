@@ -22,6 +22,8 @@ Code: 011
 
 Code: 100
 
+The temporary register. All values in here could be destroyed at any time due to any command. Do not rely on this register's value unless you know exactly what you are doing.
+
 ## F
 
 Flag register

@@ -7,6 +7,7 @@ use converter::arithmetic;
 use converter::bitwise;
 use converter::register;
 use converter::miscellaneous;
+use converter::control;
 
 // converts instructions in complex assembly to base assembly
 
@@ -49,10 +50,18 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             convert_one_arg_instruction(instruction)
         },
         "JUMP" => {
-            vec!(instruction)
+            if control::should_compile(&instruction.arg1) {
+                control::convert_jump(instruction.arg1)
+            } else {
+                convert(control::convert_jump(instruction.arg1))
+            }
         },
         "JUMP0" => {
-            vec!(instruction)
+            if control::should_compile(&instruction.arg1) {
+                control::convert_jump0(instruction.arg1)
+            } else {
+                convert(control::convert_jump0(instruction.arg1))
+            }
         },
         "ADD" => {
             convert_two_arg_instruction(instruction)
@@ -95,7 +104,7 @@ fn convert_one_arg_instruction(instruction: Instruction) -> Vec<Instruction> {
         },
         "SHIFT_RIGHT_W" => {
             Instruction::new("SHIFT_RIGHT_W", &dest_reg, "")
-        },
+        }
         _ => {
             instruction.clone()
         }
