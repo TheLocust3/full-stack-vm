@@ -180,10 +180,7 @@ fn test_convert_not() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 1);
-    assert_eq!(compiled[0].command, "NOT");
-    assert_eq!(compiled[0].arg1, "A");
-    assert_eq!(compiled[0].arg2, "");
+    assert_eq!(compiled.len(), 5);
 }
 
 #[test]
@@ -192,10 +189,7 @@ fn test_convert_shift_left() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 1);
-    assert_eq!(compiled[0].command, "SHIFT_LEFT");
-    assert_eq!(compiled[0].arg1, "A");
-    assert_eq!(compiled[0].arg2, "");
+    assert_eq!(compiled.len(), 5);
 }
 
 #[test]
@@ -204,10 +198,7 @@ fn test_convert_shift_left_wrap() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 1);
-    assert_eq!(compiled[0].command, "SHIFT_LEFT_W");
-    assert_eq!(compiled[0].arg1, "A");
-    assert_eq!(compiled[0].arg2, "");
+    assert_eq!(compiled.len(), 5);
 }
 
 #[test]
@@ -216,10 +207,7 @@ fn test_convert_shift_right() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 1);
-    assert_eq!(compiled[0].command, "SHIFT_RIGHT");
-    assert_eq!(compiled[0].arg1, "A");
-    assert_eq!(compiled[0].arg2, "");
+    assert_eq!(compiled.len(), 5);
 }
 
 #[test]
@@ -228,10 +216,7 @@ fn test_convert_shift_right_wrap() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 1);
-    assert_eq!(compiled[0].command, "SHIFT_RIGHT_W");
-    assert_eq!(compiled[0].arg1, "A");
-    assert_eq!(compiled[0].arg2, "");
+    assert_eq!(compiled.len(), 5);
 }
 
 #[test]
@@ -300,7 +285,7 @@ fn test_convert_push_addr() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 7);
+    assert_eq!(compiled.len(), 13);
 }
 
 #[test]
@@ -309,7 +294,7 @@ fn test_convert_push_value() {
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
-    assert_eq!(compiled.len(), 6);
+    assert_eq!(compiled.len(), 10);
 }
 
 #[test]
