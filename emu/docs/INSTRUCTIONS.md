@@ -246,7 +246,15 @@ Jump to location stored in the next four bytes.
 
 #### Opcodes
 
-Format: 1111 1111
+Format: 0010 1rrr
+
+- 0010 1000 JUMP A
+- 0010 1001 JUMP B
+- 0010 1010 JUMP C
+- 0010 1011 JUMP D
+- 0010 1100 JUMP E
+- 0010 1101 JUMP F
+- 0010 1110 JUMP HL
 
 ### jump0
 
@@ -254,7 +262,15 @@ If value stored in register A is 0 jump to location stored in the next four byte
 
 #### Opcodes
 
-Format: 1111 1110
+Format: 0110 1rrr
+
+- 0110 1000 JUMP0 A
+- 0110 1001 JUMP0 B
+- 0110 1010 JUMP0 C
+- 0110 1011 JUMP0 D
+- 0110 1100 JUMP0 E
+- 0110 1101 JUMP0 F
+- 0110 1110 JUMP0 HL
 
 ## Memory Operations
 

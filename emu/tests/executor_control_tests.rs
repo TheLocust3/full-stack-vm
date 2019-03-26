@@ -7,49 +7,52 @@ mod tests {
     use self::emu::cpu::executor_functions::execute_jump0;
 
     #[test]
-    fn test_jump() {
+    fn test_jump_a() {
         let mut cpu: CPU = CPU::new();
         let pc = cpu.pc;
 
-        cpu.memory.write_64bit(1, 10);
+        cpu = cpu.set_a(Register { value: 10 });
 
-        cpu = execute_jump(cpu, pc);
+        cpu = execute_jump(cpu, 0b000);
 
         assert_eq!(cpu.pc.value, 10);
+        assert_eq!(cpu.a.value, 10);
         assert_eq!(cpu.f.value, 0);
     }
 
     #[test]
-    fn test_jump0_false() {
+    fn test_jump0_b_false() {
         let mut cpu: CPU = CPU::new();
         cpu = cpu.set_pc(Register { value: 0 });
         cpu = cpu.set_a(Register { value: 10 });
-
-        cpu.memory.write_64bit(1, 10);
+        cpu = cpu.set_b(Register { value: 100 });
 
         let pc = cpu.pc;
         let a = cpu.a;
 
-        cpu = execute_jump0(cpu, pc);
+        cpu = execute_jump0(cpu, pc, 0b001);
 
         assert_eq!(cpu.pc.value, 1);
+        assert_eq!(cpu.a.value, 10);
+        assert_eq!(cpu.b.value, 100);
         assert_eq!(cpu.f.value, 0);
     }
 
     #[test]
-    fn test_jump0_true() {
+    fn test_jump0_b_true() {
         let mut cpu: CPU = CPU::new();
         cpu = cpu.set_pc(Register { value: 0 });
         cpu = cpu.set_a(Register { value: 0 });
-
-        cpu.memory.write_64bit(1, 10);
+        cpu = cpu.set_b(Register { value: 100 });
 
         let pc = cpu.pc;
         let a = cpu.a;
 
-        cpu = execute_jump0(cpu, pc);
+        cpu = execute_jump0(cpu, pc, 0b001);
 
-        assert_eq!(cpu.pc.value, 10);
+        assert_eq!(cpu.pc.value, 100);
+        assert_eq!(cpu.a.value, 0);
+        assert_eq!(cpu.b.value, 100);
         assert_eq!(cpu.f.value, 0);
     }
 }

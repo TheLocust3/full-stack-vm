@@ -1,18 +1,18 @@
 use cpu::register::Register;
 use instructions::instruction_return::RegisterReturn;
 
-pub fn jump(pc: Register, address: u64) -> RegisterReturn {
+pub fn jump(reg: Register) -> RegisterReturn {
     RegisterReturn {
-        out: pc.set_value(address),
+        out: reg,
         overflow: false,
         negative: false
     }
 }
 
-pub fn jump0(pc: Register, a: Register, address: u64) -> RegisterReturn {
+pub fn jump0(pc: Register, a: Register, reg: Register) -> RegisterReturn {
     if a.value == 0 {
         RegisterReturn {
-            out: pc.set_value(address),
+            out: reg,
             overflow: false,
             negative: false
         }

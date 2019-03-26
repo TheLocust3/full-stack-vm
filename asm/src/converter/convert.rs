@@ -27,7 +27,6 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
         "MOVE" => {
             register::convert_move(instruction.arg1, instruction.arg2)
         },
-        // TODO: Allow anything to be passed into these
         "PUSH" => {
             miscellaneous::convert_push(instruction.arg1)
         },

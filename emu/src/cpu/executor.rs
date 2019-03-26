@@ -330,12 +330,60 @@ pub fn execute(cpu: CPU) -> CPU {
         },
 
         // control
-        0b11111111 => { // jump
-            out_cpu = executor_functions::execute_jump(out_cpu, pc);
+        0b00101000 => { // jump A
+            out_cpu = executor_functions::execute_jump(out_cpu, 0b000);
             has_set_pc = true;
         },
-        0b11111110 => { // jump0
-            out_cpu = executor_functions::execute_jump0(out_cpu, pc);
+        0b00101001 => { // jump B
+            out_cpu = executor_functions::execute_jump(out_cpu, 0b001);
+            has_set_pc = true;
+        },
+        0b00101010 => { // jump C
+            out_cpu = executor_functions::execute_jump(out_cpu, 0b010);
+            has_set_pc = true;
+        },
+        0b00101011 => { // jump D
+            out_cpu = executor_functions::execute_jump(out_cpu, 0b011);
+            has_set_pc = true;
+        },
+        0b00101100 => { // jump E
+            out_cpu = executor_functions::execute_jump(out_cpu, 0b100);
+            has_set_pc = true;
+        },
+        0b00101101 => { // jump F
+            out_cpu = executor_functions::execute_jump(out_cpu, 0b101);
+            has_set_pc = true;
+        },
+        0b00101110 => { // jump HL
+            out_cpu = executor_functions::execute_jump(out_cpu, 0b110);
+            has_set_pc = true;
+        },
+        0b01101000 => { // jump0 A
+            out_cpu = executor_functions::execute_jump0(out_cpu, pc, 0b000);
+            has_set_pc = true;
+        },
+        0b01101001 => { // jump0 B
+            out_cpu = executor_functions::execute_jump0(out_cpu, pc, 0b001);
+            has_set_pc = true;
+        },
+        0b01101010 => { // jump0 C
+            out_cpu = executor_functions::execute_jump0(out_cpu, pc, 0b010);
+            has_set_pc = true;
+        },
+        0b01101011 => { // jump0 D
+            out_cpu = executor_functions::execute_jump0(out_cpu, pc, 0b011);
+            has_set_pc = true;
+        },
+        0b01101100 => { // jump0 E
+            out_cpu = executor_functions::execute_jump0(out_cpu, pc, 0b100);
+            has_set_pc = true;
+        },
+        0b01101101 => { // jump0 F
+            out_cpu = executor_functions::execute_jump0(out_cpu, pc, 0b101);
+            has_set_pc = true;
+        },
+        0b01101110 => { // jump0 HL
+            out_cpu = executor_functions::execute_jump0(out_cpu, pc, 0b110);
             has_set_pc = true;
         },
 

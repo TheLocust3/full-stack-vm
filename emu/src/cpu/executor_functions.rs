@@ -98,22 +98,22 @@ pub fn execute_shift_right(cpu: CPU, code: u8, wrap: bool) -> CPU {
     out_cpu.set_f_from_register_return(register_return)
 }
 
-pub fn execute_jump(cpu: CPU, pc: Register) -> CPU {
+pub fn execute_jump(cpu: CPU, code: u8) -> CPU {
     let mut out_cpu = cpu;
 
-    let value = out_cpu.memory.read_64bit(pc.value + 1);
+    let register: Register = out_cpu.get_from_code(code);
 
-    let register_return: RegisterReturn = control::jump(pc, value);
+    let register_return: RegisterReturn = control::jump(register);
 
     out_cpu.set_pc(register_return.out)
 }
 
-pub fn execute_jump0(cpu: CPU, pc: Register) -> CPU {
+pub fn execute_jump0(cpu: CPU, pc: Register, code: u8) -> CPU {
     let mut out_cpu = cpu;
 
-    let value = out_cpu.memory.read_64bit(pc.value + 1);
+    let register: Register = out_cpu.get_from_code(code);
 
-    let register_return: RegisterReturn = control::jump0(pc, out_cpu.a, value);
+    let register_return: RegisterReturn = control::jump0(pc, out_cpu.a, register);
 
     out_cpu.set_pc(register_return.out)
 }
