@@ -29,10 +29,18 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
             register::convert_move(instruction.arg1, instruction.arg2)
         },
         "PUSH" => {
-            miscellaneous::convert_push(instruction.arg1)
+            if miscellaneous::should_compile(&instruction.arg1) {
+                miscellaneous::convert_push(instruction.arg1)
+            } else {
+                convert(miscellaneous::convert_push(instruction.arg1))
+            }
         },
         "POP" => {
-            miscellaneous::convert_pop(instruction.arg1)
+            if miscellaneous::should_compile(&instruction.arg1) {
+                miscellaneous::convert_pop(instruction.arg1)
+            } else {
+                convert(miscellaneous::convert_pop(instruction.arg1))
+            }
         },
         "NOT" => {
             convert_one_arg_instruction(instruction)

@@ -4,8 +4,6 @@ extern crate asm;
 use asm::run::run as compile;
 use emu::test_program::test_program;
 
-// TODO: Test jump and jump0
-
 #[test]
 fn test_jump_a() {
     let compiled = compile("SET A 340\nJUMP A\nHALT\nNOP"); // jump over halt

@@ -49,6 +49,28 @@ fn test_push_addr2() {
 }
 
 #[test]
+fn test_push_regaddr() {
+    let compiled = compile("SET HL 100\nSET A 10\nWRITE64 A\nMOVE A 100\nPUSH (A)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.a.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(out_cpu.sp.value), 10);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_push_regaddr2() {
+    let compiled = compile("SET HL 100\nSET A 10\nWRITE64 A\nMOVE B 100\nPUSH (B)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.b.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(out_cpu.sp.value), 10);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
 fn test_push_value() {
     let compiled = compile("PUSH 10");
     let out_cpu = test_program(compiled);
@@ -109,5 +131,27 @@ fn test_pop_addr2() {
     assert_eq!(out_cpu.hl.value, 100);
     assert_eq!(out_cpu.a.value, 0);
     assert_eq!(out_cpu.memory.read_64bit(100), 10);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_pop_regaddr() {
+    let compiled = compile("SET HL 100\nSET A 10\nWRITE64 A\nPUSH 11\nMOVE A 100\nPOP (A)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.a.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 11);
+    assert_eq!(out_cpu.f.value, 0);
+}
+
+#[test]
+fn test_pop_regaddr2() {
+    let compiled = compile("SET HL 100\nSET A 10\nWRITE64 A\nPUSH 11\nMOVE B 100\nPOP (B)");
+    let out_cpu = test_program(compiled);
+
+    assert_eq!(out_cpu.hl.value, 100);
+    assert_eq!(out_cpu.b.value, 100);
+    assert_eq!(out_cpu.memory.read_64bit(100), 11);
     assert_eq!(out_cpu.f.value, 0);
 }

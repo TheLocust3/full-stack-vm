@@ -3,79 +3,48 @@ use recognizers::is_register;
 use recognizers::is_address;
 use data::parse_address;
 use converter::subroutines::temp_register;
+use register::get_dest_reg;
+
+pub fn should_compile(value: &String) -> bool {
+    is_register(&value)
+}
 
 pub fn convert_push(value: String) -> Vec<Instruction> {
-    if is_register(&value) {
-        vec!(Instruction::new("PUSH", &value, ""))
-    } else if is_address(&value) {
-        convert_push_addr(value)
+    let mut compiled: Vec<Instruction> = Vec::new();
+
+    if should_compile(&value) {
+        compiled.push(Instruction::new("PUSH", &value, ""));
     } else {
-        convert_push_value(value)
+        let dest_reg = get_dest_reg(&value);
+
+        compiled.append(&mut temp_register::set_temp_register_to(&dest_reg));
+
+        compiled.push(Instruction::new("MOVE", &dest_reg, &value));
+
+        compiled.push(Instruction::new("PUSH", &dest_reg, ""));
+
+        compiled.append(&mut temp_register::set_by_temp_register(&dest_reg));
     }
-}
-
-// TODO: Allow use of address registers with push/pop
-
-pub fn convert_push_addr(address: String) -> Vec<Instruction> {
-    let address_val = parse_address(address);
-
-    let mut compiled: Vec<Instruction> = Vec::new();
-
-    compiled.append(&mut temp_register::set_temp_register_to("A"));
-
-    compiled.push(Instruction::new("PUSH", "HL", ""));
-
-    compiled.push(Instruction::new("SET", "HL", &address_val));
-    compiled.push(Instruction::new("READ64", "A", ""));
-
-    compiled.push(Instruction::new("POP", "HL", ""));
-
-    compiled.push(Instruction::new("PUSH", "A", ""));
-
-    compiled.append(&mut temp_register::set_by_temp_register("A"));
-
-    compiled
-}
-
-pub fn convert_push_value(value: String) -> Vec<Instruction> {
-    let mut compiled: Vec<Instruction> = Vec::new();
-
-    compiled.append(&mut temp_register::set_temp_register_to("A"));
-
-    compiled.push(Instruction::new("SET", "A", &value));
-
-    compiled.push(Instruction::new("PUSH", "A", ""));
-
-    compiled.append(&mut temp_register::set_by_temp_register("A"));
 
     compiled
 }
 
 pub fn convert_pop(value: String) -> Vec<Instruction> {
-    if is_address(&value) {
-        convert_pop_addr(value)
-    } else { // default to just try
-        vec!(Instruction::new("POP", &value, ""))
-    }
-}
-
-pub fn convert_pop_addr(address: String) -> Vec<Instruction> {
-    let address_val = parse_address(address);
-
     let mut compiled: Vec<Instruction> = Vec::new();
 
-    compiled.append(&mut temp_register::set_temp_register_to("A"));
+    if should_compile(&value) {
+        compiled.push(Instruction::new("POP", &value, ""));
+    } else {
+        let dest_reg = get_dest_reg(&value);
 
-    compiled.push(Instruction::new("POP", "A", ""));
+        compiled.append(&mut temp_register::set_temp_register_to(&dest_reg));
 
-    compiled.push(Instruction::new("PUSH", "HL", ""));
+        compiled.push(Instruction::new("POP", &dest_reg, ""));
 
-    compiled.push(Instruction::new("SET", "HL", &address_val));
-    compiled.push(Instruction::new("WRITE64", "A", ""));
+        compiled.push(Instruction::new("MOVE", &value, &dest_reg));
 
-    compiled.push(Instruction::new("POP", "HL", ""));
-
-    compiled.append(&mut temp_register::set_by_temp_register("A"));
+        compiled.append(&mut temp_register::set_by_temp_register(&dest_reg));
+    }
 
     compiled
 }
