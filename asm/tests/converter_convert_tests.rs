@@ -221,26 +221,20 @@ fn test_convert_shift_right_wrap() {
 
 #[test]
 fn test_convert_jump() {
-    let instruction = Instruction::new("JUMP", "10", "");
+    let instruction = Instruction::new("JUMP", "A", "");
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
     assert_eq!(compiled.len(), 1);
-    assert_eq!(compiled[0].command, "JUMP");
-    assert_eq!(compiled[0].arg1, "10");
-    assert_eq!(compiled[0].arg2, "");
 }
 
 #[test]
 fn test_convert_jump0() {
-    let instruction = Instruction::new("JUMP0", "10", "");
+    let instruction = Instruction::new("JUMP0", "A", "");
 
     let compiled: Vec<Instruction> = convert::convert_instruction(instruction);
 
     assert_eq!(compiled.len(), 1);
-    assert_eq!(compiled[0].command, "JUMP0");
-    assert_eq!(compiled[0].arg1, "10");
-    assert_eq!(compiled[0].arg2, "");
 }
 
 #[test]
