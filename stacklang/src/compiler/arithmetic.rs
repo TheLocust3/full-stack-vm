@@ -14,5 +14,10 @@ pub fn compile_add() -> String {
 pub fn compile_sub() -> String {
     let mut compiled: String = "".to_string();
 
+    compiled = add_instruction(compiled, "POP A");
+    compiled = add_instruction(compiled, "POP B");
+    compiled = add_instruction(compiled, "SUB A B");
+    compiled = add_instruction(compiled, "PUSH A");
+
     compiled
 }
