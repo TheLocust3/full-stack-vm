@@ -1,5 +1,6 @@
 use instruction::Instruction;
 use instruction::InstructionTree;
+use compiler::arithmetic;
 
 pub fn compile(instructions: Vec<Instruction>) -> String {
     let mut compiled: String = "".to_string();
@@ -30,10 +31,10 @@ pub fn compile_instruction_tree(tree: InstructionTree) -> String {
                         "push".to_string()
                     },
                     "add" => {
-                        "add".to_string()
+                        arithmetic::compile_add()
                     },
                     "sub" => {
-                        "sub".to_string()
+                        arithmetic::compile_sub()
                     },
                     "if0" => {
                         "if0".to_string()
