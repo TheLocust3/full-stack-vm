@@ -9,5 +9,5 @@ fn test_compile() {
     let program: Vec<Instruction> = vec!(Instruction::new("add", InstructionTree::Value("".to_string()), InstructionTree::Value("".to_string())));
     let compiled = compile::compile(program);
 
-    assert_eq!(compiled, "\n\n");
+    assert_eq!(compiled, "POP A\nPOP B\nADD A B\nPUSH A\n\n");
 }

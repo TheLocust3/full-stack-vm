@@ -16,89 +16,69 @@ pub fn compile(instructions: Vec<Instruction>) -> String {
 }
 
 pub fn compile_instruction(instruction: Instruction) -> String {
-    add_instruction(compile_instruction_tree(instruction.arg1), &compile_instruction_tree(instruction.arg2))
-}
+    let command = instruction.command.clone();
 
-pub fn compile_instruction_tree(tree: InstructionTree) -> String {
-    match tree {
-        InstructionTree::Nodes(instructions) => {
-            let mut compiled: String = "".to_string();
-
-            for instruction in instructions {
-                let command = instruction.command.clone();
-
-                // let single: String = "".to_string();
-                let single: String = match command.as_str() {
-                    "push" => {
-                        match instruction.arg1 {
-                            InstructionTree::Nodes(nodes) => {
-                                println!("Bad input on push!");
-                                "".to_string()
-                            },
-                            InstructionTree::Value(value) => {
-                                miscellaneous::compile_push(compile_value(value))
-                            }
-                        }
-                    },
-                    "add" => {
-                        arithmetic::compile_add()
-                    },
-                    "sub" => {
-                        arithmetic::compile_sub()
-                    },
-                    "if0" => {
-                        match instruction.arg1 {
-                            InstructionTree::Nodes(branch1) => {
-                                match instruction.arg2 {
-                                    InstructionTree::Nodes(branch2) => {
-                                        control::compile_if0(compile(branch1), compile(branch2))
-                                    },
-                                    InstructionTree::Value(value) => {
-                                        println!("Bad input on if0!");
-                                        "".to_string()
-                                    }
-                                }
-                            },
-                            InstructionTree::Value(value) => {
-                                println!("Bad input on if0!");
-                                "".to_string()
-                            }
-                        }
-                    },
-                    "call" => {
-                        match instruction.arg1 {
-                            InstructionTree::Nodes(nodes) => {
-                                control::compile_call(compile(nodes))
-                            },
-                            InstructionTree::Value(value) => {
-                                println!("Bad input on call!");
-                                "".to_string()
-                            }
-                        }
-                    },
-                    "lam" => {
-                        match instruction.arg1 {
-                            InstructionTree::Nodes(nodes) => {
-                                control::compile_lam(compile(nodes))
-                            },
-                            InstructionTree::Value(value) => {
-                                println!("Bad input on lam!");
-                                "".to_string()
-                            }
-                        }
-                    },
-                    _ => {
-                        "".to_string()
-                    }
-                };
-
-                compiled = add_instruction(compiled, &single);
+    match command.as_str() {
+        "push" => {
+            match instruction.arg1 {
+                InstructionTree::Nodes(nodes) => {
+                    println!("Bad input on push!");
+                    "".to_string()
+                },
+                InstructionTree::Value(value) => {
+                    miscellaneous::compile_push(compile_value(value))
+                }
             }
-
-            compiled
         },
-        InstructionTree::Value(value) => {
-            value
+        "add" => {
+            arithmetic::compile_add()
+        },
+        "sub" => {
+            arithmetic::compile_sub()
+        },
+        "if0" => {
+            match instruction.arg1 {
+                InstructionTree::Nodes(branch1) => {
+                    match instruction.arg2 {
+                        InstructionTree::Nodes(branch2) => {
+                            control::compile_if0(compile(branch1), compile(branch2))
+                        },
+                        InstructionTree::Value(value) => {
+                            println!("Bad input on if0!");
+                            "".to_string()
+                        }
+                    }
+                },
+                InstructionTree::Value(value) => {
+                    println!("Bad input on if0!");
+                    "".to_string()
+                }
+            }
+        },
+        "call" => {
+            match instruction.arg1 {
+                InstructionTree::Nodes(nodes) => {
+                    control::compile_call(compile(nodes))
+                },
+                InstructionTree::Value(value) => {
+                    println!("Bad input on call!");
+                    "".to_string()
+                }
+            }
+        },
+        "lam" => {
+            match instruction.arg1 {
+                InstructionTree::Nodes(nodes) => {
+                    control::compile_lam(compile(nodes))
+                },
+                InstructionTree::Value(value) => {
+                    println!("Bad input on lam!");
+                    "".to_string()
+                }
+            }
+        },
+        _ => {
+            "".to_string()
         }
     }
 }
