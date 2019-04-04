@@ -1,5 +1,9 @@
 use instruction::Instruction;
 use instruction::InstructionTree;
+use instruction::Value;
+use instruction::Variable;
+use instruction::Number;
+use instruction::Thunk;
 use compiler::helpers::add_instruction;
 use compiler::arithmetic;
 use compiler::control;
@@ -83,7 +87,8 @@ pub fn compile_instruction(instruction: Instruction) -> String {
     }
 }
 
-pub fn compile_value(value: String) -> String {
-    // TODO: Value could be thunk or non-string value
-    "".to_string()
+pub fn compile_value(value: Value) -> Value {
+    Value::Number(Number {
+        number: "0".to_string()
+    })
 }

@@ -6,9 +6,9 @@ A symbol that represents a bound variable
 
 Examples
 
-- x
-- y
-- test
+- (var x)
+- (var y)
+- (var test)
 
 ### number
 
