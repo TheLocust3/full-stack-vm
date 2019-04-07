@@ -8,6 +8,7 @@ use compiler::helpers::add_instruction;
 use compiler::arithmetic;
 use compiler::control;
 use compiler::miscellaneous;
+use compiler::values;
 
 pub fn compile(instructions: Vec<Instruction>) -> String {
     let mut compiled: String = "".to_string();
@@ -30,6 +31,7 @@ pub fn compile_instruction(instruction: Instruction) -> String {
                     "".to_string()
                 },
                 InstructionTree::Value(value) => {
+                    // TODO: Different compile push for different values
                     miscellaneous::compile_push(compile_value(value))
                 }
             }
@@ -87,8 +89,16 @@ pub fn compile_instruction(instruction: Instruction) -> String {
     }
 }
 
-pub fn compile_value(value: Value) -> Value {
-    Value::Number(Number {
-        number: "0".to_string()
-    })
+pub fn compile_value(value: Value) -> String {
+    match value {
+        Value::Variable(var) => {
+            values::compile_variable(var.var)
+        },
+        Value::Number(num) => {
+            values::compile_number(num.number)
+        },
+        Value::Thunk(thunk) => {
+            values::compile_thunk(compile(thunk.instructions))
+        }
+    }
 }
