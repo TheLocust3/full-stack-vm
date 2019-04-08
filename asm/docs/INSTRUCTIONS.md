@@ -168,6 +168,17 @@ Arguments:
 
 Ex. JUMP0 1
 
+## CALL
+
+Jumps to instructions at label.
+
+Arguments:
+
+- ARG1: an existing label
+- ARG2: none
+
+Ex. JUMP 1
+
 ## NOP
 
 Does nothing.
