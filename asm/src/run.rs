@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use parser;
 use instruction;
 use converter;
@@ -11,6 +13,6 @@ pub fn run(program: &str) -> Vec<u8> {
     instructions.append(&mut parser::parse::parse(program));
     instructions.append(&mut subroutines::ending_subroutine());
 
-    let converted = converter::convert::convert(instructions);
+    let converted = converter::convert::convert(instructions, &HashMap::new());
     compiler::compile::compile(converted)
 }
