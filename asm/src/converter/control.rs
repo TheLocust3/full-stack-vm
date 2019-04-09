@@ -1,5 +1,6 @@
 use instruction::Instruction;
 use recognizers::is_register;
+use recognizers::is_label;
 use register::get_dest_reg;
 
 pub fn convert_jump(value: String) -> Vec<Instruction> {
@@ -34,4 +35,14 @@ pub fn convert_jump0(value: String) -> Vec<Instruction> {
 
 pub fn should_compile(value: &str) -> bool {
     is_register(&value.to_string())
+}
+
+pub fn convert_call(label: String) -> Vec<Instruction> {
+    let mut compiled: Vec<Instruction> = Vec::new();
+
+    if is_label(&label) {
+        
+    }
+
+    compiled
 }

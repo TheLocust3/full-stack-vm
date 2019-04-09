@@ -35,6 +35,16 @@ pub fn is_address_register(arg: &String) -> bool {
     is_address(&arg) && is_register(&reg)
 }
 
+pub fn is_label(arg: &String) -> bool {
+    if arg.len() < 2 {
+        return false
+    }
+
+    let first = arg.chars().next().unwrap();
+
+    first == ':' && !arg.contains(" ")
+}
+
 pub fn is_value(arg: &String) -> bool {
-    !is_register(&arg) && !is_address(&arg)
+    !is_register(&arg) && !is_address(&arg) && !is_label(&arg)
 }

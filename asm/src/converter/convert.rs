@@ -71,6 +71,9 @@ pub fn convert_instruction(instruction: Instruction) -> Vec<Instruction> {
                 convert(control::convert_jump0(instruction.arg1))
             }
         },
+        "CALL" => {
+            convert(control::convert_call(instruction.arg1))
+        },
         "ADD" => {
             convert_two_arg_instruction(instruction)
         },

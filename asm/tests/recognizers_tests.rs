@@ -59,10 +59,22 @@ fn test_is_address_register() {
 }
 
 #[test]
+fn test_is_label() {
+    assert_eq!(recognizers::is_label(&":test".to_string()), true);
+    assert_eq!(recognizers::is_label(&":test-function".to_string()), true);
+    assert_eq!(recognizers::is_label(&"(10)".to_string()), false);
+    assert_eq!(recognizers::is_label(&"(A)".to_string()), false);
+    assert_eq!(recognizers::is_label(&"10".to_string()), false);
+    assert_eq!(recognizers::is_label(&"".to_string()), false);
+    assert_eq!(recognizers::is_label(&"()".to_string()), false);
+}
+
+#[test]
 fn test_is_value() {
     assert_eq!(recognizers::is_value(&"10".to_string()), true);
     assert_eq!(recognizers::is_value(&"1".to_string()), true);
     assert_eq!(recognizers::is_value(&"100".to_string()), true);
     assert_eq!(recognizers::is_value(&"A".to_string()), false);
     assert_eq!(recognizers::is_value(&"(10)".to_string()), false);
+    assert_eq!(recognizers::is_value(&":test".to_string()), false);
 }

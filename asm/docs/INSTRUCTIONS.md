@@ -177,7 +177,7 @@ Arguments:
 - ARG1: an existing label
 - ARG2: none
 
-Ex. JUMP 1
+Ex. CALL :test
 
 ## NOP
 
